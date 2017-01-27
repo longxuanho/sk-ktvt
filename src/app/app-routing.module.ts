@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
 const routes: Routes = [
-  {
-    path: '',
-    children: []
-  }
+  { path: '', pathMatch: 'full', redirectTo: 'bang-tin' },
+  { path: 'thong-ke', loadChildren: 'app/+statistics/statistics.module#StatisticsModule' },
+  { path: 'nhap-lieu', loadChildren: 'app/+input/input.module#InputModule' },
+  { path: 'thiet-lap', loadChildren: 'app/+preferences/preferences.module#PreferencesModule' },
 ];
 
 @NgModule({
@@ -14,3 +15,5 @@ const routes: Routes = [
   providers: []
 })
 export class AppRoutingModule { }
+
+export const routedComponents = []

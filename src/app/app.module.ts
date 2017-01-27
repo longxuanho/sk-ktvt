@@ -4,17 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
+import { CoreModule } from './core/core.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+
 import { AppComponent } from './app.component';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
+@NgModule({  
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    CoreModule,    
+    DashboardModule,
+    AppRoutingModule,
+  ],
+  declarations: [
+    AppComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
