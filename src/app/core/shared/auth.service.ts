@@ -1,11 +1,25 @@
 import { Injectable, Inject } from '@angular/core';
-import { APP_CONFIG, IAppConfig } from '../../app.config';
+import { AngularFire } from 'angularfire2';
+import { UserCredentials } from './auth.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
 
-  constructor(@Inject(APP_CONFIG) private config: IAppConfig) {
-    
+  constructor(private af: AngularFire) {}
+
+  login(credentials: UserCredentials) {
+    return Observable.fromPromise(
+      <Promise<any>> this.af.auth.login(credentials)
+    );
+  }
+
+  logout() {
+    return Observable.fromPromise(this.af.auth.logout());
+  }
+
+  isAuthenticated() {
+    return this.af.auth;
   }
 
 }

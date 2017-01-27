@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
-import { APP_CONFIG, AppConfig } from './app.config';
 import { AppComponent } from './app.component';
 
 @NgModule({  
@@ -22,9 +21,7 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
   ],
-  providers: [
-    { provide: APP_CONFIG, useValue: AppConfig }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
