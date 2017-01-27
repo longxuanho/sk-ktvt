@@ -6,9 +6,12 @@ import { RouterModule } from '@angular/router';
 
 import { ToastrModule } from 'toastr-ng2';
 
-import { LoggerService } from './logger.service';
+import { LoggerService } from './shared/logger.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthService } from './shared/auth.service';
 
 @NgModule({
   imports: [
@@ -17,10 +20,13 @@ import { NavbarComponent } from './navbar/navbar.component';
     ToastrModule.forRoot(),
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   providers: [
     LoggerService,
+    AuthService
   ],
   exports: [
     NavbarComponent
