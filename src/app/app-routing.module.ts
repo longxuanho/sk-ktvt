@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './core/login/login.component';
 import { AboutComponent } from './about/about.component';
 import { AuthGuard } from './core/shared/auth-guard.service';
+import { LoginGuard } from './core/login/login-guard.service';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'bang-tin', canActivate: [AuthGuard] },
-  { path: 'dang-nhap', component: LoginComponent },
+  { path: 'dang-nhap', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'bang-tin', loadChildren: 'app/+dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
   { path: 'thong-ke', loadChildren: 'app/+statistics/statistics.module#StatisticsModule', canActivate: [AuthGuard] },
   { path: 'nhap-lieu', loadChildren: 'app/+input/input.module#InputModule', canActivate: [AuthGuard] },
@@ -21,7 +22,8 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    LoginGuard
   ]
 })
 export class AppRoutingModule { }
