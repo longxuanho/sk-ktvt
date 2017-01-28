@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
 
 import { CoreModule } from './core/core.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-
 import { AppComponent } from './app.component';
+import { APP_CONST, appConst } from './app.constants';
+import { APP_CONFIG, appConfig } from './app.config';
+
 
 @NgModule({  
   imports: [
@@ -15,13 +16,16 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     CoreModule,    
-    DashboardModule,
     AppRoutingModule,
   ],
   declarations: [
     AppComponent,
+    routedComponents
   ],
-  providers: [],
+  providers: [
+    { provide: APP_CONST, useValue: appConst },
+    { provide: APP_CONFIG, useValue: appConfig },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

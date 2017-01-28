@@ -14,14 +14,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './shared/auth.service';
-import { CORE_CONFIG, coreConfig } from './core.config';
+import { appConfig } from '../app.config';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(coreConfig['db.firebase'], coreConfig['db.firebaseAuth'], coreConfig['db.firebaseApp']),
+    AngularFireModule.initializeApp(appConfig['db.firebase'], appConfig['db.firebaseAuth'], appConfig['db.firebaseApp']),
     ToastrModule.forRoot(),
   ],
   declarations: [
@@ -30,7 +30,6 @@ import { CORE_CONFIG, coreConfig } from './core.config';
     LogoutComponent
   ],
   providers: [
-    { provide: CORE_CONFIG, useValue: coreConfig },
     LoggerService,
     AuthService
   ],

@@ -7,7 +7,7 @@ import 'rxjs/add/observable/fromPromise';
 
 describe('AuthService', () => {
   let authService: AuthService,
-    mockAngularFire: any;
+      mockAngularFire: any;
 
   beforeEach(() => {
     mockAngularFire = {
@@ -26,7 +26,6 @@ describe('AuthService', () => {
       mockAngularFire.auth.login.and.returnValue(Promise.resolve(true));
 
       authService.login(credential);
-
       expect(mockAngularFire.auth.login).toHaveBeenCalledWith({
         email: 'Long Ho',
         password: '12345'
@@ -41,7 +40,6 @@ describe('AuthService', () => {
       mockAngularFire.auth.login.and.returnValue(Promise.resolve(true));
 
       authService.logout();
-
       expect(mockAngularFire.auth.logout).toHaveBeenCalled();
     });
 
@@ -50,9 +48,7 @@ describe('AuthService', () => {
   describe('isAuthenticated', () => {
 
     it('should return observable AngularFire Auth object', () => {
-
       let auth = authService.isAuthenticated();
-
       expect(auth).toBe(mockAngularFire.auth);
     });
 

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToastrService } from 'toastr-ng2';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { LoggerService } from '../shared/logger.service';
 import { AuthService } from '../shared/auth.service';
+import { UserCredentials } from '../shared/auth.model';
 import { Router } from '@angular/router';
+import { APP_CONST, AppConstants } from '../../app.constants';
 
 @Component({
   selector: 'sk-login',
@@ -12,45 +14,43 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  email: FormControl;
+  password: FormControl;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService,
-    private router: Router
-  ) { }
+    private loggerService: LoggerService,
+    private router: Router,
+    @Inject(APP_CONST) private appConstant: AppConstants
+  ) {
+    this.buildForm();
+  }
 
-  ngOnInit() {
+  buildForm() {
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern(new RegExp(this.appConstant['validator.emailPattern'], 'gi'))
+    ]);
+    this.password = new FormControl('', Validators.required)
     this.loginForm = this.formBuilder.group({
-      email: ['', [
-        Validators.required,
-        Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)
-      ]],
-      password: ['', Validators.required],
-      rememberMe: [true]
+      email: this.email,
+      password: this.password
     });
   }
 
-  onLogIn() {
-    this.authService.login({email: 'longxuanho@gmail.com', password: 'longlongbk'})
-      .subscribe((success) => {
-        console.log('success');
-      }, (error) => {
-        console.log('error, ', error)
-      })
-    
-    // .then(
-    //   (success: string) => {
-    //     this.loginForm.reset();
-    //     this.toastrService.success('Welcome back!', 'Đăng nhập thành công');
-    //     setTimeout(() => {
-    //       this.router.navigate(['/nhap-lieu']);
-    //     }, 500);       
-    //   }
-    // ).catch(
-    //   (error: string) => this.toastrService.error(error, 'Opps!')
-    // );
+  onLogIn(credentials: UserCredentials) {
+    this.authService.login(credentials)
+      .subscribe(
+        (success) => {
+          this.loggerService.success('Welcome back!', 'Đăng nhập thành công', success);
+          this.router.navigate(['/bang-tin']);
+        },
+        (error) => this.loggerService.error(error.message, 'Opps!', error)
+      )
   }
+
+  ngOnInit() { }
 
 }
 

@@ -1,9 +1,18 @@
 import { OpaqueToken } from "@angular/core";
 import { AuthProviders, AuthMethods } from 'angularfire2';
 
-export let CORE_CONFIG = new OpaqueToken("core.config");
+export let APP_CONFIG = new OpaqueToken("app.config");
 
-export class CoreConfig {
+export enum LogMode {
+  Simple = 0,
+  Debug = 1,
+  Disabled = 2
+} 
+
+export class AppConfig {
+
+    // Database
+
     'db.firebase': {
         apiKey: string,
         authDomain: string,
@@ -16,9 +25,16 @@ export class CoreConfig {
         method: number
     };
     'db.firebaseApp': string
+
+    // Logger
+
+    'logger.mode': number
 }
 
-export const coreConfig: CoreConfig = {
+export let appConfig: AppConfig = {
+    
+    // Database
+    
     'db.firebase': {
         apiKey: 'AIzaSyAF-2aWvlMVW48K1Vvovm5ARTcpQodgDsw',
         authDomain: 'sk-ktvt.firebaseapp.com',
@@ -30,5 +46,9 @@ export const coreConfig: CoreConfig = {
         provider: AuthProviders.Password,
         method: AuthMethods.Password
     },
-    'db.firebaseApp': 'sk-ktvt'
+    'db.firebaseApp': 'sk-ktvt',
+
+    // Logger
+
+    'logger.mode': LogMode.Debug 
 };
