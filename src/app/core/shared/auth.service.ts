@@ -18,6 +18,14 @@ export class AuthService {
     return Observable.fromPromise(this.af.auth.logout());
   }
 
+  getAuth() {
+    return this.af.auth;
+  }
+
+  setUserPresence(user: firebase.User) {
+    
+  }
+
   isAuthenticated() {
     return this.af.auth;
   }

@@ -24,7 +24,13 @@ export class AppConfig {
         provider: number,
         method: number
     };
-    'db.firebaseApp': string
+    'db.firebaseApp': string;
+    'db.firebaseApi': {
+        'users': string,
+        'userPresence': string,
+        'userProfiles': string,
+        'managers': string
+    };
 
     // Logger
 
@@ -47,6 +53,12 @@ export let appConfig: AppConfig = {
         method: AuthMethods.Password
     },
     'db.firebaseApp': 'sk-ktvt',
+    'db.firebaseApi': {
+        'users': '/accounts/users/',
+        'userPresence': '/accounts/userPresence/',
+        'userProfiles': '/accounts/userProfiles',
+        'managers': '/accounts/managers'
+    },
 
     // Logger
 

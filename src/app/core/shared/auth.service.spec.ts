@@ -45,6 +45,15 @@ describe('AuthService', () => {
 
   });
 
+  describe('getAuth', () => {
+
+    it('should return observable AngularFire Auth object', () => {
+      let auth = authService.getAuth();
+      expect(auth).toBe(mockAngularFire.auth);
+    });
+
+  });
+
   describe('isAuthenticated', () => {
 
     it('should return observable AngularFire Auth object', () => {
