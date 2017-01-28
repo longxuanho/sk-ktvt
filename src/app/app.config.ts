@@ -54,8 +54,8 @@ export let appConfig: AppConfig = {
     },
     'db.firebaseApp': 'sk-ktvt',
     'db.firebaseApi': {
-        'users': '/accounts/users/',
-        'userPresence': '/accounts/userPresence/',
+        'users': '/accounts/users',
+        'userPresence': '/accounts/userPresence',
         'userProfiles': '/accounts/userProfiles',
         'managers': '/accounts/managers'
     },
