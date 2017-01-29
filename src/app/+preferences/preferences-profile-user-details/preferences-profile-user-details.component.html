@@ -1,3 +1,25 @@
-<p>
-  preferences-profile-user-details works!
-</p>
+<form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()" style="padding-bottom: 30px;">
+  <div class="row">
+    <div class="col-md-8 col-lg-4">
+      <div class="form-group" [ngClass]="{'has-danger': displayName.invalid && (displayName.dirty || displayName.touched)}">
+        <label class="form-control-label" for="displayNameInput">Tên hiển thị</label>
+        <input type="text" class="form-control" id="displayNameInput" placeholder="Họ và tên" formControlName="displayName">
+        <div class="form-control-feedback" *ngIf="displayName.invalid && (displayName.dirty || displayName.touched)">
+          <small class="form-text" *ngIf="displayName.errors.required">Chưa có thông tin về tên hiển thị</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-lg-8">
+      <div class="form-group" [ngClass]="{'has-danger': description.invalid && (description.dirty || description.touched)}">
+        <label class="form-control-label" for="descriptionInput">Mô tả</label>
+        <input type="text" class="form-control" id="descriptionInput" placeholder="Nhập đơn vị công tác" formControlName="description">
+        <div class="form-control-feedback" *ngIf="description.invalid && (description.dirty || description.touched)">
+          <small class="form-text" *ngIf="description.errors.required">Chưa có thông tin về đơn vị công tác</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline-secondary mt-2" [disabled]="userProfileForm.invalid || submitting">Cập nhật</button>
+</form>
