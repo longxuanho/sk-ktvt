@@ -19,6 +19,7 @@ body {
   label {
     color: #aaa;
   }
+  
 
   hr {
     border-top-color: #666;
@@ -107,4 +108,17 @@ body {
   border-bottom-right-radius: 0.25rem;
   border: 1px solid transparent;
   border-color: transparent #888 #888 ;  
+}
+
+::-webkit-input-placeholder {
+   color: #aaa !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #aaa !important;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #aaa !important;  
+}
+:-ms-input-placeholder {  
+   color: #aaa !important;  
 }
