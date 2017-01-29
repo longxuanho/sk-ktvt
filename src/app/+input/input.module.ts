@@ -8,7 +8,7 @@ import { InputRoutingModule, routedComponents } from './input-routing.module';
     InputRoutingModule
   ],
   declarations: [
-    routedComponents
+    routedComponents,
   ]
 })
 export class InputModule { }
