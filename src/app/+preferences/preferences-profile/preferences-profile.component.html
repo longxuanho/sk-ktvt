@@ -1,0 +1,10 @@
+<div class="container active-panel">
+  <div class="row mt-4">
+    <div class="col-xs-12" style="margin: auto;">
+      <sk-preferences-profile-nav (viewSelected)="selectView($event)"></sk-preferences-profile-nav>
+    </div>
+  </div>
+  <hr>
+  <sk-preferences-profile-user-details *ngIf="selectedView==='thong_tin'"></sk-preferences-profile-user-details>
+  <sk-preferences-profile-change-password *ngIf="selectedView==='doi_mat_khau'"></sk-preferences-profile-change-password>
+</div>
