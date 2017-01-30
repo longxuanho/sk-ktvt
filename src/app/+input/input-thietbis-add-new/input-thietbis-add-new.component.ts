@@ -5,7 +5,7 @@ import { CustomValidators } from 'ng2-validation';
 import { LoggerService } from '../../core/shared/logger.service';
 import { AuthService } from '../../core/shared/auth.service';
 import { ThietBi } from '../shared/thietbis.model';
-
+import { ThietbisHelpersService } from '../shared/thietbis-helpers.service';
 
 @Component({
   selector: 'sk-input-thietbis-add-new',
@@ -41,11 +41,25 @@ export class InputThietbisAddNewComponent implements OnInit {
   capChatLuong: FormControl;
   moTa: FormControl;
   ghiChu: FormControl;
+
+  selectOptions = {
+    nhoms: [],
+    chungLoais: {},
+    loais: {},
+    hangSanXuats: [],
+    modelThietBis: {},
+    donVis: [],
+    trangThais: [],
+    khuVucs: []
+  }
   
   submitting: boolean = false;
 
+  
+
   constructor(
     private formBuilder: FormBuilder,
+    private thietbisHelpersService: ThietbisHelpersService
   ) { 
     this.buildForm();
   }
@@ -118,11 +132,51 @@ export class InputThietbisAddNewComponent implements OnInit {
     });
   }
 
-  resetForm() {
+  onReset() {
+    console.log(this.selectOptions)
+  }
 
+  resolveSelectOptions() {
+    this.thietbisHelpersService.getNhoms()
+      .subscribe(
+        nhoms => this.selectOptions.nhoms = nhoms,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getChungLoais()
+      .subscribe(
+        chungloais => this.selectOptions.chungLoais = chungloais,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getLoais()
+      .subscribe(
+        loais => this.selectOptions.loais = loais,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getHangSanXuats()
+      .subscribe(
+        hangSanXuats => this.selectOptions.hangSanXuats = hangSanXuats,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getModelThietBis()
+      .subscribe(
+        modelThietBis => this.selectOptions.modelThietBis = modelThietBis,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getDonVis()
+      .subscribe(
+        donVis => this.selectOptions.donVis = donVis,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getTrangThais()
+      .subscribe(
+        trangThais => this.selectOptions.trangThais = trangThais,
+        error => this.handleError(error));
+    this.thietbisHelpersService.getKhuVucs()
+      .subscribe(
+        khuVucs => this.selectOptions.khuVucs = khuVucs,
+        error => this.handleError(error));
+  }
+
+  handleError(error) {
+    console.error('Truy vấn dữ liệu từ GSheet thất bại. Chi tiết:', error);
   }
 
   ngOnInit() {
+    this.resolveSelectOptions();
   }
 
 }

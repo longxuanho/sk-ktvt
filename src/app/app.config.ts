@@ -11,8 +11,7 @@ export enum LogMode {
 
 export class AppConfig {
 
-    // Database
-
+    // Database - Firebase
     'db.firebase': {
         apiKey: string,
         authDomain: string,
@@ -32,15 +31,25 @@ export class AppConfig {
         'managers': string
     };
 
-    // Logger
+    // Database - GSheet
+    'db.gSheetMaster': string;
+    'db.gSheetRefId': string;
+    'db.gSheetRefNhomThietBis': string;
+    'db.gSheetRefChungLoaiThietBis': string;
+    'db.gSheetRefLoaiThietBis': string;
+    'db.gSheetRefHangSanXuats': string;
+    'db.gSheetRefTrangThais': string;
+    'db.gSheetRefKhuVucs': string;
+    'db.gSheetRefDonVis': string;
+    'db.gSheetRefModelThietBis': string;
 
+    // Logger
     'logger.mode': number
 }
 
 export let appConfig: AppConfig = {
     
-    // Database
-    
+    // Database    
     'db.firebase': {
         apiKey: 'AIzaSyAF-2aWvlMVW48K1Vvovm5ARTcpQodgDsw',
         authDomain: 'sk-ktvt.firebaseapp.com',
@@ -60,7 +69,18 @@ export let appConfig: AppConfig = {
         'managers': '/accounts/managers'
     },
 
-    // Logger
+    // Database - GSheet
+    'db.gSheetMaster': 'https://script.google.com/macros/s/AKfycbzUstOklUmuXrgvQAoETCDst3sDfE3d6Re22iXM9LWzTkPPHFQ/exec?id=',
+    'db.gSheetRefId': '1HibGFj2wM_HMwSdgXK2IgK56aHuhOgW7VcmINbRi6ks',
+    'db.gSheetRefNhomThietBis': '&sheet=nhomThietBis',
+    'db.gSheetRefChungLoaiThietBis': '&sheet=chungLoaiThietBis',
+    'db.gSheetRefLoaiThietBis': '&sheet=loaiThietBis',
+    'db.gSheetRefHangSanXuats': '&sheet=hangSanXuats',
+    'db.gSheetRefTrangThais': '&sheet=trangThais',
+    'db.gSheetRefKhuVucs': '&sheet=khuVucs',
+    'db.gSheetRefDonVis': '&sheet=donVis',
+    'db.gSheetRefModelThietBis': '&sheet=modelThietBis',
 
+    // Logger
     'logger.mode': LogMode.Debug 
 };
