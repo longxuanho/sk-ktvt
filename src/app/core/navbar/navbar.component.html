@@ -1,26 +1,29 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="" [routerLink]="['/']">Skynet</a>
+    <a class="navbar-brand" href="" [routerLink]="['/']">Skynet</a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/bang-tin']" [routerLinkActive]="['active']">Bảng tin</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/thong-ke']" [routerLinkActive]="['active']">Thống kê</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/nhap-lieu/thiet-bi']" [routerLinkActive]="['active']">Nhập liệu</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/thiet-lap/ho-so-ca-nhan']" [routerLinkActive]="['active']">Thiết lập</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="" *ngIf="!(authService.isAuthenticated() | async)" [routerLink]="['/dang-nhap']" [routerLinkActive]="['active']">Đăng nhập</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/bang-tin']" [routerLinkActive]="['active']">Bảng tin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/thong-ke']" [routerLinkActive]="['active']">Thống kê</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/nhap-lieu/thiet-bi']" [routerLinkActive]="['active']">Nhập liệu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" *ngIf="authService.isAuthenticated() | async" [routerLink]="['/thiet-lap/ho-so-ca-nhan']" [routerLinkActive]="['active']">Thiết lập</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" *ngIf="!(authService.isAuthenticated() | async)" [routerLink]="['/dang-nhap']" [routerLinkActive]="['active']">Đăng nhập</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
