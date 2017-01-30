@@ -1,3 +1,214 @@
-<p>
-  input-thietbis-add-new works!
-</p>
+<div class="mt-2 header">
+  <h3 class="d-inline-block d-title">Tạo mới thiết bị</h3>
+  <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']">Trở về »</a>
+</div>
+
+<form style="margin-top: 30px;">
+<ul class="list-group">
+  <li class="list-group-item">
+    <!--<h5 class="mb-1 d-title-small">Mã thiết bị</h5>-->
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Mã thiết bị</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập mã quản lý">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Mã TOPX</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập mã TOPX">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Mã Maximo</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập mã Maximo">
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Nhóm</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Loại</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Chủng loại</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Hãng sản xuất</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Model thiết bị</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Nhà phân phối</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Nơi lắp ráp</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Năm sản xuất</label>
+          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Năm sản xuất">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Năm sử dụng</label>
+          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Năm sử dụng">
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Quản lý</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Sở hữu</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Trạng thái</label>
+          <select class="form-control" id="exampleSelect1">
+            <option>Đang hoạt động</option>            
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleSelect1">Khu vực</label>
+          <select class="form-control" id="exampleSelect1">
+            <option></option>            
+          </select>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Biển số</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Biển số">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Số đăng ký</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số đăng ký">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Số khung</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số khung">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Số máy</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số máy">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Số đăng kiểm</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số đăng kiểm">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Cấp chất lượng</label>
+          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cấp chất lượng">
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Mô tả</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Biển số">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="exampleTextarea">Ghi chú</label>
+          <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item" style="padding-bottom: 30px;">
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-outline-primary">Tạo mới</button>
+        <button class="btn btn-outline-warning">Reset</button>
+      </div>
+    </div>
+  </li>
+</ul>
+</form>

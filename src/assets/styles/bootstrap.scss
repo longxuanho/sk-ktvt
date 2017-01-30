@@ -20,6 +20,16 @@ body {
     color: #aaa;
   }
   
+  a, a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    transition: none 86ms ease-out;
+    color: #888;
+  }
+
+  a:hover {
+    color: #aaa;
+  }
 
   hr {
     border-top-color: #666;
@@ -33,6 +43,12 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 300;
     font-size: 2rem;
+  }
+
+  .d-title-small {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
   }
 
   .list-group-item {
@@ -110,15 +126,31 @@ body {
   border-color: transparent #888 #888 ;  
 }
 
-::-webkit-input-placeholder {
-   color: #aaa !important;
+
+.btn-outline-primary {
+    color: #6495ED;
+    border-color: #6495ED;
+    &:hover {
+      background-color: #6495ED;
+      border-color: #6495ED;
+    }
 }
-:-moz-placeholder { /* Firefox 18- */
-   color: #aaa !important;  
+
+.btn-outline-warning {
+    color: #f0ad4e;
+    border-color: #f0ad4e;
+    &:hover {
+      background-color: #f0ad4e;
+      border-color: #f0ad4e;
+    }
 }
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #aaa !important;  
+
+.btn-outline-danger {
+    color: #f05a28;
+    border-color: #f05a28;
+    &:hover {
+      background-color: #f05a28;
+      border-color: #f05a28;
+    }
 }
-:-ms-input-placeholder {  
-   color: #aaa !important;  
-}
+
