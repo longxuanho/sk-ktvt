@@ -3,212 +3,243 @@
   <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']">Trở về »</a>
 </div>
 
-<form style="margin-top: 30px;">
-<ul class="list-group">
-  <li class="list-group-item">
-    <!--<h5 class="mb-1 d-title-small">Mã thiết bị</h5>-->
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Mã thiết bị</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập mã quản lý">
+<form style="margin-top: 30px;" [formGroup]="thietBiAddNewForm" (ngSubmit)="onSubmit()">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <!--<h5 class="mb-1 d-title-small">Mã thiết bị</h5>-->
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': maThietBi.invalid && (maThietBi.dirty || maThietBi.touched)}">
+            <label class="form-control-label" for="maThietBi">Mã thiết bị*</label>
+            <input type="text" class="form-control" id="maThietBi" placeholder="Nhập mã quản lý" formControlName="maThietBi">
+            <div class="form-control-feedback" *ngIf="maThietBi.invalid && (maThietBi.dirty || maThietBi.touched)">
+              <small class="form-text" *ngIf="maThietBi.errors.required">Chưa có thông tin về mã thiết bị</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="maTopX">Mã TOPX</label>
+            <input type="text" class="form-control" id="maTopX" placeholder="Nhập mã TOPX" formControlName="maTopX">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="maMaximo">Mã Maximo</label>
+            <input type="text" class="form-control" id="maMaximo" placeholder="Nhập mã Maximo" formControlName="maMaximo">
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Mã TOPX</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập mã TOPX">
+    </li>
+    <li class="list-group-item">
+      <div class="text-right">
+        <i class="fa fa-unlock-alt"></i>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': nhom.invalid && (nhom.dirty || nhom.touched)}">
+            <label class="form-control-label" for="nhom">Nhóm*</label>
+            <select class="form-control" id="nhom" formControlName="nhom">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="nhom.invalid && (nhom.dirty || nhom.touched)">
+              <small class="form-text" *ngIf="nhom.errors.required">Chưa có thông tin về nhóm thiết bị</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': chungLoai.invalid && (chungLoai.dirty || chungLoai.touched)}">
+            <label class="form-control-label" for="chungLoai">Chủng loại*</label>
+            <select class="form-control" id="chungLoai" formControlName="chungLoai">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="chungLoai.invalid && (chungLoai.dirty || chungLoai.touched)">
+              <small class="form-text" *ngIf="chungLoai.errors.required">Chưa có thông tin về chủng loại thiết bị</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': loai.invalid && (loai.dirty || loai.touched)}">
+            <label class="form-control-label" for="loai">Loại*</label>
+            <select class="form-control" id="loai" formControlName="loai">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="loai.invalid && (loai.dirty || loai.touched)">
+              <small class="form-text" *ngIf="loai.errors.required">Chưa có thông tin về loại thiết bị</small>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Mã Maximo</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập mã Maximo">
+    </li>
+    <li class="list-group-item">
+      <div class="text-right">
+        <i class="fa fa-unlock-alt"></i>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': hangSanXuat.invalid && (hangSanXuat.dirty || hangSanXuat.touched)}">
+            <label class="form-control-label" for="hangSanXuat">Hãng sản xuất*</label>
+            <select class="form-control" id="hangSanXuat" formControlName="hangSanXuat">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="hangSanXuat.invalid && (hangSanXuat.dirty || hangSanXuat.touched)">
+              <small class="form-text" *ngIf="hangSanXuat.errors.required">Chưa có thông tin về hãng sản xuất</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="modelThietBi">Model thiết bị</label>
+            <select class="form-control" id="modelThietBi" formControlName="modelThietBi">
+              <option></option>            
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="nhaPhanPhoi">Nhà phân phối</label>
+            <select class="form-control" id="nhaPhanPhoi" formControlName="nhaPhanPhoi">
+              <option></option>            
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="namSanXuat">Năm sản xuất</label>
+            <input type="number" class="form-control" id="namSanXuat" placeholder="Năm sản xuất" formControlName="namSanXuat">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="namSuDung">Năm sử dụng</label>
+            <input type="number" class="form-control" id="namSuDung" placeholder="Năm sử dụng" formControlName="namSuDung">
+          </div>
         </div>
       </div>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Nhóm</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
+    </li>
+    <li class="list-group-item">
+      <div class="text-right">
+        <i class="fa fa-lock text-warning"></i>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': dvQuanLy.invalid && (dvQuanLy.dirty || dvQuanLy.touched)}">
+            <label class="form-control-label" for="dvQuanLy">Quản lý*</label>
+            <select class="form-control" id="dvQuanLy" formControlName="dvQuanLy">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="dvQuanLy.invalid && (dvQuanLy.dirty || dvQuanLy.touched)">
+              <small class="form-text" *ngIf="dvQuanLy.errors.required">Chưa có thông tin về đơn vị quản lý</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': dvSoHuu.invalid && (dvSoHuu.dirty || dvSoHuu.touched)}">
+            <label class="form-control-label" for="dvSoHuu">Sở hữu*</label>
+            <select class="form-control" id="dvSoHuu" formControlName="dvSoHuu">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="dvSoHuu.invalid && (dvSoHuu.dirty || dvSoHuu.touched)">
+              <small class="form-text" *ngIf="dvSoHuu.errors.required">Chưa có thông tin về đơn vị sở hữu</small>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Loại</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
+    </li>
+    <li class="list-group-item">
+      <div class="text-right">
+        <i class="fa fa-unlock-alt"></i>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': trangThai.invalid && (trangThai.dirty || trangThai.touched)}">
+            <label class="form-control-label" for="trangThai">Trạng thái*</label>
+            <select class="form-control" id="trangThai" formControlName="trangThai">
+              <option>Đang hoạt động</option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="trangThai.invalid && (trangThai.dirty || trangThai.touched)">
+              <small class="form-text" *ngIf="trangThai.errors.required">Chưa có thông tin về trạng thái thiết bị</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group" [ngClass]="{'has-danger': khuVuc.invalid && (khuVuc.dirty || khuVuc.touched)}">
+            <label class="form-control-label" for="khuVuc">Khu vực*</label>
+            <select class="form-control" id="khuVuc" formControlName="khuVuc">
+              <option></option>            
+            </select>
+            <div class="form-control-feedback" *ngIf="khuVuc.invalid && (khuVuc.dirty || khuVuc.touched)">
+              <small class="form-text" *ngIf="khuVuc.errors.required">Chưa có thông tin về khu vực hoạt động</small>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Chủng loại</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="bienSo">Biển số</label>
+            <input type="text" class="form-control" id="bienSo" placeholder="Biển số" formControlName="bienSo">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="soDangKy">Số đăng ký</label>
+            <input type="text" class="form-control" id="soDangKy" placeholder="Số đăng ký" formControlName="soDangKy">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="soKhung">Số khung</label>
+            <input type="text" class="form-control" id="soKhung" placeholder="Số khung" formControlName="soKhung">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="soMay">Số máy</label>
+            <input type="text" class="form-control" id="soMay" placeholder="Số máy" formControlName="soMay">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="soDangKiem">Số đăng kiểm</label>
+            <input type="text" class="form-control" id="soDangKiem" placeholder="Số đăng kiểm" formControlName="soDangKiem">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="form-control-label" for="capChatLuong">Cấp chất lượng</label>
+            <input type="number" class="form-control" id="capChatLuong" placeholder="Cấp chất lượng" formControlName="capChatLuong">
+          </div>
         </div>
       </div>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Hãng sản xuất</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label" for="moTa">Mô tả</label>
+            <input type="text" class="form-control" id="moTa" formControlName="capChatLuong">
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Model thiết bị</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label" for="ghiChu">Ghi chú</label>
+            <textarea class="form-control" id="ghiChu" rows="3" formControlName="ghiChu"></textarea>
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Nhà phân phối</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
+    </li>
+    <li class="list-group-item" style="padding-bottom: 30px;">
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-outline-success"><i class="fa fa-check"></i> Tạo mới</button>
+          <button class="btn btn-outline-secondary"><i class="fa fa-undo"></i> Reset</button>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Nơi lắp ráp</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Năm sản xuất</label>
-          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Năm sản xuất">
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Năm sử dụng</label>
-          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Năm sử dụng">
-        </div>
-      </div>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Quản lý</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Sở hữu</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
-        </div>
-      </div>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Trạng thái</label>
-          <select class="form-control" id="exampleSelect1">
-            <option>Đang hoạt động</option>            
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleSelect1">Khu vực</label>
-          <select class="form-control" id="exampleSelect1">
-            <option></option>            
-          </select>
-        </div>
-      </div>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Biển số</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Biển số">
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Số đăng ký</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số đăng ký">
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Số khung</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số khung">
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Số máy</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số máy">
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Số đăng kiểm</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Số đăng kiểm">
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Cấp chất lượng</label>
-          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cấp chất lượng">
-        </div>
-      </div>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Mô tả</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Biển số">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleTextarea">Ghi chú</label>
-          <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-        </div>
-      </div>
-    </div>
-  </li>
-  <li class="list-group-item" style="padding-bottom: 30px;">
-    <div class="row">
-      <div class="col">
-        <button type="submit" class="btn btn-outline-primary">Tạo mới</button>
-        <button class="btn btn-outline-warning">Reset</button>
-      </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
 </form>
