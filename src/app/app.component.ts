@@ -20,6 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
         (auth) => {
           if (!!auth)
             this.authService.setUserPresence(auth.auth);
+            
+          this.authService.authSet(auth);
+          this.authService.managerSet(auth);
         },
         (error) => this.loggerService.error(error.message, 'Opps', error)
       )

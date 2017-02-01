@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { InputRoutingModule, routedComponents } from './input-routing.module';
 import { ThietbisHelpersService } from './shared/thietbis-helpers.service';
+import { ThietbisService } from './shared/thietbis.service';
+
 
 @NgModule({
   imports: [
@@ -12,6 +14,7 @@ import { ThietbisHelpersService } from './shared/thietbis-helpers.service';
     routedComponents,
   ],
   providers: [
+    ThietbisService,
     ThietbisHelpersService
   ]
 })

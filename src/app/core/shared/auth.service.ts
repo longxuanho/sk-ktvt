@@ -1,18 +1,41 @@
 import { Injectable, Inject } from '@angular/core';
-import { AngularFire } from 'angularfire2';
-import { UserCredentials } from './auth.model';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { UserCredentials, Manager } from './auth.model';
 import { LoggerService } from '../shared/logger.service';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Injectable()
 export class AuthService {
 
+  private authSource = new Subject<FirebaseAuthState>();
+  private managerSource = new Subject<Manager>();
+  auth$: Observable<FirebaseAuthState>;
+  manager$: Observable<Manager>
+
   constructor(
     private af: AngularFire,
     private loggerService: LoggerService,
     @Inject(APP_CONFIG) private appConfig: AppConfig
-  ) { }
+  ) { 
+    this.auth$ = this.authSource.asObservable();
+    this.manager$ = this.managerSource.asObservable();
+  }
+
+  authSet(auth: FirebaseAuthState) {
+    this.authSource.next(auth);
+  }
+
+  managerSet(auth: FirebaseAuthState) {
+    if (!auth)
+      this.managerSource.next(null);
+    else {
+      this.af.database
+        .object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`, { preserveSnapshot: true })
+        .subscribe(managerSnap => this.managerSource.next(managerSnap.val()));
+    }
+  }
 
   login(credentials: UserCredentials) {
     return Observable.fromPromise(
@@ -32,12 +55,39 @@ export class AuthService {
     return this.af.auth;
   }
 
+  isManager() {
+    return this.af.auth
+      .take(1)
+      .switchMap(auth => {
+        if (!auth)
+          return Observable.of(false);
+        return this.af.database.object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`)
+          .take(1)
+          .map((managerObj: Manager) => !!managerObj.mPIN)
+      });
+  }
+
+  isManagerPINMatched(mPIN: number) {
+    if (!mPIN)
+      return Observable.throw(new Error('Mã PIN người dùng không hợp lệ'));
+
+    return this.af.auth
+      .take(1)
+      .switchMap(auth => {
+        if (!auth)
+          return Observable.of(false);
+        return this.af.database.object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`)
+          .take(1)
+          .map((managerObj: Manager) => managerObj.mPIN === +mPIN);
+      });
+  }
+
   getUserProfile(uid: string, email?: string): Observable<any> {
     let userProfile = {};
     if (uid)
       userProfile = email ? { uid, email } : { uid };
 
-    return this.af.database.object(`${this.appConfig['db.firebaseApi']['userProfiles']}/${uid}`, { preserveSnapshot: true })
+    return this.af.database.object(`${this.appConfig['db.fbRefUserProfiles']}/${uid}`, { preserveSnapshot: true })
       .take(1)
       .map( profileSnap => (profileSnap.val()) ? Object.assign(profileSnap.val(), userProfile) : userProfile );
   }
@@ -46,7 +96,7 @@ export class AuthService {
     this.getUserProfile(user.uid, user.email)
       .subscribe(
         profile => {
-          this.af.database.object(`${this.appConfig['db.firebaseApi']['userPresence']}/${user.uid}`)
+          this.af.database.object(`${this.appConfig['db.fbRefUserPresence']}/${user.uid}`)
           .set(profile);
         },
         error => this.loggerService.error(error.message, 'Opps!', error)

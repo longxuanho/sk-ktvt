@@ -3,7 +3,7 @@
   <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']">Trở về »</a>
 </div>
 
-<form style="margin-top: 30px;" [formGroup]="thietBiAddNewForm" (ngSubmit)="onSubmit()">
+<form style="margin-top: 30px;" [formGroup]="thietBiAddNewForm" (ngSubmit)="onSubmit(thietBiAddNewForm.value)">
   <ul class="list-group">
     <li class="list-group-item">
       <!--<h5 class="mb-1 d-title-small">Mã thiết bị</h5>-->
@@ -84,7 +84,7 @@
             <label class="form-control-label" for="hangSanXuat">Hãng sản xuất*</label>
             <select class="form-control" id="hangSanXuat" formControlName="hangSanXuat">
               <option></option>
-              <option *ngFor="let hangSanXuat of selectOptions.hangSanXuats" [ngValue]="hangSanXuat">{{hangSanXuat}}</option>        
+              <option *ngFor="let hangSanXuat of selectOptions.hangSanXuats" [value]="hangSanXuat">{{hangSanXuat}}</option>        
             </select>
             <div class="form-control-feedback" *ngIf="hangSanXuat.invalid && (hangSanXuat.dirty || hangSanXuat.touched)">
               <small class="form-text" *ngIf="hangSanXuat.errors.required">Chưa có thông tin về hãng sản xuất</small>
@@ -96,7 +96,7 @@
             <label class="form-control-label" for="modelThietBi">Model thiết bị</label>
             <select class="form-control" id="modelThietBi" formControlName="modelThietBi">
               <option></option>
-              <option *ngFor="let modelThietBi of selectOptions.modelThietBis[hangSanXuat.value]" [ngValue]="modelThietBi">{{modelThietBi}}</option>        
+              <option *ngFor="let modelThietBi of selectOptions.modelThietBis[hangSanXuat.value]" [value]="modelThietBi">{{modelThietBi}}</option>        
             </select>
           </div>
         </div>
@@ -104,7 +104,8 @@
           <div class="form-group">
             <label class="form-control-label" for="nhaPhanPhoi">Nhà phân phối</label>
             <select class="form-control" id="nhaPhanPhoi" formControlName="nhaPhanPhoi">
-              <option></option>            
+              <option></option>
+              <option *ngFor="let nhaPhanPhoi of selectOptions.nhaPhanPhois" [value]="nhaPhanPhoi">{{nhaPhanPhoi}}</option>            
             </select>
           </div>
         </div>
@@ -132,7 +133,7 @@
             <label class="form-control-label" for="dvQuanLy">Quản lý*</label>
             <select class="form-control" id="dvQuanLy" formControlName="dvQuanLy">
               <option></option>
-              <option *ngFor="let donViObj of selectOptions.donVis" [ngValue]="donViObj">{{donViObj.donVi}}</option>        
+              <option *ngFor="let donViObj of selectOptions.donVis" [value]="donViObj.donVi">{{donViObj.donVi}}</option>        
             </select>
             <div class="form-control-feedback" *ngIf="dvQuanLy.invalid && (dvQuanLy.dirty || dvQuanLy.touched)">
               <small class="form-text" *ngIf="dvQuanLy.errors.required">Chưa có thông tin về đơn vị quản lý</small>
@@ -144,7 +145,7 @@
             <label class="form-control-label" for="dvSoHuu">Sở hữu*</label>
             <select class="form-control" id="dvSoHuu" formControlName="dvSoHuu">
               <option></option>
-              <option *ngFor="let donViObj of selectOptions.donVis" [ngValue]="donViObj">{{donViObj.donVi}}</option>        
+              <option *ngFor="let donViObj of selectOptions.donVis" [value]="donViObj.donVi">{{donViObj.donVi}}</option>        
             </select>
             <div class="form-control-feedback" *ngIf="dvSoHuu.invalid && (dvSoHuu.dirty || dvSoHuu.touched)">
               <small class="form-text" *ngIf="dvSoHuu.errors.required">Chưa có thông tin về đơn vị sở hữu</small>
@@ -175,7 +176,7 @@
             <label class="form-control-label" for="khuVuc">Khu vực*</label>
             <select class="form-control" id="khuVuc" formControlName="khuVuc">
               <option></option>
-              <option *ngFor="let khuVucObj of selectOptions.khuVucs" [ngValue]="khuVucObj">{{khuVucObj.khuVuc}}</option>        
+              <option *ngFor="let khuVucObj of selectOptions.khuVucs" [value]="khuVucObj.khuVuc">{{khuVucObj.khuVuc}}</option>        
             </select>
             <div class="form-control-feedback" *ngIf="khuVuc.invalid && (khuVuc.dirty || khuVuc.touched)">
               <small class="form-text" *ngIf="khuVuc.errors.required">Chưa có thông tin về khu vực hoạt động</small>
@@ -229,7 +230,7 @@
         <div class="col">
           <div class="form-group">
             <label class="form-control-label" for="moTa">Mô tả</label>
-            <input type="text" class="form-control" id="moTa" formControlName="capChatLuong">
+            <input type="text" class="form-control" id="moTa" formControlName="moTa">
           </div>
         </div>
       </div>
@@ -252,3 +253,5 @@
     </li>
   </ul>
 </form>
+
+<pre>{{thietBiAddNewForm.value |json }}</pre>

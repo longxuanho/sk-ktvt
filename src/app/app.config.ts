@@ -19,17 +19,17 @@ export class AppConfig {
         storageBucket?: string,
         messagingSenderId?: string
     };
-    'db.firebaseAuth': {
+    'db.fbAuth': {
         provider: number,
         method: number
     };
-    'db.firebaseApp': string;
-    'db.firebaseApi': {
-        'users': string,
-        'userPresence': string,
-        'userProfiles': string,
-        'managers': string
-    };
+    'db.fbApp': string;
+    
+    'db.fbRefUsers': string;
+    'db.fbRefUserPresence': string;
+    'db.fbRefUserProfiles': string;
+    'db.fbRefAuthManagers': string;
+    'db.fbRefThietbisList': string;
 
     // Database - GSheet
     'db.gSheetMaster': string;
@@ -42,9 +42,13 @@ export class AppConfig {
     'db.gSheetRefKhuVucs': string;
     'db.gSheetRefDonVis': string;
     'db.gSheetRefModelThietBis': string;
+    'db.gSheetRefNhaPhanPhois': string;
 
     // Logger
-    'logger.mode': number
+    'logger.mode': number;
+
+    // Time
+    'time.defaultDisplayFormat': string;
 }
 
 export let appConfig: AppConfig = {
@@ -57,17 +61,17 @@ export let appConfig: AppConfig = {
         storageBucket: 'sk-ktvt.appspot.com',
         messagingSenderId: '366014972254'
     },
-    'db.firebaseAuth': {
+    'db.fbAuth': {
         provider: AuthProviders.Password,
         method: AuthMethods.Password
     },
-    'db.firebaseApp': 'sk-ktvt',
-    'db.firebaseApi': {
-        'users': '/accounts/users',
-        'userPresence': '/accounts/userPresence',
-        'userProfiles': '/accounts/userProfiles',
-        'managers': '/accounts/managers'
-    },
+    'db.fbApp': 'sk-ktvt',
+
+    'db.fbRefUsers': '/accounts/users',
+    'db.fbRefUserPresence': '/accounts/userPresence',
+    'db.fbRefUserProfiles': '/accounts/userProfiles',
+    'db.fbRefAuthManagers': '/accounts/managers',
+    'db.fbRefThietbisList': '/thietbis/list',
 
     // Database - GSheet
     'db.gSheetMaster': 'https://script.google.com/macros/s/AKfycbzUstOklUmuXrgvQAoETCDst3sDfE3d6Re22iXM9LWzTkPPHFQ/exec?id=',
@@ -80,7 +84,11 @@ export let appConfig: AppConfig = {
     'db.gSheetRefKhuVucs': '&sheet=khuVucs',
     'db.gSheetRefDonVis': '&sheet=donVis',
     'db.gSheetRefModelThietBis': '&sheet=modelThietBis',
+    'db.gSheetRefNhaPhanPhois': '&sheet=nhaPhanPhois',
 
     // Logger
-    'logger.mode': LogMode.Debug 
+    'logger.mode': LogMode.Debug,
+
+    // Time
+    'time.defaultDisplayFormat': 'YYYY-MM-DD HH:mm'
 };

@@ -21,7 +21,7 @@ import { appConfig } from '../app.config';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(appConfig['db.firebase'], appConfig['db.firebaseAuth'], appConfig['db.firebaseApp']),
+    AngularFireModule.initializeApp(appConfig['db.firebase'], appConfig['db.fbAuth'], appConfig['db.fbApp']),
     ToastrModule.forRoot(),
   ],
   declarations: [

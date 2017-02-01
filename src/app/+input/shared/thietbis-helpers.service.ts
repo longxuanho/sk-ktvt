@@ -4,13 +4,14 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 import { LoggerService } from '../../core/shared/logger.service';
 import { Observable } from 'rxjs/Observable';
 
+
 @Injectable()
 export class ThietbisHelpersService {
 
   constructor(
-    @Inject(APP_CONFIG) private appConfig: AppConfig,
     private http: Http,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
   ) { }
 
   getNhoms() {
@@ -92,4 +93,14 @@ export class ThietbisHelpersService {
     return this.http.get(ref)
       .map((res: Response) => res.json()['khuVucs']);
   }
+
+  getNhaPhanPhois() {
+    let ref = this.appConfig['db.gSheetMaster'] + this.appConfig['db.gSheetRefId'] + this.appConfig['db.gSheetRefNhaPhanPhois'];
+
+    return this.http.get(ref)
+      .map((res: Response) => res.json()['nhaPhanPhois'])
+      .map(nhaPhanPhois => nhaPhanPhois.map(nhaPhanPhoiObj => nhaPhanPhoiObj.nhaPhanPhoi));
+  }
+
+  
 }

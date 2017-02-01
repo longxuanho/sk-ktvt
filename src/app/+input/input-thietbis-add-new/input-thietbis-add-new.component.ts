@@ -5,7 +5,9 @@ import { CustomValidators } from 'ng2-validation';
 import { LoggerService } from '../../core/shared/logger.service';
 import { AuthService } from '../../core/shared/auth.service';
 import { ThietBi } from '../shared/thietbis.model';
+import { ThietbisService } from '../shared/thietbis.service';
 import { ThietbisHelpersService } from '../shared/thietbis-helpers.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sk-input-thietbis-add-new',
@@ -48,6 +50,7 @@ export class InputThietbisAddNewComponent implements OnInit {
     loais: {},
     hangSanXuats: [],
     modelThietBis: {},
+    nhaPhanPhois: [],
     donVis: [],
     trangThais: [],
     khuVucs: []
@@ -59,6 +62,9 @@ export class InputThietbisAddNewComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private loggerService: LoggerService,
+    private authService: AuthService,
+    private thietBisService: ThietbisService,
     private thietbisHelpersService: ThietbisHelpersService
   ) { 
     this.buildForm();
@@ -86,6 +92,7 @@ export class InputThietbisAddNewComponent implements OnInit {
 
     this.trangThai = this.formBuilder.control('Đang hoạt động', [Validators.required]);
     this.khuVuc = this.formBuilder.control('', [Validators.required]);
+    this.khuVucId = this.formBuilder.control('', [Validators.required]);
 
     this.bienSo = this.formBuilder.control('');
     this.soDangKy = this.formBuilder.control('');
@@ -119,6 +126,7 @@ export class InputThietbisAddNewComponent implements OnInit {
 
       trangThai: this.trangThai,
       khuVuc: this.khuVuc,
+      khuVucId: this.khuVucId,
 
       bienSo: this.bienSo,
       soDangKy: this.soDangKy,
@@ -132,8 +140,63 @@ export class InputThietbisAddNewComponent implements OnInit {
     });
   }
 
+  subscribeFormChanges() {
+    this.nhom.valueChanges
+      .subscribe(newVal => {
+        this.chungLoai.reset();
+        this.loai.reset();
+      });
+    this.chungLoai.valueChanges
+      .subscribe(newVal => {
+        this.loai.reset();
+      });
+    this.hangSanXuat.valueChanges
+      .subscribe(newVal => {
+        this.modelThietBi.reset();
+      });
+    this.dvQuanLy.valueChanges
+      .subscribe(newVal => {
+        let foundResult = this.selectOptions.donVis
+          .find(dvObject => dvObject.donVi === newVal)  || {};
+        let dvQuanLyId = foundResult.donViId || '';
+        this.dvQuanLyId.setValue(dvQuanLyId);
+      });
+    this.dvSoHuu.valueChanges
+      .subscribe(newVal => {
+        let foundResult = this.selectOptions.donVis
+          .find(donViObj => donViObj.donVi === newVal)  || {};
+        let dvSoHuuId = foundResult.donViId || '';
+        this.dvSoHuuId.setValue(dvSoHuuId);
+      });
+    this.dvSoHuu.valueChanges
+      .subscribe(newVal => {
+        let foundResult = this.selectOptions.donVis
+          .find(donViObj => donViObj.donVi === newVal)  || {};
+        let dvSoHuuId = foundResult.donViId || '';
+        this.dvSoHuuId.setValue(dvSoHuuId);
+      });
+    this.khuVuc.valueChanges
+      .subscribe(newVal => {
+        let foundResult = this.selectOptions.khuVucs
+          .find(khuVucObj => khuVucObj.khuVuc === newVal)  || {};
+        let khuVucId = foundResult.khuVucId || '';
+        this.khuVucId.setValue(khuVucId);
+      })
+  }
+
   onReset() {
     console.log(this.selectOptions)
+  }
+
+  onSubmit(rawData: ThietBi) {
+    
+    this.thietBisService.resolveMetadataBeforeAddNew(rawData)
+      .switchMap(preparedData =>
+        this.thietBisService.addNew(preparedData))
+      .subscribe(
+        success => this.loggerService.success('Thiết bị mới đã được thêm vào hệ thống', 'Tạo mới thành công', success),
+        error => this.loggerService.error(error.message, 'Tạo mới thất bại', error)
+      );
   }
 
   resolveSelectOptions() {
@@ -157,6 +220,10 @@ export class InputThietbisAddNewComponent implements OnInit {
       .subscribe(
         modelThietBis => this.selectOptions.modelThietBis = modelThietBis,
         error => this.handleError(error));
+    this.thietbisHelpersService.getNhaPhanPhois()
+      .subscribe(
+        nhaPhanPhois => this.selectOptions.nhaPhanPhois = nhaPhanPhois,
+        error => this.handleError(error));
     this.thietbisHelpersService.getDonVis()
       .subscribe(
         donVis => this.selectOptions.donVis = donVis,
@@ -177,6 +244,7 @@ export class InputThietbisAddNewComponent implements OnInit {
 
   ngOnInit() {
     this.resolveSelectOptions();
+    this.subscribeFormChanges();    
   }
 
 }
