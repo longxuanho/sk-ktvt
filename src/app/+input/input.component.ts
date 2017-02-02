@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThietbisImportService } from './shared/thietbis-import.service';
 
 @Component({
   selector: 'sk-input',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private thietbisImportService: ThietbisImportService
+    ) { }
 
   ngOnInit() {
+    this.thietbisImportService.getRawData()
+      .subscribe(
+        data => {
+          if (data && data.length)
+            console.log('here: ', this.thietbisImportService.resolveThietBi(data[0]))
+        },
+        error => console.error('error: ', error));
   }
+
+
 
 }

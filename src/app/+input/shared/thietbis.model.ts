@@ -40,3 +40,64 @@ export class ThietBi {
   lastUpdatedBy?: string;
   lastUpdatedByEmail?: string;
 }
+
+export class RawThietBi {
+  _id: string;
+  dia_diem: {
+    khu_vuc: {
+      ma: string;
+      ten: string;
+    }
+  };
+  ho_so: {
+    cap_chat_luong: number;
+    nam_su_dung: number;
+    so_dang_kiem: string;
+    so_khung: string;
+    xuat_xu: string;
+    so_may: string;
+    so_dang_ky: string;
+  };
+  ma_thiet_bi: {
+    keyId: string;
+    topX: string;
+    maximo: string;
+  };
+  metadata: {
+    thoi_gian: {
+      tao_moi: {
+        ngay_tao_string: string;
+      }
+    };
+    user: {
+      nguoi_tao: {
+        email: string;
+        keyId: string;
+        name: string;
+      }
+    }
+  };
+  mo_ta: string;
+  ghi_chu: string;
+  nguon_goc: {
+    hang_san_xuat: string;
+    model: string;
+    nam_san_xuat: number;
+  }
+  phan_loai: {
+    chung_loai: string;
+    loai: string;
+    nhom: string;
+  }
+  phan_quyen: {
+    quan_ly: {
+      ma: string;
+      ten: string;
+    }
+    so_huu: {
+      ma: string;
+      ten: string;
+    }
+  }
+  trang_thai: string;
+}
