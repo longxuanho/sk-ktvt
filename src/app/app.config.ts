@@ -49,6 +49,7 @@ export class AppConfig {
 
     // Time
     'time.defaultDisplayFormat': string;
+    'time.mTokenValidHours': number;
 }
 
 export let appConfig: AppConfig = {
@@ -90,5 +91,6 @@ export let appConfig: AppConfig = {
     'logger.mode': LogMode.Debug,
 
     // Time
-    'time.defaultDisplayFormat': 'YYYY-MM-DD HH:mm'
+    'time.defaultDisplayFormat': 'YYYY-MM-DD HH:mm',
+    'time.mTokenValidHours': 8,
 };

@@ -5,5 +5,6 @@ export class UserCredentials {
 
 export class Manager {
     $key?: string;
-    mPIN: number
+    mPIN: number;
+    mToken?: string;
 }

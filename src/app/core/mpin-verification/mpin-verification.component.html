@@ -1,0 +1,13 @@
+<div style="margin-top: 30px;">
+<div class="mt-2 d-header">
+  <h3 class="d-inline-block d-title">Xác nhận mPIN</h3>
+  <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/bang-tin']">Trở về »</a>
+</div>
+<form class="form-signin" [formGroup]="mPINValidateForm" (ngSubmit)="onSubmit(mPINValidateForm.value)">
+  <div class="form-group">
+    <input type="number" id="inputMPIN" class="form-control" placeholder="mPIN" autofocus formControlName="mPIN">
+    <small id="emailHelp" class="form-text">Mã mPIN sau khi được xác nhận hợp lệ sẽ có hiệu lực trong vòng {{validHours}} tiếng.</small>
+  </div>  
+  <button class="btn btn-outline-primary btn-block" type="submit" [disabled]="!mPIN.valid">Xác nhận</button>
+</form>
+</div>

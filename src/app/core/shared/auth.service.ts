@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
+declare var moment: any;
+
 @Injectable()
 export class AuthService {
 
@@ -33,7 +35,9 @@ export class AuthService {
     else {
       this.af.database
         .object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`, { preserveSnapshot: true })
-        .subscribe(managerSnap => this.managerSource.next(managerSnap.val()));
+        .subscribe(
+          managerSnap => this.managerSource.next(managerSnap.val()),
+          error => this.managerSource.next(null));
     }
   }
 
@@ -55,31 +59,31 @@ export class AuthService {
     return this.af.auth;
   }
 
-  isManager() {
-    return this.af.auth
-      .take(1)
-      .switchMap(auth => {
-        if (!auth)
-          return Observable.of(false);
-        return this.af.database.object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`)
-          .take(1)
-          .map((managerObj: Manager) => !!managerObj.mPIN)
-      });
-  }
-
   isManagerPINMatched(mPIN: number) {
     if (!mPIN)
       return Observable.throw(new Error('Mã PIN người dùng không hợp lệ'));
 
     return this.af.auth
-      .take(1)
       .switchMap(auth => {
         if (!auth)
           return Observable.of(false);
         return this.af.database.object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`)
-          .take(1)
           .map((managerObj: Manager) => managerObj.mPIN === +mPIN);
-      });
+      })
+      .take(1);
+  }
+
+  refreshManagerToken() {
+    return this.af.auth
+      .switchMap(auth => {
+        if (!auth)
+          return Observable.of(false);
+        return this.af.database.object(`${this.appConfig['db.fbRefAuthManagers']}/${auth.uid}`)
+          .update({ mToken: moment().format(this.appConfig['time.defaultDisplayFormat']) })
+          .then(success => Observable.of(true))
+          .catch(error => Observable.throw(new Error(error.message)));
+      })
+      .take(1);
   }
 
   getUserProfile(uid: string, email?: string): Observable<any> {

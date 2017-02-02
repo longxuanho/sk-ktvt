@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './shared/auth.service';
 import { appConfig } from '../app.config';
+import { MpinVerificationComponent } from './mpin-verification/mpin-verification.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { appConfig } from '../app.config';
   declarations: [
     NavbarComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    MpinVerificationComponent
   ],
   providers: [
     LoggerService,

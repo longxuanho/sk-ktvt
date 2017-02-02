@@ -24,8 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.authService.authSet(auth);
           this.authService.managerSet(auth);
         },
-        (error) => this.loggerService.error(error.message, 'Opps', error)
-      )
+        (error) => this.loggerService.error(error.message, 'Opps', error));
   }
 
   ngOnDestroy() {
