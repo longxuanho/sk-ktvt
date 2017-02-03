@@ -28,7 +28,13 @@ export class ThietbisService {
       });
   }
 
-  getThietBis() {
+  getThietBis(queryParams) {
+    let options = Object.assign({}, queryParams);
+    options.page = options.page ? +options.page : 1;
+    options.nhom = options.nhom ? options.nhom : '';
+    options.search = options.search ? options.search : '';
+    options.searchBy = options.searchBy ? options.searchBy: 'maThietBi';
+
     return this.af.database.list(this.appConfig['db.fbRefThietbisList'])
       .take(1);
   }
@@ -43,6 +49,4 @@ export class ThietbisService {
       .catch(error => done.error(error));
     return done$;
   }
-
-
 }

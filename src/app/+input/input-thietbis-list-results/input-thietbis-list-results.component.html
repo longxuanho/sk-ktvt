@@ -1,3 +1,7 @@
-<div class="list-group">
-  <sk-input-thietbis-list-results-item class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let thietbi of thietbis" [thietbi]="thietbi"></sk-input-thietbis-list-results-item>
+<div class="list-group" *ngIf="thietbis">
+  <sk-input-thietbis-list-results-item 
+    class="list-group-item list-group-item-action flex-column align-items-start" 
+    *ngFor="let thietbi of thietbis" 
+    [thietbi]="thietbi">
+  </sk-input-thietbis-list-results-item>
 </div>
