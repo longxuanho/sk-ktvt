@@ -13,6 +13,7 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
 
   thietbis: ThietBi[] = [];
   routeSub: Subscription;
+  currentPage: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +22,10 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeSub = this.route.queryParams
-      .switchMap(params => 
-        this.thietbisService.getThietBis(params))
+      .switchMap(params => {
+        this.currentPage = params['page'] ? +params['page'] : 1;
+        return this.thietbisService.getThietBis(params)
+      })
       .subscribe(thietbis => {
         console.log('data: ', thietbis);
         this.thietbis = thietbis

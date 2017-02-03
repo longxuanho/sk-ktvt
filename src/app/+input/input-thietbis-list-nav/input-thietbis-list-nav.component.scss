@@ -4,7 +4,7 @@
   user-select: none;
   align-items: stretch;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   line-height: 24px;
   overflow: hidden;
   overflow-x: auto;
@@ -12,7 +12,6 @@
   border-bottom: 1px solid #666;
   ul {
     align-items: center;
-    border-bottom: 1px solid #666;
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;

@@ -31,20 +31,13 @@
   .pagination-next {
     display: none
   }
+
   li {
-    &:hover {
-      border-bottom: 2px solid #dbdbdb;
-      background-color: transparent;
-    }
-    a, a:hover {
-      background-color: transparent;
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      margin-bottom: -1px;
-      padding: 6px 12px;
-      vertical-align: top;
-    }
+    vertical-align: bottom;
+  }
+  
+  li:hover {
+     background-color: transparent;
   }
 }
 
@@ -52,5 +45,16 @@
   border-bottom: 2px solid #dbdbdb;
   background: transparent !important;
   padding: 6px 12px !important;
-  margin-bottom: -1px;
+}
+
+.ng2-pagination a, .ng2-pagination button {
+  background-color: transparent;
+  align-items: center;
+  padding: 6px 12px !important;
+}
+
+.ng2-pagination a:hover {
+  background: transparent !important;
+  border-bottom: 2px solid #dbdbdb;
+  padding: 6px 12px;     
 }
