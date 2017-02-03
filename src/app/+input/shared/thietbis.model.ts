@@ -50,6 +50,7 @@ export class RawThietBi {
     }
   };
   ho_so: {
+    bien_so: string;
     cap_chat_luong: number;
     nam_su_dung: number;
     so_dang_kiem: string;
@@ -60,8 +61,9 @@ export class RawThietBi {
   };
   ma_thiet_bi: {
     keyId: string;
+    ref: string;
     topX: string;
-    maximo: string;
+    maximo: string
   };
   metadata: {
     thoi_gian: {
@@ -83,11 +85,14 @@ export class RawThietBi {
     hang_san_xuat: string;
     model: string;
     nam_san_xuat: number;
+    noi_lap_rap: string;
+    vendor: string;
   }
   phan_loai: {
     chung_loai: string;
     loai: string;
     nhom: string;
+    scope: string;
   }
   phan_quyen: {
     quan_ly: {

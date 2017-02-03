@@ -28,6 +28,11 @@ export class ThietbisService {
       });
   }
 
+  getThietBis() {
+    return this.af.database.list(this.appConfig['db.fbRefThietbisList'])
+      .take(1);
+  }
+
   addNew(preparedData: ThietBi) {
     let done = new Subject<any>();
     let done$ = done.asObservable();

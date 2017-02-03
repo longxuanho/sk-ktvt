@@ -44,7 +44,7 @@ export class MpinVerificationComponent implements OnInit {
         isDone => {
           if (isDone) {
             this.router.navigate(['/nhap-lieu/thiet-bi']);
-            this.loggerService.success('Tiếp tục chuyển đến trang yêu cầu...', 'Xác nhận thành công!');
+            this.loggerService.success('Hệ thống tự động chuyển tới trang bạn đã yêu cầu trước đó.', 'Xác nhận thành công!');
           } else
             this.loggerService.error('Mã xác nhận không khớp. Xin vui lòng thử lại sau.', 'Xác nhận thất bại!');
         },

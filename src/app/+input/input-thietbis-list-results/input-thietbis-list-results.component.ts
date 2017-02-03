@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ThietbisService } from '../shared/thietbis.service';
+import { ThietBi } from '../shared/thietbis.model';
 
 @Component({
   selector: 'sk-input-thietbis-list-results',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputThietbisListResultsComponent implements OnInit {
 
-  constructor() { }
+  thietbis: ThietBi[] = [];
+
+  constructor(
+    private thietbisService: ThietbisService
+  ) { }
+
+  getThietBis() {
+    this.thietbisService.getThietBis()
+      .subscribe(thietbis => this.thietbis = thietbis);
+  }
 
   ngOnInit() {
+    this.getThietBis();
   }
 
 }

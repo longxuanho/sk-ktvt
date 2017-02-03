@@ -13,13 +13,17 @@ export class InputComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.thietbisImportService.getRawData()
-      .subscribe(
-        data => {
-          if (data && data.length)
-            console.log('here: ', this.thietbisImportService.resolveThietBi(data[0]))
-        },
-        error => console.error('error: ', error));
+    // Seeding Data here...
+    // this.thietbisImportService.getRawData()
+    //   .subscribe(
+    //     data => {
+    //       if (data && data.length) {
+    //         let preparedData = this.thietbisImportService.resolveRawData(data);
+    //         this.thietbisImportService.seedData(preparedData);
+    //       }
+            
+    //     },
+    //     error => console.error('error: ', error));
   }
 
 

@@ -1,18 +1,8 @@
-<div class="list-group">
-  <a href="" class="list-group-item list-group-item-action flex-column align-items-start" [routerLink]="['/nhap-lieu/thiet-bi', 'id']">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">NB127</h5>
-      <small>Cát Lái</small>
-    </div>
-    <p class="mb-1">Xe tải • Isuzu (2011)</p>
-    <small>CP Tiếp vận Cát Lái (quản lý) • CP Tiếp vận Cát Lái (sở hữu)</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" [routerLink]="['/nhap-lieu/thiet-bi', 'id']">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">NB164</h5>
-      <small>Niêm cất tại Cát Lái</small>
-    </div>
-    <p class="mb-1">Xe tải • Isuzu (2011)</p>
-    <small>CP Tiếp vận Cát Lái (quản lý) • CP Tiếp vận Cát Lái (sở hữu)</small>
-  </a>
-</div>  
+<a href="" [routerLink]="['/nhap-lieu/thiet-bi', thietbi.$key]" style="width: 100%;">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{thietbi.maThietBi}}</h5>
+    <small><span *ngIf="thietbi.trangThai !== 'Đang hoạt động'">{{thietbi.trangThai}} tại</span> {{thietbi.khuVuc}}</small>
+  </div>
+  <p class="mb-1">{{thietbi.loai}} • {{thietbi.hangSanXuat}} <span *ngIf="thietbi.namSanXuat">({{thietbi.namSanXuat}})</span></p>
+  <small>{{thietbi.dvQuanLy}} (quản lý) • {{thietbi.dvSoHuu}} (sở hữu)</small>
+</a>
