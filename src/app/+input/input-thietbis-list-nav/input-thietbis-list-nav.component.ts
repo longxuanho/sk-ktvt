@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sk-input-thietbis-list-nav',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputThietbisListNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  getPage(page: number) {
+    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams: { page } });
+  }
 
   ngOnInit() {
   }

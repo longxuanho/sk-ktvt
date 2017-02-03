@@ -1,0 +1,56 @@
+::-webkit-input-placeholder {
+   color: #aaa !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #aaa !important;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #aaa !important;  
+}
+:-ms-input-placeholder {  
+   color: #aaa !important;  
+}
+
+.d-header {
+  border-bottom: 1px solid #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.align-sef-bottom {
+  align-self: flex-end;
+}
+
+.ng2-pagination {
+  margin: 0 !important;
+  padding: 0;
+
+  .pagination-previous {
+    display: none;
+  }
+  .pagination-next {
+    display: none
+  }
+  li {
+    &:hover {
+      border-bottom: 2px solid #dbdbdb;
+      background-color: transparent;
+    }
+    a, a:hover {
+      background-color: transparent;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin-bottom: -1px;
+      padding: 6px 12px;
+      vertical-align: top;
+    }
+  }
+}
+
+.ng2-pagination .current {
+  border-bottom: 2px solid #dbdbdb;
+  background: transparent !important;
+  padding: 6px 12px !important;
+  margin-bottom: -1px;
+}

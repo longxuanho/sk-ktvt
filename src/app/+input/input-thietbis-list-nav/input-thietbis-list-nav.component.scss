@@ -1,41 +1,40 @@
 .tabs {
-    margin-top: 20px;
+  margin-top: 20px;
 
-    user-select: none;
-    align-items: stretch;
+  user-select: none;
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+  line-height: 24px;
+  overflow: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid #666;
+  ul {
+    align-items: center;
+    border-bottom: 1px solid #666;
     display: flex;
-    justify-content: space-between;
-    line-height: 24px;
-    overflow: hidden;
-    overflow-x: auto;
-    white-space: nowrap;
-    ul {
-        align-items: center;
-        border-bottom: 1px solid #666;
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 0;
-        justify-content: flex-start;
-        margin: 0;
-        padding: 0;
-    }
-    li {
-        display: block;
-        margin: 0;
-        padding: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: block;
+    margin: 0;
+    padding: 0;
 
-        &.active, &:hover {
-          border-bottom: 2px solid #dbdbdb;
-        }
+    &.active, &:hover {
+      border-bottom: 2px solid #dbdbdb;
     }
-    a {
-        
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        margin-bottom: -1px;
-        padding: 6px 12px;
-        vertical-align: top;
-    }
-
+  }
+  a {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -1px;
+    padding: 6px 12px;
+    vertical-align: top;
+  }
 }

@@ -1,10 +1,12 @@
 <div class="tabs centered">
-  <ul>
+  <pagination-controls (pageChange)="getPage($event)" id="server" maxSize="5"></pagination-controls>
+  <a href="" [routerLink]="['/nhap-lieu/thiet-bi/tao-moi']">Tạo mới »</a>
+  <!--<ul>
     <li class="active"><a>1</a></li>
     <li><a>2</a></li>
     <li><a>3</a></li>
     <li>...</li>
     <li><a>10</a></li>
     <li style="margin-left: 30px;"><a href="" [routerLink]="['/nhap-lieu/thiet-bi/tao-moi']">Tạo mới »</a></li>
-  </ul>
+  </ul>-->
 </div>
