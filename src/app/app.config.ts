@@ -44,12 +44,20 @@ export class AppConfig {
     'db.gSheetRefModelThietBis': string;
     'db.gSheetRefNhaPhanPhois': string;
 
+    // ElasticSearch
+    'es.searchRef': string;
+    'es.searchRefThietBi': string;
+
     // Logger
     'logger.mode': number;
 
     // Time
     'time.defaultDisplayFormat': string;
     'time.mTokenValidHours': number;
+
+    // Thietbis
+    'thietbis.itemPerPage': number;
+    'thietbis.defaultSearchBy': string;
 }
 
 export let appConfig: AppConfig = {
@@ -87,10 +95,18 @@ export let appConfig: AppConfig = {
     'db.gSheetRefModelThietBis': '&sheet=modelThietBis',
     'db.gSheetRefNhaPhanPhois': '&sheet=nhaPhanPhois',
 
+    // ElasticSearch
+    'es.searchRef': 'https://hsoyhafg:d2mq1g5dfcfvnrmr@maple-8497094.us-east-1.bonsaisearch.net/firebase',
+    'es.searchRefThietBi': 'https://hsoyhafg:d2mq1g5dfcfvnrmr@maple-8497094.us-east-1.bonsaisearch.net/firebase/thietbi/_search',
+
     // Logger
     'logger.mode': LogMode.Debug,
 
     // Time
     'time.defaultDisplayFormat': 'YYYY-MM-DD HH:mm',
     'time.mTokenValidHours': 8,
+
+    // Thietbis
+    'thietbis.itemPerPage': 6,
+    'thietbis.defaultSearchBy': 'maThietBi',
 };

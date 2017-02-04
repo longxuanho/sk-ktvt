@@ -28,7 +28,6 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
       })
       .subscribe(thietbis => {
         console.log('data: ', thietbis);
-        this.thietbis = thietbis
       });
   }
 
