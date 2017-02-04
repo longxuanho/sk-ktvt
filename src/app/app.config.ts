@@ -45,6 +45,8 @@ export class AppConfig {
     'db.gSheetRefNhaPhanPhois': string;
 
     // ElasticSearch
+    'es.username': string;
+    'es.password': string;
     'es.searchRef': string;
     'es.searchRefThietBi': string;
 
@@ -96,8 +98,10 @@ export let appConfig: AppConfig = {
     'db.gSheetRefNhaPhanPhois': '&sheet=nhaPhanPhois',
 
     // ElasticSearch
+    'es.username': 'hsoyhafg',
+    'es.password': 'd2mq1g5dfcfvnrmr',
     'es.searchRef': 'https://hsoyhafg:d2mq1g5dfcfvnrmr@maple-8497094.us-east-1.bonsaisearch.net/firebase',
-    'es.searchRefThietBi': 'https://hsoyhafg:d2mq1g5dfcfvnrmr@maple-8497094.us-east-1.bonsaisearch.net/firebase/thietbi/_search',
+    'es.searchRefThietBi': 'https://maple-8497094.us-east-1.bonsaisearch.net/firebase/thietbi/_search?timeout=3000ms',
 
     // Logger
     'logger.mode': LogMode.Debug,

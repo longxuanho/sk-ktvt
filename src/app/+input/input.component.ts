@@ -20,8 +20,7 @@ export class InputComponent implements OnInit {
     //       if (data && data.length) {
     //         let preparedData = this.thietbisImportService.resolveRawData(data);
     //         this.thietbisImportService.seedData(preparedData);
-    //       }
-            
+    //       }            
     //     },
     //     error => console.error('error: ', error));
   }

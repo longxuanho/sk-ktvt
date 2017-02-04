@@ -14,6 +14,8 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
   thietbis: ThietBi[] = [];
   routeSub: Subscription;
   currentPage: number = 1;
+  queryTime: number = 0;
+  numOfMatchingItems: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,13 +23,19 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+
     this.routeSub = this.route.queryParams
-      .switchMap(params => {
-        this.currentPage = params['page'] ? +params['page'] : 1;
-        return this.thietbisService.getThietBis(params)
+      .do(params => this.currentPage = +params['page'] || 1)
+      .switchMap(params => this.thietbisService.getThietBis(params))
+      .do(results => {
+        this.queryTime = results.took;
+        this.numOfMatchingItems = results.hits.total;
       })
+      .map(results => results.hits.hits)
+      .map(results => results.map(item => item._source))
       .subscribe(thietbis => {
         console.log('data: ', thietbis);
+        this.thietbis = thietbis || [];
       });
   }
 

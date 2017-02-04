@@ -1,7 +1,8 @@
+<sk-input-thietbis-list-results-statistics [numOfMatchingItems]="numOfMatchingItems" [queryTime]="queryTime"></sk-input-thietbis-list-results-statistics>
 <div class="list-group" *ngIf="thietbis">
   <sk-input-thietbis-list-results-item 
     class="list-group-item list-group-item-action flex-column align-items-start" 
-    *ngFor="let thietbi of thietbis | paginate: { id: 'server', itemsPerPage: 5, currentPage: currentPage, totalItems: 100 }" 
+    *ngFor="let thietbi of thietbis | paginate: { id: 'server', itemsPerPage: 6, currentPage: currentPage, totalItems: numOfMatchingItems }" 
     [thietbi]="thietbi">
   </sk-input-thietbis-list-results-item>
 </div>

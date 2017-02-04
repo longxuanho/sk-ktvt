@@ -50,7 +50,7 @@ export class ThietbisImportService {
     result.dvQuanLy = rawItem.phan_quyen.quan_ly.ten;
     result.dvQuanLyId = rawItem.phan_quyen.quan_ly.ma;
     result.dvSoHuu = rawItem.phan_quyen.so_huu.ten;
-    result.dvSoHuu = rawItem.phan_quyen.so_huu.ma;
+    result.dvSoHuuId = rawItem.phan_quyen.so_huu.ma;
 
     result.trangThai = rawItem.trang_thai;
     result.khuVuc = rawItem.dia_diem.khu_vuc.ten;
@@ -84,7 +84,7 @@ export class ThietbisImportService {
           .subscribe(
             isDone => console.info(`seeding index ${index} ok.`),
             error => console.error(`seeding error for index ${index}. Data: `, preparedItem));
-      }, 1000);
+      }, 5000);
     })
   }
 
