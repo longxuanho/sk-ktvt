@@ -112,5 +112,5 @@ export let appConfig: AppConfig = {
 
     // Thietbis
     'thietbis.itemPerPage': 6,
-    'thietbis.defaultSearchBy': 'maThietBi',
+    'thietbis.defaultSearchBy': 'Mã thiết bị',
 };

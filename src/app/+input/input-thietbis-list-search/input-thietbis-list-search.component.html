@@ -4,25 +4,23 @@
       <div class="input-group">
         <div class="input-group-btn">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Mã thiết bị
+          {{searchBy}}
         </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Mã thiết bị</a>
-            <a class="dropdown-item" href="#">Hãng sản xuất</a>
-            <a class="dropdown-item" href="#">Số đăng ký</a>
+            <a class="dropdown-item" href="" *ngFor="let searchByOption of searchByOptions" (click)="setSearchBy($event, searchByOption)">{{searchByOption}}</a>
+            <div role="separator" class="dropdown-divider"></div>
+            <a class="dropdown-item" href="" (click)="setSearchBy($event, 'Tất cả')">Tất cả</a>
           </div>
         </div>
         <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Tìm kiếm..." autofocus formControlName="search">
         <div class="input-group-btn">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Thiết bị nâng
+          {{nhomFilterBy}}
         </button>
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Thiết bị nâng</a>
-            <a class="dropdown-item" href="#">Xe - Máy</a>
-            <a class="dropdown-item" href="#">Tàu thuyền</a>
+            <a class="dropdown-item" href="" *ngFor="let nhomFilterByOption of nhomFilterByOptions" (click)="setNhomFilterBy($event, nhomFilterByOption)">{{nhomFilterByOption}}</a>
             <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Tất cả</a>
+            <a class="dropdown-item" href="">Tất cả</a>
           </div>
         </div>
       </div>

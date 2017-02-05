@@ -51,10 +51,61 @@ export class ThietbisService {
         }
       };
 
-      if (rawOptions.searchBy === 'maThietBi')
-        resultOptions["query"].query_string.fields = ['maThietBi', 'maTopX', 'maMaximo'];
+      switch (rawOptions.searchBy) {
+        case 'Biển số':
+          resultOptions["query"].query_string.fields = ['bienSo'];
+          break;
+        case 'Đơn vị quản lý':
+          resultOptions["query"].query_string.fields = ['dvQuanLy', 'dvQuanLyId'];
+          break;
+        case 'Đơn vị sở hữu':
+          resultOptions["query"].query_string.fields = ['dvSoHuu', 'dvSoHuuId'];
+          break;
+        case 'Ghi chú, mô tả':
+          resultOptions["query"].query_string.fields = ['ghiChu', 'moTa'];
+          break;
+        case 'Hãng sản xuất':
+          resultOptions["query"].query_string.fields = ['hangSanXuat'];
+          break;
+        case 'Khu vực':
+          resultOptions["query"].query_string.fields = ['khuVuc', 'khuVucId'];
+          break;
+        case 'Loại thiết bị':
+          resultOptions["query"].query_string.fields = ['loai'];
+          break;
+        case 'Mã thiết bị':
+          resultOptions["query"].query_string.fields = ['maThietBi', 'maTopX', 'maMaximo'];
+          break;
+        case 'Model thiết bị':
+          resultOptions["query"].query_string.fields = ['modelThietBi'];
+          break;
+        case 'Năm sản xuất':
+          resultOptions["query"].query_string.fields = ['namSanXuat'];
+          break;
+        case 'Năm sử dụng':
+          resultOptions["query"].query_string.fields = ['namSuDung'];
+          break;
+        case 'Số đăng kiểm':
+          resultOptions["query"].query_string.fields = ['soDangKiem'];
+          break;
+        case 'Số đăng ký':
+          resultOptions["query"].query_string.fields = ['soDangKy'];
+          break;
+        case 'Số khung, số máy':
+          resultOptions["query"].query_string.fields = ['soKhung', 'soMay'];
+          break;
+        case 'Tags':
+          resultOptions["query"].query_string.fields = ['tags'];
+          break;
+        case 'Trạng thái':
+          resultOptions["query"].query_string.fields = ['trangThai'];
+          break;
+        default:
+          resultOptions["query"].query_string.fields = ['maThietBi', 'maTopX', 'maMaximo'];
+          break;
+      }
     }
-      
+    console.log('result options: ', resultOptions);
     return resultOptions;
   }
 
