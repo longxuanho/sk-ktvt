@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ThietbisService } from '../shared/thietbis.service';
-import { ThietbisSearchService } from '../shared/thietbis-search.service';
 import { ThietBi } from '../shared/thietbis.model';
 import { Subscription } from 'rxjs/Subscription';
 import { APP_CONFIG, AppConfig } from '../../app.config';
@@ -19,8 +18,13 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
   searchTextSub: Subscription;
   searchBySub: Subscription;
 
+  pageStatus: string;
+  isRequestError: boolean;
+  isLoading: boolean;
+
   searchText: string;
   searchBy: string;
+  nhomFilterBy: string;
   currentPage: number = 1;
   queryTime: number = 0;
   numOfMatchingItems: number = 0;
@@ -29,33 +33,29 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private thietbisService: ThietbisService,
-    private thietbisSearchService: ThietbisSearchService,
     @Inject(APP_CONFIG) private appConfig: AppConfig 
   ) { }
 
   handleError(error) {
-    console.error('Truy vấn dữ liệu từ Bonsai thất bại. Chi tiết:', error.json());
-  }
-
-  resolveQueryParams() {
-    let queryParams = {
-      page: this.currentPage,
-      searchBy: this.searchBy
-    };
-    if (this.searchText)
-      queryParams['search'] = this.searchText;
-      
-    return queryParams;
+    this.isLoading = false;
+    this.isRequestError = true;
+    this.pageStatus = 'Truy vấn không thành công. Xin vui lòng thử lại ..';
+    console.error('Truy vấn dữ liệu từ Bonsai thất bại. Chi tiết:', error);
   }
 
   ngOnInit() {
     this.routeSub = this.route.queryParams
       .do(params => { 
         this.currentPage = +params['page'] || 1;
-        this.searchBy = params['searchBy'] || this.appConfig['thietbis.defaultSearchBy'];
         this.searchText = params['search'] || '';
+        this.searchBy = params['searchBy'] || this.appConfig['thietbis.defaultSearchBy'];
+        this.nhomFilterBy = params['nhom'] || this.appConfig['thietbis.defaultNhomFilterBy'];
       })
-      .switchMap(params => this.thietbisService.getThietBis(params))
+      .switchMap(params => {
+        this.isLoading = true;
+        this.pageStatus = 'Xin vui lòng chờ trong giây lát ..';
+        return this.thietbisService.getThietBis(params);
+        })
       .do(results => {
         this.queryTime = results.took;
         this.numOfMatchingItems = results.hits.total;
@@ -68,29 +68,19 @@ export class InputThietbisListResultsComponent implements OnInit, OnDestroy {
           return newItem;
         }))
       .subscribe(
-        thietbis => this.thietbis = thietbis || [],
+        (thietbis: ThietBi[]) => {
+          this.isRequestError = false;
+          this.isLoading = false;
+          
+          this.thietbis = thietbis || [];
+          this.pageStatus = thietbis.length ? '' : 'Không có kết quả phù hợp với yêu cầu của bạn' 
+        },
         error => this.handleError(error) );
-
-    this.searchTextSub = this.thietbisSearchService.searchText$
-      .subscribe(searchText => {
-        this.searchText = searchText;
-        let queryParams = this.resolveQueryParams();
-
-        this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
-      });
-    this.searchBySub = this.thietbisSearchService.searchBy$
-      .subscribe(searchBy => {
-        this.searchBy = searchBy;
-      });
   }
 
   ngOnDestroy() {
     if (this.routeSub)
       this.routeSub.unsubscribe();
-    if (this.searchTextSub)
-      this.searchTextSub.unsubscribe();
-    if (this.searchBySub)
-      this.searchBySub.unsubscribe();
   }
 
 }

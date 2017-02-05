@@ -1,12 +1,18 @@
+<sk-input-thietbis-list-nav
+  [numOfMatchingItems]="numOfMatchingItems">
+</sk-input-thietbis-list-nav>
 <sk-input-thietbis-list-results-statistics 
   [numOfMatchingItems]="numOfMatchingItems"
   [queryTime]="queryTime">
 </sk-input-thietbis-list-results-statistics>
-<div class="list-group" *ngIf="thietbis" style="margin-bottom: 2rem;">
+<div class="list-group" *ngIf="thietbis.length" style="margin-bottom: 2rem;">
   <sk-input-thietbis-list-results-item 
     class="list-group-item list-group-item-action flex-column align-items-start" 
     *ngFor="let thietbi of thietbis | paginate: { id: 'server', itemsPerPage: 6, currentPage: currentPage, totalItems: numOfMatchingItems }" 
     [thietbi]="thietbi">
   </sk-input-thietbis-list-results-item>
 </div>
-<p *ngIf="!thietbis">Không có kết quả phù hợp với truy vấn của bạn.</p>
+<div *ngIf="pageStatus" style="text-align: center">
+  <i class="fa fa-5x" [ngClass]="{'fa-folder-open-o': !isRequestError && !isLoading, 'fa-refresh': isRequestError && !isLoading, 'fa-spinner fa-pulse fa-fw': isLoading}" aria-hidden="true"></i>
+  <p style="margin-top: 1.5rem;">{{pageStatus}}</p>
+</div>

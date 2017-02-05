@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./input-thietbis-list-nav.component.scss']
 })
 export class InputThietbisListNavComponent implements OnInit {
+
+  @Input() numOfMatchingItems: number;
 
   constructor(private router: Router) { }
 

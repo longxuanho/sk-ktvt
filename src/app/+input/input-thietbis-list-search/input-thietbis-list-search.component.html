@@ -20,7 +20,7 @@
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="" *ngFor="let nhomFilterByOption of nhomFilterByOptions" (click)="setNhomFilterBy($event, nhomFilterByOption)">{{nhomFilterByOption}}</a>
             <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="">Tất cả</a>
+            <a class="dropdown-item" href="" (click)="setNhomFilterBy($event, '')">Tất cả</a>
           </div>
         </div>
       </div>

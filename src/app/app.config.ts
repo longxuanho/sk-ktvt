@@ -60,6 +60,7 @@ export class AppConfig {
     // Thietbis
     'thietbis.itemPerPage': number;
     'thietbis.defaultSearchBy': string;
+    'thietbis.defaultNhomFilterBy': string;
 }
 
 export let appConfig: AppConfig = {
@@ -113,4 +114,5 @@ export let appConfig: AppConfig = {
     // Thietbis
     'thietbis.itemPerPage': 6,
     'thietbis.defaultSearchBy': 'Mã thiết bị',
+    'thietbis.defaultNhomFilterBy': ''
 };

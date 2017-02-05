@@ -1,5 +1,5 @@
 <div class="tabs centered">
-  <pagination-controls style="margin-right: 30px;" (pageChange)="getPage($event)" id="server" maxSize="5"></pagination-controls>
+  <pagination-controls style="margin-right: 30px;" (pageChange)="getPage($event)" id="server" maxSize="5" [hidden]="!numOfMatchingItems"></pagination-controls>
   <ul>
     <li><a href="" [routerLink]="['/nhap-lieu/thiet-bi/tao-moi']">Tạo mới »</a></li>
   </ul>

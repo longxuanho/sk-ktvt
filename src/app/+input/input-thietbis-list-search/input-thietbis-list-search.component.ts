@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { ThietbisSearchService } from '../shared/thietbis-search.service';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Component({
@@ -20,8 +19,10 @@ export class InputThietbisListSearchComponent implements OnInit {
   searchSub: Subscription;
   searchBySub: Subscription;
 
+  currentPage: number = 1;
+  searchText: string;
   searchBy: string;
-  nhomFilterBy = 'Tất cả';
+  nhomFilterBy: string;
   
   searchByOptions = [
     'Biển số',
@@ -51,8 +52,8 @@ export class InputThietbisListSearchComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
-    private thietbisSearchService: ThietbisSearchService,
     @Inject(APP_CONFIG) private appConfig: AppConfig
     ) { 
     this.buildForm();
@@ -69,19 +70,38 @@ export class InputThietbisListSearchComponent implements OnInit {
     this.searchSub = this.search.valueChanges
       .debounceTime(1000)
       .subscribe(newVal => {
-        this.thietbisSearchService.doSearch(newVal);
+        this.searchText = newVal;
+
+        let queryParams = this.resolveQueryParams();
+        this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
       });
+  }
+
+  resolveQueryParams() {
+    let queryParams = {
+      page: this.currentPage,
+      searchBy: this.searchBy
+    };
+    if (this.searchText)
+      queryParams['search'] = this.searchText;
+    if (this.nhomFilterBy)
+      queryParams['nhom'] = this.nhomFilterBy;
+      
+    return queryParams;
   }
 
   setSearchBy(event: Event, searchByOption: string) {
     event.preventDefault();
     this.searchBy = searchByOption;
-    this.thietbisSearchService.setSearchBy(searchByOption);
+    let queryParams = this.resolveQueryParams();
+    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
   }
 
   setNhomFilterBy(event: Event, nhomFilterByOption: string) {
     event.preventDefault();
     this.nhomFilterBy = nhomFilterByOption;
+    let queryParams = this.resolveQueryParams();
+    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
   }
 
   ngOnInit() {
@@ -89,10 +109,14 @@ export class InputThietbisListSearchComponent implements OnInit {
     
     this.routeSub = this.route.queryParams
       .subscribe(params => {
-          if (params['search'])
-            this.search.setValue(params['search']);
-          this.searchBy = params['searchBy'] || this.appConfig['thietbis.defaultSearchBy'];
+        if (params['search'])
+          this.search.setValue(params['search']);
+        this.currentPage = +params['page'] || 1;
+        this.searchText = params['search'] || '';
+        this.searchBy = params['searchBy'] || this.appConfig['thietbis.defaultSearchBy'];
+        this.nhomFilterBy = params['nhom'] || this.appConfig['thietbis.defaultNhomFilterBy'];
       });
+      
   }
 
   ngOnDestroy() {
