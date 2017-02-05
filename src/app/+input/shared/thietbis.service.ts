@@ -44,67 +44,98 @@ export class ThietbisService {
     };
 
     if (rawOptions.search) {
-      resultOptions["query"] = {
-        "query_string": {
-          "query": `*${rawOptions.search}*`,
-          "fields": [rawOptions.searchBy]
-        }
-      };
-
+      let queryString = { 
+        "query": "*" + rawOptions.search + "*"
+      }
+      
       switch (rawOptions.searchBy) {
         case 'Biển số':
-          resultOptions["query"].query_string.fields = ['bienSo'];
+          queryString["fields"] = ['bienSo'];
           break;
         case 'Đơn vị quản lý':
-          resultOptions["query"].query_string.fields = ['dvQuanLy', 'dvQuanLyId'];
+          queryString["fields"] = ['dvQuanLy', 'dvQuanLyId'];
           break;
         case 'Đơn vị sở hữu':
-          resultOptions["query"].query_string.fields = ['dvSoHuu', 'dvSoHuuId'];
+          queryString["fields"] = ['dvSoHuu', 'dvSoHuuId'];
           break;
         case 'Ghi chú, mô tả':
-          resultOptions["query"].query_string.fields = ['ghiChu', 'moTa'];
+          queryString["fields"] = ['ghiChu', 'moTa'];
           break;
         case 'Hãng sản xuất':
-          resultOptions["query"].query_string.fields = ['hangSanXuat'];
+          queryString["fields"] = ['hangSanXuat'];
           break;
         case 'Khu vực':
-          resultOptions["query"].query_string.fields = ['khuVuc', 'khuVucId'];
+          queryString["fields"] = ['khuVuc', 'khuVucId'];
           break;
         case 'Loại thiết bị':
-          resultOptions["query"].query_string.fields = ['loai'];
+          queryString["fields"] = ['loai'];
           break;
         case 'Mã thiết bị':
-          resultOptions["query"].query_string.fields = ['maThietBi', 'maTopX', 'maMaximo'];
+          queryString["fields"] = ['maThietBi', 'maTopX', 'maMaximo'];
           break;
         case 'Model thiết bị':
-          resultOptions["query"].query_string.fields = ['modelThietBi'];
+          queryString["fields"] = ['modelThietBi'];
           break;
         case 'Năm sản xuất':
-          resultOptions["query"].query_string.fields = ['namSanXuat'];
+          queryString["fields"] = ['namSanXuat'];
           break;
         case 'Năm sử dụng':
-          resultOptions["query"].query_string.fields = ['namSuDung'];
+          queryString["fields"] = ['namSuDung'];
           break;
         case 'Số đăng kiểm':
-          resultOptions["query"].query_string.fields = ['soDangKiem'];
+          queryString["fields"] = ['soDangKiem'];
           break;
         case 'Số đăng ký':
-          resultOptions["query"].query_string.fields = ['soDangKy'];
+          queryString["fields"] = ['soDangKy'];
           break;
         case 'Số khung, số máy':
-          resultOptions["query"].query_string.fields = ['soKhung', 'soMay'];
+          queryString["fields"] = ['soKhung', 'soMay'];
           break;
         case 'Tags':
-          resultOptions["query"].query_string.fields = ['tags'];
+          queryString["fields"] = ['tags'];
           break;
         case 'Trạng thái':
-          resultOptions["query"].query_string.fields = ['trangThai'];
+          queryString["fields"] = ['trangThai'];
           break;
         default:
-          resultOptions["query"].query_string.fields = ['maThietBi', 'maTopX', 'maMaximo'];
+          queryString["fields"] = ['maThietBi', 'maTopX', 'maMaximo'];
           break;
       }
+
+      if (rawOptions.nhom) {
+        resultOptions["query"] = {
+          "bool": {
+            "must": {
+              "query_string": queryString
+            },
+            "filter": [
+              { "match_phrase": { "nhom": rawOptions.nhom } }
+            ]
+          }
+        }
+      } else {
+        resultOptions["query"] = {
+          "query_string": queryString
+        };
+      }
+
+    } else {
+      if (rawOptions.nhom) {
+        resultOptions["query"] = {
+          "bool": {
+            "must": {
+              "match_all": {}
+            },
+            "filter": [
+              { "match_phrase": { "nhom": rawOptions.nhom } }
+            ]
+          }
+        } 
+      } else {
+        resultOptions["query"] = { "match_all": {} }
+      }
     }
+    
     console.log('result options: ', resultOptions);
     return resultOptions;
   }

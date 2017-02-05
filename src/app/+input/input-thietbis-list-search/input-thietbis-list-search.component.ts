@@ -79,7 +79,7 @@ export class InputThietbisListSearchComponent implements OnInit {
 
   resolveQueryParams() {
     let queryParams = {
-      page: this.currentPage,
+      // page: this.currentPage,
       searchBy: this.searchBy
     };
     if (this.searchText)

@@ -1,11 +1,13 @@
 <sk-input-thietbis-list-nav
   [numOfMatchingItems]="numOfMatchingItems">
 </sk-input-thietbis-list-nav>
+
 <sk-input-thietbis-list-results-statistics 
   [numOfMatchingItems]="numOfMatchingItems"
   [queryTime]="queryTime">
 </sk-input-thietbis-list-results-statistics>
-<div class="list-group" *ngIf="thietbis.length" style="margin-bottom: 2rem;">
+
+<div class="list-group" *ngIf="thietbis.length && !isRequestError && !isLoading" style="margin-bottom: 2rem;">
   <sk-input-thietbis-list-results-item 
     class="list-group-item list-group-item-action flex-column align-items-start" 
     *ngFor="let thietbi of thietbis | paginate: { id: 'server', itemsPerPage: 6, currentPage: currentPage, totalItems: numOfMatchingItems }" 
