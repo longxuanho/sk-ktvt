@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 
@@ -8,13 +8,15 @@ import { ThietBi } from '../shared/thietbis.model';
 import { ThietbisService } from '../shared/thietbis.service';
 import { ThietbisHelpersService } from '../shared/thietbis-helpers.service';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'sk-input-thietbis-add-new',
   templateUrl: './input-thietbis-add-new.component.html',
   styleUrls: ['./input-thietbis-add-new.component.scss']
 })
-export class InputThietbisAddNewComponent implements OnInit {
+export class InputThietbisAddNewComponent implements OnInit, OnDestroy {
 
   thietBiAddNewForm: FormGroup;
   maThietBi: FormControl;
@@ -43,6 +45,13 @@ export class InputThietbisAddNewComponent implements OnInit {
   capChatLuong: FormControl;
   moTa: FormControl;
   ghiChu: FormControl;
+
+  nhomSub: Subscription;
+  chungLoaiSub: Subscription;
+  hangSanXuatSub: Subscription;
+  dvQuanLySub: Subscription;
+  dvSoHuuSub: Subscription;
+  khuVucSub: Subscription;
 
   selectOptions = {
     nhoms: [],
@@ -141,41 +150,34 @@ export class InputThietbisAddNewComponent implements OnInit {
   }
 
   subscribeFormChanges() {
-    this.nhom.valueChanges
+    this.nhomSub = this.nhom.valueChanges
       .subscribe(newVal => {
         this.chungLoai.reset();
         this.loai.reset();
       });
-    this.chungLoai.valueChanges
+    this.chungLoaiSub = this.chungLoai.valueChanges
       .subscribe(newVal => {
         this.loai.reset();
       });
-    this.hangSanXuat.valueChanges
+    this.hangSanXuatSub = this.hangSanXuat.valueChanges
       .subscribe(newVal => {
         this.modelThietBi.reset();
       });
-    this.dvQuanLy.valueChanges
+    this.dvQuanLySub = this.dvQuanLy.valueChanges
       .subscribe(newVal => {
         let foundResult = this.selectOptions.donVis
           .find(dvObject => dvObject.donVi === newVal)  || {};
         let dvQuanLyId = foundResult.donViId || '';
         this.dvQuanLyId.setValue(dvQuanLyId);
       });
-    this.dvSoHuu.valueChanges
+    this.dvSoHuuSub = this.dvSoHuu.valueChanges
       .subscribe(newVal => {
         let foundResult = this.selectOptions.donVis
           .find(donViObj => donViObj.donVi === newVal)  || {};
         let dvSoHuuId = foundResult.donViId || '';
         this.dvSoHuuId.setValue(dvSoHuuId);
       });
-    this.dvSoHuu.valueChanges
-      .subscribe(newVal => {
-        let foundResult = this.selectOptions.donVis
-          .find(donViObj => donViObj.donVi === newVal)  || {};
-        let dvSoHuuId = foundResult.donViId || '';
-        this.dvSoHuuId.setValue(dvSoHuuId);
-      });
-    this.khuVuc.valueChanges
+    this.khuVucSub = this.khuVuc.valueChanges
       .subscribe(newVal => {
         let foundResult = this.selectOptions.khuVucs
           .find(khuVucObj => khuVucObj.khuVuc === newVal)  || {};
@@ -245,6 +247,21 @@ export class InputThietbisAddNewComponent implements OnInit {
   ngOnInit() {
     this.resolveSelectOptions();
     this.subscribeFormChanges();    
+  }
+
+  ngOnDestroy() {
+    if (this.nhomSub)
+      this.nhomSub.unsubscribe();
+    if (this.chungLoaiSub)
+      this.chungLoaiSub.unsubscribe();
+    if (this.hangSanXuatSub)
+      this.hangSanXuatSub.unsubscribe();
+    if (this.dvQuanLySub)
+      this.dvQuanLySub.unsubscribe();
+    if (this.dvSoHuuSub)
+      this.dvSoHuuSub.unsubscribe();
+    if (this.khuVucSub)
+      this.khuVucSub.unsubscribe();
   }
 
 }

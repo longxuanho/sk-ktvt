@@ -1,29 +1,31 @@
 <div class="row justify-content-between">
   <div class="col mt-2">
-    <div class="input-group">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <form [formGroup]="thietBiSearchForm">
+      <div class="input-group">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mã thiết bị
         </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Mã thiết bị</a>
-          <a class="dropdown-item" href="#">Hãng sản xuất</a>
-          <a class="dropdown-item" href="#">Số đăng ký</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Mã thiết bị</a>
+            <a class="dropdown-item" href="#">Hãng sản xuất</a>
+            <a class="dropdown-item" href="#">Số đăng ký</a>
+          </div>
         </div>
-      </div>
-      <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Tìm kiếm..." autofocus>
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Tìm kiếm..." autofocus formControlName="search">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Thiết bị nâng
         </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="#">Thiết bị nâng</a>
-          <a class="dropdown-item" href="#">Xe - Máy</a>
-          <a class="dropdown-item" href="#">Tàu thuyền</a>
-          <div role="separator" class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Tất cả</a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Thiết bị nâng</a>
+            <a class="dropdown-item" href="#">Xe - Máy</a>
+            <a class="dropdown-item" href="#">Tàu thuyền</a>
+            <div role="separator" class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Tất cả</a>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>

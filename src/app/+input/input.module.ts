@@ -5,6 +5,7 @@ import { InputRoutingModule, routedComponents } from './input-routing.module';
 import { ThietbisHelpersService } from './shared/thietbis-helpers.service';
 import { ThietbisService } from './shared/thietbis.service';
 import { ThietbisImportService } from './shared/thietbis-import.service';
+import { ThietbisSearchService } from './shared/thietbis-search.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ThietbisImportService } from './shared/thietbis-import.service';
   providers: [
     ThietbisService,
     ThietbisHelpersService,
-    ThietbisImportService
+    ThietbisImportService,
+    ThietbisSearchService
   ]
 })
 export class InputModule { }
