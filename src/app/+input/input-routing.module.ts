@@ -9,7 +9,7 @@ import { InputThietbisListSearchComponent } from './input-thietbis-list-search/i
 import { InputThietbisDetailsComponent } from './input-thietbis-details/input-thietbis-details.component';
 import { InputThietbisAddNewComponent } from './input-thietbis-add-new/input-thietbis-add-new.component';
 import { InputThietbisListResultsStatisticsComponent } from './input-thietbis-list-results-statistics/input-thietbis-list-results-statistics.component';
-
+import { InputThietbisFormComponent } from './input-thietbis-form/input-thietbis-form.component';
 
 const routes: Routes = [
   {
@@ -39,5 +39,6 @@ export const routedComponents = [
   InputThietbisListSearchComponent,
   InputThietbisDetailsComponent,
   InputThietbisAddNewComponent,
-  InputThietbisListResultsStatisticsComponent
+  InputThietbisListResultsStatisticsComponent,
+  InputThietbisFormComponent
 ]

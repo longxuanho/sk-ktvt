@@ -13,7 +13,7 @@ import { ThietbisImportService } from './shared/thietbis-import.service';
     InputRoutingModule
   ],
   declarations: [
-    routedComponents,
+    routedComponents
   ],
   providers: [
     ThietbisService,
