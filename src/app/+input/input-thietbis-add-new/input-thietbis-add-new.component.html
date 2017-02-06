@@ -33,7 +33,7 @@
     </li>
     <li class="list-group-item">
       <div class="text-right">
-        <i class="fa fa-unlock-alt"></i>
+        <i class="fa" [ngClass]="{'fa-unlock-alt': !isPartialLockPhanLoai, 'fa-lock text-warning': isPartialLockPhanLoai}" (click)="isPartialLockPhanLoai=!isPartialLockPhanLoai"></i>
       </div>
       <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -76,7 +76,7 @@
     </li>
     <li class="list-group-item">
       <div class="text-right">
-        <i class="fa fa-unlock-alt"></i>
+        <i class="fa" [ngClass]="{'fa-unlock-alt': !isPartialLockNguonGoc, 'fa-lock text-warning': isPartialLockNguonGoc}" (click)="isPartialLockNguonGoc=!isPartialLockNguonGoc"></i>
       </div>
       <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -125,7 +125,7 @@
     </li>
     <li class="list-group-item">
       <div class="text-right">
-        <i class="fa fa-lock text-warning"></i>
+        <i class="fa" [ngClass]="{'fa-unlock-alt': !isPartialLockPhanQuyen, 'fa-lock text-warning': isPartialLockPhanQuyen}" (click)="isPartialLockPhanQuyen=!isPartialLockPhanQuyen"></i>
       </div>
       <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -156,7 +156,7 @@
     </li>
     <li class="list-group-item">
       <div class="text-right">
-        <i class="fa fa-unlock-alt"></i>
+        <i class="fa" [ngClass]="{'fa-unlock-alt': !isPartialLockKhuVuc, 'fa-lock text-warning': isPartialLockKhuVuc}" (click)="isPartialLockKhuVuc=!isPartialLockKhuVuc"></i>
       </div>
       <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -253,5 +253,3 @@
     </li>
   </ul>
 </form>
-
-<pre>{{thietBiAddNewForm.value |json }}</pre>

@@ -136,7 +136,6 @@ export class ThietbisService {
       }
     }
     
-    console.log('result options: ', resultOptions);
     return resultOptions;
   }
 
