@@ -17,6 +17,8 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
 
   @Input() mode: string;
   @Output() onSubmited = new EventEmitter<ThietBi>();
+
+  selectedThietBi: ThietBi;
   
   thietbiForm: FormGroup;
   maThietBi: FormControl;
@@ -263,7 +265,19 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
   }
 
   resetAsDetailForm(selectedThietBi: ThietBi) {
-    this.thietbiForm.patchValue(selectedThietBi);
+    this.thietbiForm.reset();
+    if (selectedThietBi) {  // it means that its parent component send reset command with data
+      this.selectedThietBi = selectedThietBi;   // save that data first
+      this.thietbiForm.patchValue(selectedThietBi);
+      this.chungLoai.setValue(selectedThietBi.chungLoai);
+      this.loai.setValue(selectedThietBi.loai);      
+    } else {
+      if (this.selectedThietBi) { // it means that user click reset button
+        this.thietbiForm.patchValue(this.selectedThietBi);
+        this.chungLoai.setValue(this.selectedThietBi.chungLoai);
+        this.loai.setValue(this.selectedThietBi.loai);
+      }
+    }
   }
 
   ngOnInit() {

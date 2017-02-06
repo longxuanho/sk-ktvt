@@ -151,6 +151,12 @@ export class ThietbisService {
       .map((response: Response) => response.json());
   }
 
+  getThietBi(thietbiId) {
+    if (thietbiId)
+      return this.af.database.object(`${ this.appConfig['db.fbRefThietbisList'] }/${ thietbiId }`);
+    return Observable.of(null);
+  }
+
   addNew(preparedData: ThietBi) {
     let done = new Subject<any>();
     let done$ = done.asObservable();
