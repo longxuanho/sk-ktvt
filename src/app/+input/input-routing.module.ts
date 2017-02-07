@@ -5,7 +5,6 @@ import { InputThietbisListComponent } from './input-thietbis-list/input-thietbis
 import { InputThietbisListNavComponent } from './input-thietbis-list-nav/input-thietbis-list-nav.component';
 import { InputThietbisListResultsComponent } from './input-thietbis-list-results/input-thietbis-list-results.component';
 import { InputThietbisListResultsItemComponent } from './input-thietbis-list-results-item/input-thietbis-list-results-item.component';
-import { InputThietbisListSearchComponent } from './input-thietbis-list-search/input-thietbis-list-search.component';
 import { InputThietbisDetailsComponent } from './input-thietbis-details/input-thietbis-details.component';
 import { InputThietbisAddNewComponent } from './input-thietbis-add-new/input-thietbis-add-new.component';
 import { InputThietbisListResultsStatisticsComponent } from './input-thietbis-list-results-statistics/input-thietbis-list-results-statistics.component';
@@ -36,7 +35,6 @@ export const routedComponents = [
   InputThietbisListNavComponent,
   InputThietbisListResultsComponent,
   InputThietbisListResultsItemComponent,
-  InputThietbisListSearchComponent,
   InputThietbisDetailsComponent,
   InputThietbisAddNewComponent,
   InputThietbisListResultsStatisticsComponent,

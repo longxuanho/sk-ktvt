@@ -1,12 +1,12 @@
 <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
   <div class="btn-group" data-toggle="buttons">
-    <a class="btn btn-secondary" href="" [ngClass]="{active: selectedView === 'so_luong'}">
+    <a class="btn btn-secondary" href="" [routerLink]="['/thong-ke/tong-quan']" [routerLinkActive]="['active']">
       Tổng quan
     </a>
-    <a class="btn btn-secondary" href="" [ngClass]="{active: selectedView === 'doi_mat_khau'}">
+    <a class="btn btn-secondary" href="" [routerLink]="['/thong-ke/danh-sach']" [routerLinkActive]="['active']">
       Danh sách
     </a>
-    <a class="btn btn-secondary" href="">
+    <a class="btn btn-secondary" href="" [routerLink]="['/thong-ke/trich-xuat']" [routerLinkActive]="['active']">
       Trích xuất
     </a>
   </div>
