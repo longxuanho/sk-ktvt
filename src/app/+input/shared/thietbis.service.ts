@@ -30,6 +30,17 @@ export class ThietbisService {
       });
   }
 
+  resolveMetadataBeforeUpdate(rawData: ThietBi) {
+    return this.authService.getAuth()
+      .take(1)
+      .switchMap(auth => {
+        rawData.lastUpdatedWhen = moment().format(this.appConfig['time.defaultDisplayFormat']);
+        rawData.lastUpdatedBy = auth.uid;
+        rawData.lastUpdatedByEmail = auth.auth.email;
+        return Observable.of(rawData);
+      });
+  }
+
   resolveElasticSearchOptions(rawOptions: { page: number | string, nhom: string, search: string, searchBy: string }) {
     rawOptions.page = rawOptions.page ? +rawOptions.page : 1;
     rawOptions.nhom = rawOptions.nhom ? rawOptions.nhom : '';
@@ -167,4 +178,22 @@ export class ThietbisService {
       .catch(error => done.error(error));
     return done$;
   }
+
+  update(thietbiId, preparedData: ThietBi) {
+    console.log('params: ', thietbiId, preparedData);
+    
+    if (thietbiId) {
+      let done = new Subject<any>();
+      let done$ = done.asObservable();
+
+      this.af.database.object(`${ this.appConfig['db.fbRefThietbisList'] }/${ thietbiId }`)
+        .update(preparedData)
+        .then(success => { done.next(success); done.complete(); })
+        .catch(error => done.error(error));
+
+      return done$;
+    }
+
+    return Observable.throw(new Error('Id thiết bị không tồn tại'));
+  } 
 }

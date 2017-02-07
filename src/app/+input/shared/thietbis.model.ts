@@ -1,4 +1,6 @@
 export class ThietBi {
+  $key?: string;
+
   maThietBi: string;
   maTopX?: string;
   maMaximo?: string;
@@ -36,7 +38,7 @@ export class ThietBi {
   createdAt: string;
   createdBy: string;
   createdByEmail: string;
-  lastUpdatedAt?: string;
+  lastUpdatedWhen?: string;
   lastUpdatedBy?: string;
   lastUpdatedByEmail?: string;
 }

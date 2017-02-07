@@ -27,19 +27,21 @@ export class InputThietbisDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   onSubmited(rawData: ThietBi) {
-    // this.thietBisService.resolveMetadataBeforeAddNew(rawData)
-    //   .switchMap(preparedData =>
-    //     this.thietBisService.addNew(preparedData))
-    //   .finally(() => {
-    //       this.inputThietbisFormComponent.submitting = false;
-    //   })
-    //   .subscribe(
-    //     success => {
-    //       this.inputThietbisFormComponent.onReset();
-    //       this.loggerService.success('Thiết bị mới đã được thêm vào hệ thống', 'Tạo mới thành công', success)
-    //     },
-    //     error => this.loggerService.error(error.message, 'Tạo mới thất bại', error)
-    //   );
+    if (this.selectedThietBi && this.selectedThietBi.$key) {
+      this.thietBisService.resolveMetadataBeforeUpdate(rawData)
+        .switchMap(preparedData =>
+          this.thietBisService.update(this.selectedThietBi.$key, preparedData))
+        .finally(() => {
+            this.inputThietbisFormComponent.submitting = false;
+        })
+        .subscribe(
+          success => {
+            // this.inputThietbisFormComponent.onReset();
+            this.loggerService.success(`Thông tin về thiết bị ${rawData.maThietBi} đã được cập nhật vào hệ thống`, 'Cập nhật thành công', success)
+          },
+          error => this.loggerService.error(error.message, 'Cập nhật thất bại', error)
+        );
+    }
   }
 
   ngOnInit() {
