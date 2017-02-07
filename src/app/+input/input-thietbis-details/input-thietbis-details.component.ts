@@ -22,6 +22,7 @@ export class InputThietbisDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private loggerService: LoggerService,
     private thietBisService: ThietbisService,
   ) { }
@@ -31,17 +32,31 @@ export class InputThietbisDetailsComponent implements OnInit, OnDestroy {
       this.thietBisService.resolveMetadataBeforeUpdate(rawData)
         .switchMap(preparedData =>
           this.thietBisService.update(this.selectedThietBi.$key, preparedData))
-        .finally(() => {
-            this.inputThietbisFormComponent.submitting = false;
-        })
+        .finally(() => this.inputThietbisFormComponent.submitting = false)
         .subscribe(
           success => {
-            // this.inputThietbisFormComponent.onReset();
             this.loggerService.success(`Thông tin về thiết bị ${rawData.maThietBi} đã được cập nhật vào hệ thống`, 'Cập nhật thành công', success)
           },
           error => this.loggerService.error(error.message, 'Cập nhật thất bại', error)
         );
     }
+  }
+
+  onRemoved() {
+    if (this.selectedThietBi && this.selectedThietBi.$key) {
+      this.thietBisService.remove(this.selectedThietBi.$key)
+        .finally(() => {
+          this.inputThietbisFormComponent.removing = false;
+          this.inputThietbisFormComponent.submitting = false;
+        })
+        .subscribe(
+          success => {
+            this.loggerService.success(`Thiết bị đã được gỡ bỏ khỏi hệ thống`, 'Gỡ bỏ thành công', success)
+            this.router.navigate(['/nhap-lieu/thiet-bi']);
+          },
+          error => this.loggerService.error(error.message, 'Gỡ bỏ thất bại', error)
+        );
+    } 
   }
 
   ngOnInit() {

@@ -17,6 +17,7 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
 
   @Input() mode: string;
   @Output() onSubmited = new EventEmitter<ThietBi>();
+  @Output() onRemoved = new EventEmitter<ThietBi>();
 
   selectedThietBi: ThietBi;
   
@@ -68,6 +69,7 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
   }
 
   submitting: boolean = false;
+  removing: boolean = false;
 
   partialLockPhanLoai = false;
   partialLockNguonGoc = false;
@@ -242,6 +244,11 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
   onSubmit(rawData: ThietBi) {
     this.submitting = true;
     this.onSubmited.emit(rawData);
+  }
+
+  onRemove() {
+    this.submitting = true;
+    this.onRemoved.emit();
   }
 
   resetAsNewForm() {

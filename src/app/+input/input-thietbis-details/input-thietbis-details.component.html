@@ -3,4 +3,12 @@
   <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']">Trở về »</a>
 </div>
 
-<sk-input-thietbis-form [mode]="'update'" (onSubmited)="onSubmited($event)"></sk-input-thietbis-form>
+<sk-input-thietbis-form
+  [hidden]="selectedThietBi && selectedThietBi.hasOwnProperty('$value')"
+  [mode]="'update'" (onSubmited)="onSubmited($event)" (onRemoved)="onRemoved()">
+</sk-input-thietbis-form>
+
+<div *ngIf="selectedThietBi && selectedThietBi.hasOwnProperty('$value')" style="text-align: center; margin-top: 2rem;">
+  <i class="fa fa-5x fa-folder-open-o" aria-hidden="true"></i>
+  <p style="margin-top: 1.5rem;">Không có thông tin về thiết bị yêu cầu</p>
+</div>

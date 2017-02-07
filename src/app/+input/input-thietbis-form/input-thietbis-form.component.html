@@ -1,4 +1,4 @@
-<form style="margin-top: 30px;" [formGroup]="thietbiForm" (ngSubmit)="onSubmit(thietbiForm.value)">
+<form style="margin-top: 30px;" [formGroup]="thietbiForm">
   <ul class="list-group">
     <li class="list-group-item">
       <!--<h5 class="mb-1 d-title-small">Mã thiết bị</h5>-->
@@ -241,24 +241,32 @@
     <li class="list-group-item" style="padding-bottom: 30px;">
       <div class="row">
         <div class="col" *ngIf="mode==='addNew'">
-          <button type="submit" class="btn btn-outline-success" [disabled]="thietbiForm.invalid || submitting"><i class="fa fa-check"></i> Tạo mới</button>
-          <a class="btn btn-outline-secondary" (click)="onReset()"><i class="fa fa-undo"></i> Reset</a>
+          <button class="btn btn-outline-success" (click)="onSubmit(thietbiForm.value)" [disabled]="thietbiForm.invalid || submitting">Tạo mới</button>
+          <button class="btn btn-outline-secondary" (click)="onReset()">Reset</button>
         </div>
 
         <div class="col" *ngIf="mode==='update'">
-        <div style="display: flex; justify-content: space-between;">
-          <div>
-            <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
-            <button class="btn btn-outline-warning" (click)="onReset()">Reset</button>
+          <div style="display: flex; justify-content: space-between;" *ngIf="!removing">
+            <div>
+              <button class="btn btn-outline-primary" (click)="onSubmit(thietbiForm.value)">Cập nhật</button>
+              <button class="btn btn-outline-warning" (click)="onReset()">Reset</button>
+            </div>
+            <div>
+              <button class="btn btn-outline-danger" (click)="removing=true;">Xóa bỏ »</button>
+            </div>
           </div>
-          <div>
-            <button class="btn btn-outline-danger">Xóa bỏ</button>
+
+          <div *ngIf="removing">
+            <p>Dữ liệu một khi đã bị xóa sẽ không thể phục hồi từ hệ thống. Để chắc chắn bạn thực sự muốn làm điều này, xin vui lòng xác nhận lại mã thiết bị sau đây:</p>
+            <div class="form-inline">
+              <input type="text" class="form-control" style="margin-right: 1rem; margin-top: 1rem;" id="verifyMaThietBi" [(ngModel)]="verifyMaThietBi" [ngModelOptions]="{standalone: true}">
+              <button class="btn btn-outline-danger" style="margin-top: 1rem;" [disabled]="verifyMaThietBi !== selectedThietBi.maThietBi" (click)="onRemove()">Xóa bỏ</button>
+              <button class="btn btn-outline-info" style="margin-left: 1rem; margin-top: 1rem;" (click)="removing=false;">Trở về »</button>
+            </div>
           </div>
-        </div>        
-      </div>
+
+        </div>
       </div>
     </li>
   </ul>
 </form>
-
-<pre>{{thietbiForm.value | json}}</pre>

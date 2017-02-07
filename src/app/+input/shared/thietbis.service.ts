@@ -179,9 +179,7 @@ export class ThietbisService {
     return done$;
   }
 
-  update(thietbiId, preparedData: ThietBi) {
-    console.log('params: ', thietbiId, preparedData);
-    
+  update(thietbiId: string, preparedData: ThietBi) {
     if (thietbiId) {
       let done = new Subject<any>();
       let done$ = done.asObservable();
@@ -195,5 +193,21 @@ export class ThietbisService {
     }
 
     return Observable.throw(new Error('Id thiết bị không tồn tại'));
-  } 
+  }
+
+  remove(thietbiId: string) {
+    if (thietbiId) {
+      let done = new Subject<any>();
+      let done$ = done.asObservable();
+
+      this.af.database.object(`${ this.appConfig['db.fbRefThietbisList'] }/${ thietbiId }`)
+        .remove()
+        .then(success => { done.next(success); done.complete(); })
+        .catch(error => done.error(error));
+
+      return done$;
+    }
+
+    return Observable.throw(new Error('Id thiết bị không tồn tại'));
+  }
 }
