@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { LoggerService } from '../../core/shared/logger.service';
-import { ThietBi } from '../shared/thietbis.model';
-import { ThietbisService } from '../shared/thietbis.service';
+import { ThietBi } from '../../core/shared/thietbis.model';
+import { ThietbisService } from '../../core/shared/thietbis.service';
 import { InputThietbisFormComponent } from '../input-thietbis-form/input-thietbis-form.component';
 import { Subscription } from 'rxjs/Subscription';
 

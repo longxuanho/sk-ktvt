@@ -1,7 +1,7 @@
 .btn-group {
   a {
     &.active, &:hover {
-      background-color: #555;
+      background-color: #555 !important;
     }
     color: #aaa;
     background-color: #444;

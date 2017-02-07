@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LoggerService } from '../../core/shared/logger.service';
-import { ThietBi } from '../shared/thietbis.model';
-import { ThietbisService } from '../shared/thietbis.service';
+import { ThietBi } from '../../core/shared/thietbis.model';
+import { ThietbisService } from '../../core/shared/thietbis.service';
 import { InputThietbisFormComponent } from '../input-thietbis-form/input-thietbis-form.component';
 
 

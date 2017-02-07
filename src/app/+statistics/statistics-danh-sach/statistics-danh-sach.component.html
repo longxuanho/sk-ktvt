@@ -1,3 +1,22 @@
-<p>
-  statistics-danh-sach works!
-</p>
+<sk-thietbis-search [routeName]="'/thong-ke/danh-sach'"></sk-thietbis-search>
+
+<sk-statistics-danh-sach-nav
+  [numOfMatchingItems]="numOfMatchingItems">
+</sk-statistics-danh-sach-nav>
+
+<sk-thietbis-list-result-info
+  [numOfMatchingItems]="numOfMatchingItems"
+  [queryTime]="queryTime">
+</sk-thietbis-list-result-info>
+
+<div class="list-group" *ngIf="thietbis.length && !isRequestError && !isLoading" style="margin-bottom: 2rem;">
+  <sk-thietbis-list-result-item 
+    class="list-group-item list-group-item-action flex-column align-items-start" 
+    *ngFor="let thietbi of thietbis | paginate: { id: 'server', itemsPerPage: 6, currentPage: currentPage, totalItems: numOfMatchingItems }" 
+    [routeName]="'/thong-ke/danh-sach'" [thietbi]="thietbi">
+  </sk-thietbis-list-result-item>
+</div>
+<div *ngIf="pageStatus" style="text-align: center">
+  <i class="fa fa-5x" [ngClass]="{'fa-folder-open-o': !isRequestError && !isLoading, 'fa-refresh': isRequestError && !isLoading, 'fa-spinner fa-pulse fa-fw': isLoading}" aria-hidden="true"></i>
+  <p style="margin-top: 1.5rem;">{{pageStatus}}</p>
+</div>

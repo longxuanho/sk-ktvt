@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { LoggerService } from '../../core/shared/logger.service';
-import { ThietBi, RawThietBi } from './thietbis.model';
 import { APP_CONFIG, AppConfig } from '../../app.config';
-import { ThietbisService } from './thietbis.service';
+import { ThietBi, RawThietBi } from '../../core/shared/thietbis.model';
+import { ThietbisService } from '../../core/shared/thietbis.service';
 
 declare var moment: any;
 

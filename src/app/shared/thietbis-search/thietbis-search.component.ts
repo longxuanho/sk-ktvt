@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Input } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -12,6 +12,7 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 })
 export class ThietbisSearchComponent implements OnInit, OnDestroy {
 
+  @Input() routeName: string;
   thietBiSearchForm: FormGroup;
   search: FormControl;
   
@@ -71,7 +72,7 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
         this.searchText = newVal;
 
         let queryParams = this.resolveQueryParams();
-        this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
+        this.router.navigate([this.routeName], { queryParams });
       });
   }
 
@@ -92,14 +93,14 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.searchBy = searchByOption;
     let queryParams = this.resolveQueryParams();
-    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
+    this.router.navigate([this.routeName], { queryParams });
   }
 
   setNhomFilterBy(event: Event, nhomFilterByOption: string) {
     event.preventDefault();
     this.nhomFilterBy = nhomFilterByOption;
     let queryParams = this.resolveQueryParams();
-    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
+    this.router.navigate([this.routeName], { queryParams });
   }
 
   ngOnInit() {

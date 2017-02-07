@@ -1,4 +1,4 @@
-<a href="" [routerLink]="['/nhap-lieu/thiet-bi', thietbi.$key]" style="width: 100%;">
+<a href="" [routerLink]="[routeName, thietbi.$key]" style="width: 100%;">
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{thietbi.maThietBi}}</h5>
     <small><span *ngIf="thietbi.trangThai !== 'Đang hoạt động'">{{thietbi.trangThai}} tại</span> {{thietbi.khuVuc}}</small>

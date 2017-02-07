@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './shared/auth.service';
+import { ThietbisService } from './shared/thietbis.service';
 import { appConfig } from '../app.config';
 import { MpinVerificationComponent } from './mpin-verification/mpin-verification.component';
 
@@ -33,7 +34,8 @@ import { MpinVerificationComponent } from './mpin-verification/mpin-verification
   ],
   providers: [
     LoggerService,
-    AuthService
+    AuthService,
+    ThietbisService
   ],
   exports: [
     NavbarComponent

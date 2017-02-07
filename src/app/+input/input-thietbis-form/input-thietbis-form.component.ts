@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 
-import { ThietBi } from '../shared/thietbis.model';
-import { ThietbisService } from '../shared/thietbis.service';
+import { ThietBi } from '../../core/shared/thietbis.model';
+import { ThietbisService } from '../../core/shared/thietbis.service';
 import { ThietbisHelpersService } from '../shared/thietbis-helpers.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ThietbisService } from '../shared/thietbis.service';
-import { ThietBi } from '../shared/thietbis.model';
+import { ThietbisService } from '../../core/shared/thietbis.service';
+import { ThietBi } from '../../core/shared/thietbis.model';
 import { Subscription } from 'rxjs/Subscription';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 

@@ -15,7 +15,7 @@
           <a class="nav-link" href="" *ngIf="authService.auth$ | async" [routerLink]="['/thong-ke']" [routerLinkActive]="['active']">Thống kê</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" *ngIf="authService.manager$ | async " [routerLink]="['/nhap-lieu/thiet-bi']" [queryParams]="{ page:1 }" [routerLinkActive]="['active']">Nhập liệu</a>
+          <a class="nav-link" href="" *ngIf="authService.manager$ | async " [routerLink]="['/nhap-lieu/thiet-bi']" [routerLinkActive]="['active']">Nhập liệu</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="" *ngIf="authService.auth$ | async" [routerLink]="['/thiet-lap/ho-so-ca-nhan']" [routerLinkActive]="['active']">Thiết lập</a>
