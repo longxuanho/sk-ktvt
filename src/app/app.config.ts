@@ -61,6 +61,10 @@ export class AppConfig {
     'thietbis.itemPerPage': number;
     'thietbis.defaultSearchBy': string;
     'thietbis.defaultNhomFilterBy': string;
+
+    // Statistics
+    'statistics.numOfSearchBarMin': number;
+    'statistics.numOfSearchBarMax': number;
 }
 
 export let appConfig: AppConfig = {
@@ -114,5 +118,10 @@ export let appConfig: AppConfig = {
     // Thietbis
     'thietbis.itemPerPage': 6,
     'thietbis.defaultSearchBy': 'Mã thiết bị',
-    'thietbis.defaultNhomFilterBy': ''
+    'thietbis.defaultNhomFilterBy': '',
+
+    // Statistics
+    'statistics.numOfSearchBarMin': 0,
+    'statistics.numOfSearchBarMax': 10,
+
 };

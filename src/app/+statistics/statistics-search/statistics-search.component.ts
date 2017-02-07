@@ -6,15 +6,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Component({
-  selector: 'sk-input-thietbis-list-search',
-  templateUrl: './input-thietbis-list-search.component.html',
-  styleUrls: ['./input-thietbis-list-search.component.scss']
+  selector: 'sk-statistics-search',
+  templateUrl: './statistics-search.component.html',
+  styleUrls: ['./statistics-search.component.scss']
 })
-export class InputThietbisListSearchComponent implements OnInit {
+export class StatisticsSearchComponent implements OnInit {
 
   thietBiSearchForm: FormGroup;
   search: FormControl;
-  
+
   routeSub: Subscription;
   searchSub: Subscription;
 
@@ -22,7 +22,7 @@ export class InputThietbisListSearchComponent implements OnInit {
   searchText: string;
   searchBy: string;
   nhomFilterBy: string;
-  
+
   searchByOptions = [
     'Biển số',
     'Đơn vị quản lý',
@@ -41,20 +41,13 @@ export class InputThietbisListSearchComponent implements OnInit {
     'Tags',
     'Trạng thái'
     ];
-  nhomFilterByOptions = [
-    'Thiết bị nâng',
-    'Xe - Máy',
-    'Tàu thuyền',
-    'Trạm nguồn',
-    ];
-  
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     @Inject(APP_CONFIG) private appConfig: AppConfig
-    ) { 
+  ) {
     this.buildForm();
   }
 
@@ -66,46 +59,12 @@ export class InputThietbisListSearchComponent implements OnInit {
   }
 
   subscribeFormChanges() {
-    this.searchSub = this.search.valueChanges
-      .debounceTime(1000)
-      .subscribe(newVal => {
-        this.searchText = newVal;
 
-        let queryParams = this.resolveQueryParams();
-        this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
-      });
-  }
-
-  resolveQueryParams() {
-    let queryParams = {
-      // page: this.currentPage,
-      searchBy: this.searchBy
-    };
-    if (this.searchText)
-      queryParams['search'] = this.searchText;
-    if (this.nhomFilterBy)
-      queryParams['nhom'] = this.nhomFilterBy;
-      
-    return queryParams;
-  }
-
-  setSearchBy(event: Event, searchByOption: string) {
-    event.preventDefault();
-    this.searchBy = searchByOption;
-    let queryParams = this.resolveQueryParams();
-    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
-  }
-
-  setNhomFilterBy(event: Event, nhomFilterByOption: string) {
-    event.preventDefault();
-    this.nhomFilterBy = nhomFilterByOption;
-    let queryParams = this.resolveQueryParams();
-    this.router.navigate(['/nhap-lieu/thiet-bi'], { queryParams });
   }
 
   ngOnInit() {
     this.subscribeFormChanges();
-    
+
     this.routeSub = this.route.queryParams
       .subscribe(params => {
         if (params['search'])
@@ -115,7 +74,6 @@ export class InputThietbisListSearchComponent implements OnInit {
         this.searchBy = params['searchBy'] || this.appConfig['thietbis.defaultSearchBy'];
         this.nhomFilterBy = params['nhom'] || this.appConfig['thietbis.defaultNhomFilterBy'];
       });
-      
   }
 
   ngOnDestroy() {

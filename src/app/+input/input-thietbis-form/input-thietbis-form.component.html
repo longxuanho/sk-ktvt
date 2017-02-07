@@ -241,8 +241,8 @@
     <li class="list-group-item" style="padding-bottom: 30px;">
       <div class="row">
         <div class="col" *ngIf="mode==='addNew'">
-          <button class="btn btn-outline-success" (click)="onSubmit(thietbiForm.value)" [disabled]="thietbiForm.invalid || submitting">Tạo mới</button>
-          <button class="btn btn-outline-secondary" (click)="onReset()">Reset</button>
+          <button class="btn btn-outline-info" (click)="onSubmit(thietbiForm.value)" [disabled]="thietbiForm.invalid || submitting">Tạo mới</button>
+          <button class="btn btn-outline-warning" (click)="onReset()">Reset</button>
         </div>
 
         <div class="col" *ngIf="mode==='update'">
