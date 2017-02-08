@@ -168,11 +168,11 @@ $.extend(true, kendo.ui.FileBrowser.prototype.options.messages,{
 if (kendo.ui.FilterCell) {
 kendo.ui.FilterCell.prototype.options.messages =
 $.extend(true, kendo.ui.FilterCell.prototype.options.messages,{
-  "isTrue": "is true",
-  "isFalse": "is false",
-  "filter": "Filter",
-  "clear": "Clear",
-  "operator": "Operator"
+  "isTrue": "Là true",
+  "isFalse": "Là false",
+  "filter": "Lọc",
+  "clear": "Gỡ lọc",
+  "operator": "Toán tử"
 });
 }
 
@@ -182,42 +182,42 @@ if (kendo.ui.FilterCell) {
 kendo.ui.FilterCell.prototype.options.operators =
 $.extend(true, kendo.ui.FilterCell.prototype.options.operators,{
   "string": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "startswith": "Starts with",
-    "contains": "Contains",
-    "doesnotcontain": "Does not contain",
-    "endswith": "Ends with",
-    "isnull": "Is null",
-    "isnotnull": "Is not null",
-    "isempty": "Is empty",
-    "isnotempty": "Is not empty"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "startswith": "Bắt đầu với",
+    "contains": "Chứa",
+    "doesnotcontain": "Không chứa",
+    "endswith": "Kết thúc với",
+    "isnull": "Là null",
+    "isnotnull": "Khác null",
+    "isempty": "Là empty",
+    "isnotempty": "Khác empty"
   },
   "number": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "gte": "Is greater than or equal to",
-    "gt": "Is greater than",
-    "lte": "Is less than or equal to",
-    "lt": "Is less than",
-    "isnull": "Is null",
-    "isnotnull": "Is not null"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "gte": "Lớn hơn hoặc bằng",
+    "gt": "Lớn hơn",
+    "lte": "Nhỏ hơn hoặc bằng",
+    "lt": "Nhỏ hơn",
+    "isnull": "Là null",
+    "isnotnull": "Khác null"
   },
   "date": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "gte": "Is after or equal to",
-    "gt": "Is after",
-    "lte": "Is before or equal to",
-    "lt": "Is before",
-    "isnull": "Is null",
-    "isnotnull": "Is not null"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "gte": "Từ ngày này về sau",
+    "gt": "Sau ngày",
+    "lte": "Từ ngày này về trước",
+    "lt": "Trước ngày",
+    "isnull": "Là null",
+    "isnotnull": "Khác null"
   },
   "enums": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "isnull": "Is null",
-    "isnotnull": "Is not null"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "isnull": "Là null",
+    "isnotnull": "Khác null"
   }
 });
 }
@@ -227,17 +227,17 @@ $.extend(true, kendo.ui.FilterCell.prototype.options.operators,{
 if (kendo.ui.FilterMenu) {
 kendo.ui.FilterMenu.prototype.options.messages =
 $.extend(true, kendo.ui.FilterMenu.prototype.options.messages,{
-  "info": "Show items with value that:",
-  "isTrue": "is true",
-  "isFalse": "is false",
-  "filter": "Filter",
-  "clear": "Clear",
-  "and": "And",
-  "or": "Or",
-  "selectValue": "-Select value-",
-  "operator": "Operator",
-  "value": "Value",
-  "cancel": "Cancel"
+  "info": "Lọc các mục có giá trị:",
+  "isTrue": "Là true",
+  "isFalse": "Là false",
+  "filter": "Lọc",
+  "clear": "Gỡ lọc",
+  "and": "Và",
+  "or": "Hoặc",
+  "selectValue": "-Chọn giá trị-",
+  "operator": "Toán tử",
+  "value": "Giá trị",
+  "cancel": "Hủy bỏ"
 });
 }
 
@@ -247,42 +247,42 @@ if (kendo.ui.FilterMenu) {
 kendo.ui.FilterMenu.prototype.options.operators =
 $.extend(true, kendo.ui.FilterMenu.prototype.options.operators,{
   "string": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "startswith": "Starts with",
-    "contains": "Contains",
-    "doesnotcontain": "Does not contain",
-    "endswith": "Ends with",
-    "isnull": "Is null",
-    "isnotnull": "Is not null",
-    "isempty": "Is empty",
-    "isnotempty": "Is not empty"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "startswith": "Bắt đầu với",
+    "contains": "Chứa",
+    "doesnotcontain": "Không chứa",
+    "endswith": "Kết thúc với",
+    "isnull": "Là null",
+    "isnotnull": "Khác null",
+    "isempty": "Là empty",
+    "isnotempty": "Khác empty"
   },
   "number": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "gte": "Is greater than or equal to",
-    "gt": "Is greater than",
-    "lte": "Is less than or equal to",
-    "lt": "Is less than",
-    "isnull": "Is null",
-    "isnotnull": "Is not null"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "gte": "Lớn hơn hoặc bằng",
+    "gt": "Lớn hơn",
+    "lte": "Nhỏ hơn hoặc bằng",
+    "lt": "Nhỏ hơn",
+    "isnull": "Là null",
+    "isnotnull": "Khác null"
   },
   "date": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "gte": "Is after or equal to",
-    "gt": "Is after",
-    "lte": "Is before or equal to",
-    "lt": "Is before",
-    "isnull": "Is null",
-    "isnotnull": "Is not null"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "gte": "Từ ngày này về sau",
+    "gt": "Sau ngày",
+    "lte": "Từ ngày này về trước",
+    "lt": "Trước ngày",
+    "isnull": "Là null",
+    "isnotnull": "Khác null"
   },
   "enums": {
-    "eq": "Is equal to",
-    "neq": "Is not equal to",
-    "isnull": "Is null",
-    "isnotnull": "Is not null"
+    "eq": "Bằng với",
+    "neq": "Khác với",
+    "isnull": "Là null",
+    "isnotnull": "Khác null"
   }
 });
 }
@@ -292,10 +292,10 @@ $.extend(true, kendo.ui.FilterMenu.prototype.options.operators,{
 if (kendo.ui.FilterMultiCheck) {
 kendo.ui.FilterMultiCheck.prototype.options.messages =
 $.extend(true, kendo.ui.FilterMultiCheck.prototype.options.messages,{
-  "checkAll": "Select All",
-  "clear": "Clear",
-  "filter": "Filter",
-  "search": "Search"
+  "checkAll": "Chọn tất",
+  "clear": "Gỡ lọc",
+  "filter": "Lọc",
+  "search": "Tìm kiếm"
 });
 }
 
@@ -350,8 +350,8 @@ $.extend(true, kendo.ui.Grid.prototype.options.messages,{
     "create": "Add new record",
     "destroy": "Delete",
     "edit": "Edit",
-    "excel": "Export to Excel",
-    "pdf": "Export to PDF",
+    "excel": "Trích xuất Excel",
+    "pdf": "Trích xuất PDF",
     "save": "Save changes",
     "select": "Select",
     "update": "Update"

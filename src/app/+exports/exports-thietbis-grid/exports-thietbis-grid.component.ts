@@ -1,9 +1,11 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ThietBi } from '../../core/shared/thietbis.model';
 import { columns, schema } from './thietbis-grid.model';
+import { APP_CONFIG, AppConfig } from '../../app.config';
 
 declare var $: any;
 declare var kendo: any;
+declare var moment: any;
 
 @Component({
   selector: 'sk-exports-thietbis-grid',
@@ -16,8 +18,9 @@ export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnCh
   gridReady: boolean = false;
   gridDataSource: any;
 
-  constructor() {
-  }
+  constructor(
+    @Inject(APP_CONFIG) private appConfig: AppConfig
+  ) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.gridReady && changes['thietbis']) {
@@ -36,13 +39,24 @@ export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnCh
   initGrid() {
     $("#grid").kendoGrid({
       dataSource: this.gridDataSource,
-      height: 500,
+      height: 550,
       groupable: true,
+      reorderable: true,
+      resizable: true,
+      filterable: true,
       sortable: true,
+      // columnMenu: true,
       pageable: {
         refresh: true,
         pageSizes: true,
         buttonCount: 5
+      },
+      toolbar: ["excel"],
+      excel: {
+        fileName: `Thuc Luc Phuong Tien - ${ moment().format(this.appConfig['time.defaultExcelFileName']) }.xlsx`,
+        proxyURL: "https://live.snp-skynet.com/export/thiet-bi",
+        filterable: true,
+        allPages: true
       },
       columns: columns
     });
