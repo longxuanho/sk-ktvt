@@ -52,6 +52,11 @@ export class ThietbisImportService {
     result.dvSoHuu = rawItem.phan_quyen.so_huu.ten;
     result.dvSoHuuId = rawItem.phan_quyen.so_huu.ma;
 
+    if (result.dvQuanLy == 'Xí nghiệp Cơ giới xếp dỡ Tân Cảng')
+      result.dvQuanLy = 'Xí nghiệp Cơ giới xếp dỡ TC';
+    if (result.dvSoHuu == 'Xí nghiệp Cơ giới xếp dỡ Tân Cảng')
+      result.dvSoHuu = 'Xí nghiệp Cơ giới xếp dỡ TC';
+
     result.trangThai = rawItem.trang_thai;
     result.khuVuc = rawItem.dia_diem.khu_vuc.ten;
     result.khuVucId = rawItem.dia_diem.khu_vuc.ma;

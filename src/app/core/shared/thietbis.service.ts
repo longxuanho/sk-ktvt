@@ -162,6 +162,11 @@ export class ThietbisService {
       .map((response: Response) => response.json());
   }
 
+  getAllThietBis() {
+    return this.af.database.list(this.appConfig['db.fbRefThietbisList'])
+      .take(1);
+  }
+
   getThietBi(thietbiId) {
     if (thietbiId)
       return this.af.database.object(`${ this.appConfig['db.fbRefThietbisList'] }/${ thietbiId }`);

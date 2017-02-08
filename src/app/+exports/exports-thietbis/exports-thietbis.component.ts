@@ -15,13 +15,23 @@ export class ExportsThietbisComponent implements OnInit, OnDestroy {
 
   thietbisSub: Subscription;
 
-  constructor() { }
+  constructor(
+    private thietbisService: ThietbisService
+  ) { }
+
+  getAllThietBis() {
+    this.thietbisService.getAllThietBis()
+      .subscribe((thietbis: ThietBi[]) => {
+        this.thietbis = thietbis;
+        console.log('thietbis: ', this.thietbis);
+      });
+  }
 
   ngOnInit() {
+    this.getAllThietBis();
   }
 
   ngOnDestroy() {
-
   }
 
 }
