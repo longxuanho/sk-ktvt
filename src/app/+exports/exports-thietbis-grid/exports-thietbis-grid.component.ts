@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ThietBi } from '../../core/shared/thietbis.model';
-import { columns, schema } from './thietbis-grid.model';
+import { columns, schema, sortMultiFilterColumns } from './thietbis-grid.model';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
 declare var $: any;
@@ -58,7 +58,17 @@ export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnCh
         filterable: true,
         allPages: true
       },
-      columns: columns
+      columns: columns,
+      filterMenuInit: function(e) {
+        if (sortMultiFilterColumns.indexOf(e.field) > -1) {
+          var filterMultiCheck = this.thead.find("[data-field=" + e.field + "]").data("kendoFilterMultiCheck")
+          filterMultiCheck.container.empty();
+          filterMultiCheck.checkSource.sort({field: e.field, dir: "asc"});
+
+          filterMultiCheck.checkSource.data(filterMultiCheck.checkSource.view().toJSON());
+          filterMultiCheck.createCheckBoxes();
+        }
+      },
     });
 
     $(".k-pager-refresh").unbind('click').click((event: Event) => {
