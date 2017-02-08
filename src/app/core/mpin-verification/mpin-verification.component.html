@@ -5,7 +5,7 @@
 </div>
 <form class="form-signin" [formGroup]="mPINValidateForm" (ngSubmit)="onSubmit(mPINValidateForm.value)">
   <div class="form-group">
-    <input type="number" id="inputMPIN" class="form-control" placeholder="mPIN" autofocus formControlName="mPIN">
+    <input type="password" id="inputMPIN" class="form-control" placeholder="mPIN" autofocus formControlName="mPIN">
     <small id="emailHelp" class="form-text">Mã mPIN sau khi được xác nhận hợp lệ sẽ có hiệu lực trong vòng {{validHours}} tiếng.</small>
   </div>  
   <button class="btn btn-outline-primary btn-block" type="submit" [disabled]="!mPIN.valid">Xác nhận</button>

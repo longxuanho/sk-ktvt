@@ -21,10 +21,7 @@ export class ExportsThietbisComponent implements OnInit, OnDestroy {
 
   getAllThietBis() {
     this.thietbisService.getAllThietBis()
-      .subscribe((thietbis: ThietBi[]) => {
-        this.thietbis = thietbis;
-        console.log('thietbis: ', this.thietbis);
-      });
+      .subscribe((thietbis: ThietBi[]) => this.thietbis = thietbis);
   }
 
   ngOnInit() {

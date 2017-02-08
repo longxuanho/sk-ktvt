@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ExportsComponent } from './exports.component';
 import { ExportsThietbisComponent } from './exports-thietbis/exports-thietbis.component';
-import { ExportsThietbisNavComponent } from './exports-thietbis-nav/exports-thietbis-nav.component';
 import { ExportsThietbisInfoComponent } from './exports-thietbis-info/exports-thietbis-info.component';
 import { ExportsThietbisGridComponent } from './exports-thietbis-grid/exports-thietbis-grid.component';
 
@@ -26,7 +25,6 @@ export class ExportsRoutingModule { }
 export const routedComponents = [
   ExportsComponent,
   ExportsThietbisComponent,
-  ExportsThietbisNavComponent,
   ExportsThietbisInfoComponent,
   ExportsThietbisGridComponent,
 ]

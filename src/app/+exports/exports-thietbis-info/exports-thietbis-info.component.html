@@ -1,3 +1,6 @@
-<p>
-  exports-thietbis-info works!
+<p *ngIf="numOfItems" class="text-right">
+  Đã tải về {{numOfItems}} hạng mục khả dụng
+</p>
+<p *ngIf="!numOfItems" class="text-right">
+  Không có hạng mục khả dụng
 </p>

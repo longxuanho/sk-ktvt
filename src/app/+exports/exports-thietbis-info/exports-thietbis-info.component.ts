@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'sk-exports-thietbis-info',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exports-thietbis-info.component.scss']
 })
 export class ExportsThietbisInfoComponent implements OnInit {
+
+  @Input() numOfItems: number;
 
   constructor() { }
 
