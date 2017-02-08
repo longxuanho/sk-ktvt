@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'thong-ke', loadChildren: 'app/+statistics/statistics.module#StatisticsModule', canActivate: [AuthGuard] },
   { path: 'nhap-lieu', loadChildren: 'app/+input/input.module#InputModule', canActivate: [ManagerGuard] },
   { path: 'thiet-lap', loadChildren: 'app/+preferences/preferences.module#PreferencesModule', canActivate: [AuthGuard] },
+  { path: 'trich-xuat', loadChildren: 'app/+exports/exports.module#ExportsModule', canActivate: [AuthGuard] },
 ];
 
 @NgModule({

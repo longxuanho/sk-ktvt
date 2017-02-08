@@ -5,7 +5,7 @@ import { StatisticsComponent } from './statistics.component';
 import { StatisticsNavComponent } from './statistics-nav/statistics-nav.component';
 import { StatisticsTongQuanComponent } from './statistics-tong-quan/statistics-tong-quan.component';
 import { StatisticsDanhSachComponent } from './statistics-danh-sach/statistics-danh-sach.component';
-import { StatisticsTrichXuatComponent } from './statistics-trich-xuat/statistics-trich-xuat.component';
+import { StatisticsDanhSachNavComponent } from './statistics-danh-sach-nav/statistics-danh-sach-nav.component';
 
 const routes: Routes = [
   { 
@@ -14,7 +14,6 @@ const routes: Routes = [
     children: [
       { path: 'tong-quan', component: StatisticsTongQuanComponent },
       { path: 'danh-sach', component: StatisticsDanhSachComponent },
-      { path: 'trich-xuat', component: StatisticsTrichXuatComponent }
     ]
   }];
 
@@ -30,5 +29,5 @@ export const routedComponents = [
   StatisticsNavComponent,
   StatisticsTongQuanComponent,
   StatisticsDanhSachComponent,
-  StatisticsTrichXuatComponent,
+  StatisticsDanhSachNavComponent
 ]

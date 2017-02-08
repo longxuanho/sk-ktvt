@@ -12,7 +12,7 @@
           <a class="nav-link" href="" *ngIf="authService.auth$ | async" [routerLink]="['/bang-tin']" [routerLinkActive]="['active']">Bảng tin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" *ngIf="authService.auth$ | async" [routerLink]="['/thong-ke']" [routerLinkActive]="['active']">Thống kê</a>
+          <a class="nav-link" href="" *ngIf="authService.auth$ | async" [routerLink]="['/thong-ke/danh-sach']" [routerLinkActive]="['active']">Thống kê</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="" *ngIf="authService.manager$ | async " [routerLink]="['/nhap-lieu/thiet-bi']" [routerLinkActive]="['active']">Nhập liệu</a>
@@ -22,6 +22,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="" *ngIf="!(authService.auth$ | async)" [routerLink]="['/dang-nhap']" [routerLinkActive]="['active']">Đăng nhập</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" *ngIf="authService.auth$ | async" [routerLink]="['/trich-xuat/thiet-bi']" [routerLinkActive]="['active']">Trích xuất</a>
         </li>
       </ul>
     <!--</div>-->
