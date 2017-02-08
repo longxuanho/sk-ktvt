@@ -1,4 +1,4 @@
-<p>
+<!--<p>
   statistics-tree-view works!
 </p>
 <ul id="treeview">
@@ -44,4 +44,13 @@
       <li><span class="k-sprite html"></span>portfolio.html</li>
     </ul>
   </li>
-</ul>
+</ul>-->
+
+<div id="treeview"></div>
+
+<script id="treeview-template" type="text/kendo-ui-template">
+    #: item.text #
+    # if (!item.items) { #
+        <a class='k-icon k-i-close-outline' href='\#'></a>
+    # } #
+</script>
