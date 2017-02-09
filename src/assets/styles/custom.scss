@@ -92,3 +92,9 @@ button {
   margin-bottom: 1rem;
     
 }
+
+.sk-primary-link {
+  &:hover {
+    border-bottom: 2px solid $sk-color-primary;
+  }
+}

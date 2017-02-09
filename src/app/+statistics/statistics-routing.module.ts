@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '', 
     component: StatisticsComponent,
     children: [
+      { path: '', redirectTo: 'danh-sach', pathMatch: 'full' },
       { path: 'tong-quan', component: StatisticsTongQuanComponent },
       { path: 'danh-sach', component: StatisticsDanhSachComponent },
     ]
