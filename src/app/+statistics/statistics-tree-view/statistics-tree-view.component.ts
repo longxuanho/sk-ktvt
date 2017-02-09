@@ -16,6 +16,7 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
   treeViewDataSource: any;
 
   @Input() thietbis: ThietBi[];
+  @Input() expanded: boolean;
 
   constructor(
     private thietbisTreeViewService: ThietbisTreeViewService
@@ -29,28 +30,11 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
             hasChildren: (item) => {
               return item.hasSubgroups && (item.field !== "hangSanXuat");
             },
-            children: "items"
+            children: "items",
           }
         }
     })
   }
-
-  // initTreeView() {
-  //   $("#treeview").kendoTreeView({
-  //     template: `
-  //       # if (item.field !== 'hangSanXuat') { #
-  //         <i class='fa fa-folder-open tree-view-icon' aria-hidden='true'></i>
-  //       # } else { #
-  //         <i class="fa fa-file-text tree-view-icon" aria-hidden="true"></i>
-  //       # } #
-  //       #= item.value # 
-  //       # if (item.aggregates) { #
-  //         ( #= item.aggregates[item.field]['count'] # )
-  //       # } #
-  //       `,
-  //     dataSource: this.treeViewDataSource,
-  //   });
-  // }
 
   initTreeView() {
     $("#treeview").kendoTreeView({
@@ -61,6 +45,10 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
         # } #
         `,
       dataSource: this.treeViewDataSource,
+      select: (event) => {
+        let selectedNode = $('#treeview').data('kendoTreeView').dataItem(event.node);
+        this.thietbisTreeViewService.selectNode(selectedNode.toJSON());
+      }
     });
   }
 

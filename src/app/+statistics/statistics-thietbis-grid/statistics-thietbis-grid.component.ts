@@ -1,32 +1,34 @@
 import { Component, OnInit, AfterViewInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ThietBi } from '../../core/shared/thietbis.model';
-import { columns, schema, sortMultiFilterColumns } from './exports-thietbis-grid.model';
 import { APP_CONFIG, AppConfig } from '../../app.config';
+import { Subscription } from 'rxjs/Subscription';
+import { columns, schema, sortMultiFilterColumns } from './statistics-thietbis-grid.model';
+import { ThietbisTreeViewService } from '../shared/thietbis-tree-view.service';
+
 
 declare var $: any;
 declare var kendo: any;
 declare var moment: any;
 
 @Component({
-  selector: 'sk-exports-thietbis-grid',
-  templateUrl: './exports-thietbis-grid.component.html',
-  styleUrls: ['./exports-thietbis-grid.component.scss']
+  selector: 'sk-statistics-thietbis-grid',
+  templateUrl: './statistics-thietbis-grid.component.html',
+  styleUrls: ['./statistics-thietbis-grid.component.scss']
 })
-export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnChanges {
+export class StatisticsThietbisGridComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() thietbis: ThietBi[];
+  thietbisData: ThietBi[];
+
   gridReady: boolean = false;
   gridDataSource: any;
-
+  nodeSelected;
+  nodeSelectedSub: Subscription;
+  
   constructor(
+    private thietbisTreeViewService: ThietbisTreeViewService,
     @Inject(APP_CONFIG) private appConfig: AppConfig
   ) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.gridReady && changes['thietbis']) {
-      this.gridDataSource.data(changes['thietbis'].currentValue);
-    }
-  }
 
   initDataSource() {
     this.gridDataSource = new kendo.data.DataSource({
@@ -46,18 +48,12 @@ export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnCh
       resizable: true,
       filterable: true,
       sortable: true,
-      // columnMenu: true,
+      selectable: "multiple",
+      columnMenu: true,
       pageable: {
         refresh: true,
         pageSizes: true,
         buttonCount: 5
-      },
-      toolbar: ["excel"],
-      excel: {
-        fileName: `Thuc Luc Phuong Tien - ${ moment().format(this.appConfig['time.defaultExcelFileName']) }.xlsx`,
-        proxyURL: "https://live.snp-skynet.com/export/thiet-bi",
-        filterable: true,
-        allPages: true
       },
       columns: columns,
       filterMenuInit: function(e) {
@@ -75,17 +71,43 @@ export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnCh
     $(".k-pager-refresh").unbind('click').click((event: Event) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log('refresh dataSource...');
+      this.gridDataSource.data(this.thietbis);
     })
   }
 
+  resolveThietbisData() {
+    if (this.nodeSelected && this.nodeSelected.value && this.nodeSelected.field)
+      this.thietbisData = this.thietbis.filter( thietbi => thietbi[this.nodeSelected.field] === this.nodeSelected.value );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.gridReady && changes['thietbis']) {
+      this.thietbisData = changes['thietbis'].currentValue;
+      this.resolveThietbisData();
+
+      this.gridDataSource.data(this.thietbisData);
+    }
+  }
+
   ngOnInit() {
+    this.nodeSelectedSub = this.thietbisTreeViewService.nodeSelected$
+      .subscribe(node => {
+        this.nodeSelected = node;
+        this.resolveThietbisData();
+
+        this.gridDataSource.data(this.thietbisData);
+      })
   }
 
   ngAfterViewInit() {
     this.gridReady = true;
     this.initDataSource();
     this.initGrid();
+  }
+
+  ngOnDestroy() {
+    if (this.nodeSelectedSub)
+      this.nodeSelectedSub.unsubscribe();
   }
 
 }

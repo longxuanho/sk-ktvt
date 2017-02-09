@@ -28,14 +28,14 @@ $.extend(true, kendo.ui.ColorPicker.prototype.options.messages,{
 if (kendo.ui.ColumnMenu) {
 kendo.ui.ColumnMenu.prototype.options.messages =
 $.extend(true, kendo.ui.ColumnMenu.prototype.options.messages,{
-  "sortAscending": "Sort Ascending",
-  "sortDescending": "Sort Descending",
-  "filter": "Filter",
-  "columns": "Columns",
-  "done": "Done",
-  "settings": "Column Settings",
-  "lock": "Lock",
-  "unlock": "Unlock"
+  "sortAscending": "Sắp xếp tăng dần",
+  "sortDescending": "Sắp xếp giảm dần",
+  "filter": "Lọc giá trị",
+  "columns": "Các cột hiển thị",
+  "done": "Xong",
+  "settings": "Thiết lập cột",
+  "lock": "Khóa",
+  "unlock": "Mở khóa"
 });
 }
 

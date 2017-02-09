@@ -85,38 +85,38 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
   }
 
   buildForm() {
-    this.maThietBi = this.formBuilder.control(null, [Validators.required]);
-    this.maTopX = this.formBuilder.control(null);
-    this.maMaximo = this.formBuilder.control(null);
+    this.maThietBi = this.formBuilder.control('', [Validators.required]);
+    this.maTopX = this.formBuilder.control('');
+    this.maMaximo = this.formBuilder.control('');
 
-    this.nhom = this.formBuilder.control(null, [Validators.required]);
-    this.chungLoai = this.formBuilder.control(null, [Validators.required]);
-    this.loai = this.formBuilder.control(null, [Validators.required]);
+    this.nhom = this.formBuilder.control('', [Validators.required]);
+    this.chungLoai = this.formBuilder.control('', [Validators.required]);
+    this.loai = this.formBuilder.control('', [Validators.required]);
 
-    this.hangSanXuat = this.formBuilder.control(null, [Validators.required]);
-    this.modelThietBi = this.formBuilder.control(null);
-    this.nhaPhanPhoi = this.formBuilder.control(null);
-    this.namSanXuat = this.formBuilder.control(null);
-    this.namSuDung = this.formBuilder.control(null);
+    this.hangSanXuat = this.formBuilder.control('', [Validators.required]);
+    this.modelThietBi = this.formBuilder.control('');
+    this.nhaPhanPhoi = this.formBuilder.control('');
+    this.namSanXuat = this.formBuilder.control('');
+    this.namSuDung = this.formBuilder.control('');
 
-    this.dvQuanLy = this.formBuilder.control(null, [Validators.required]);
-    this.dvQuanLyId = this.formBuilder.control(null, [Validators.required]);
-    this.dvSoHuu = this.formBuilder.control(null, [Validators.required]);
-    this.dvSoHuuId = this.formBuilder.control(null, [Validators.required]);
+    this.dvQuanLy = this.formBuilder.control('', [Validators.required]);
+    this.dvQuanLyId = this.formBuilder.control('', [Validators.required]);
+    this.dvSoHuu = this.formBuilder.control('', [Validators.required]);
+    this.dvSoHuuId = this.formBuilder.control('', [Validators.required]);
 
-    this.trangThai = this.formBuilder.control(null, [Validators.required]);
-    this.khuVuc = this.formBuilder.control(null, [Validators.required]);
-    this.khuVucId = this.formBuilder.control(null, [Validators.required]);
+    this.trangThai = this.formBuilder.control('', [Validators.required]);
+    this.khuVuc = this.formBuilder.control('', [Validators.required]);
+    this.khuVucId = this.formBuilder.control('', [Validators.required]);
 
-    this.bienSo = this.formBuilder.control(null);
-    this.soDangKy = this.formBuilder.control(null);
-    this.soKhung = this.formBuilder.control(null);
-    this.soMay = this.formBuilder.control(null);
-    this.soDangKiem = this.formBuilder.control(null);
-    this.capChatLuong = this.formBuilder.control(null);
+    this.bienSo = this.formBuilder.control('');
+    this.soDangKy = this.formBuilder.control('');
+    this.soKhung = this.formBuilder.control('');
+    this.soMay = this.formBuilder.control('');
+    this.soDangKiem = this.formBuilder.control('');
+    this.capChatLuong = this.formBuilder.control('');
     
-    this.moTa = this.formBuilder.control(null);
-    this.ghiChu = this.formBuilder.control(null);
+    this.moTa = this.formBuilder.control('');
+    this.ghiChu = this.formBuilder.control('');
 
     this.thietbiForm = this.formBuilder.group({ 
       maThietBi: this.maThietBi, 
@@ -172,21 +172,21 @@ export class InputThietbisFormComponent implements OnInit, OnDestroy {
       .subscribe(newVal => {
         let foundResult = this.selectOptions.donVis
           .find(dvObject => dvObject.donVi === newVal)  || {};
-        let dvQuanLyId = foundResult.donViId || null;
+        let dvQuanLyId = foundResult.donViId || '';
         this.dvQuanLyId.setValue(dvQuanLyId);
       });
     this.dvSoHuuSub = this.dvSoHuu.valueChanges
       .subscribe(newVal => {
         let foundResult = this.selectOptions.donVis
           .find(donViObj => donViObj.donVi === newVal)  || {};
-        let dvSoHuuId = foundResult.donViId || null;
+        let dvSoHuuId = foundResult.donViId || '';
         this.dvSoHuuId.setValue(dvSoHuuId);
       });
     this.khuVucSub = this.khuVuc.valueChanges
       .subscribe(newVal => {
         let foundResult = this.selectOptions.khuVucs
           .find(khuVucObj => khuVucObj.khuVuc === newVal)  || {};
-        let khuVucId = foundResult.khuVucId || null;
+        let khuVucId = foundResult.khuVucId || '';
         this.khuVucId.setValue(khuVucId);
       })
   }

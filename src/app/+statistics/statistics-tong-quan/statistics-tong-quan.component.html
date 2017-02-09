@@ -1,13 +1,49 @@
-<hr/>
-<div class="row">
-  <div class="col-sm-12 col-md-5 col-lg-3">
-    <div style="margin-bottom: 0.5rem;">
-      <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']">Phân nhóm ( 3,048 ) »</a>
+<div class="d-header" style="margin-top: 1.5rem;">
+  <h3 class="d-inline-block d-title">Thực lực phương tiện</h3>
+</div>
+<small class="text-right d-block">3,408 bản ghi được truy xuất từ nguồn dữ liệu</small>
+<small class="text-right d-block">(Thứ năm, ngày 09 tháng 02 năm 2017)</small>
+
+<div class="row" style="display: flex; margin-top: 1.5rem;">
+  <!--<ul id="panelbar">
+      <li class="k-state-active">
+          <span class="k-link k-state-selected">Phân nhóm</span>
+          <div style="padding: 10px;">
+              Lorem ipsum dolor sit amet
+          </div>
+      </li>
+      <li>
+          Projects
+          <ul>
+              <li>New Business Plan</li>
+              <li>
+                  Sales Forecasts
+                  <ul>
+                      <li>Q1 Forecast</li>
+                      <li>Q2 Forecast</li>
+                      <li>Q3 Forecast</li>
+                      <li>Q4 Forecast</li>
+                  </ul>
+              </li>
+              <li>Sales Reports</li>
+          </ul>
+
+      </li>
+  </ul>-->
+  <div [ngClass]="{ 'col-sm-12 col-md-5 col-lg-3': panelExpanded, 'col-sm-12 col-md-1': !panelExpanded }">
+    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;" >
+      <div [hidden]="!panelExpanded">
+        <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']" >Phân nhóm ( 3,048 ) »</a>
+      </div>
+      <div (click)="togglePanel()">
+        <span [hidden]="panelExpanded" style="padding-right: 0.5rem;">Mở</span>
+        <i class="fa" aria-hidden="true" [ngClass]="{'fa-caret-square-o-right': !panelExpanded, 'fa-caret-square-o-left': panelExpanded }"></i>
+      </div>
     </div>
 
-    <sk-statistics-tree-view [thietbis]="thietbis"></sk-statistics-tree-view>
+    <sk-statistics-tree-view [thietbis]="thietbis" [expanded]="panelExpanded"></sk-statistics-tree-view>
   </div>
-  <div class="col-sm-12 col-md-7 col-lg-9">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ea aperiam inventore itaque quaerat qui iste suscipit accusamus rem non. Doloremque at iusto atque laboriosam, aut beatae aperiam quisquam ipsa!
+  <div [ngClass]="{ 'col-sm-12 col-md-7 col-lg-9': panelExpanded, 'col-sm-12 col-md-11': !panelExpanded }">
+    <sk-statistics-thietbis-grid [thietbis]="thietbis"></sk-statistics-thietbis-grid>
   </div>
 </div>
