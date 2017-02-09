@@ -3,7 +3,7 @@ import { ThietBi } from '../../core/shared/thietbis.model';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 import { Subscription } from 'rxjs/Subscription';
 import { columns, schema, sortMultiFilterColumns } from './statistics-thietbis-grid.model';
-import { ThietbisTreeViewService } from '../shared/thietbis-tree-view.service';
+import { ThietbisTreeViewService, SelectedTreeViewNode } from '../shared/thietbis-tree-view.service';
 
 
 declare var $: any;
@@ -22,7 +22,7 @@ export class StatisticsThietbisGridComponent implements OnInit, AfterViewInit, O
 
   gridReady: boolean = false;
   gridDataSource: any;
-  nodeSelected;
+  selectedNodes: SelectedTreeViewNode[] = [];
   nodeSelectedSub: Subscription;
   
   constructor(
@@ -76,23 +76,24 @@ export class StatisticsThietbisGridComponent implements OnInit, AfterViewInit, O
   }
 
   resolveThietbisData() {
-    if (this.nodeSelected && this.nodeSelected.value && this.nodeSelected.field)
-      this.thietbisData = this.thietbis.filter( thietbi => thietbi[this.nodeSelected.field] === this.nodeSelected.value );
+    let filter = this.selectedNodes.map(node => {
+      node.operator = "eq";
+      return node;
+    });
+    this.gridDataSource.filter(filter);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.gridReady && changes['thietbis']) {
-      this.thietbisData = changes['thietbis'].currentValue;
-      this.resolveThietbisData();
-
-      this.gridDataSource.data(this.thietbisData);
+      let thietbisData = changes['thietbis'].currentValue || [];
+      this.gridDataSource.data(thietbisData);
     }
   }
 
   ngOnInit() {
     this.nodeSelectedSub = this.thietbisTreeViewService.nodeSelected$
-      .subscribe(node => {
-        this.nodeSelected = node;
+      .subscribe((nodes: SelectedTreeViewNode[]) => {
+        this.selectedNodes = nodes;
         this.resolveThietbisData();
 
         this.gridDataSource.data(this.thietbisData);

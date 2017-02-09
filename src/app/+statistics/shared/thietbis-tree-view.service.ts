@@ -13,12 +13,11 @@ export class ThietbisTreeViewService {
 
   constructor() { }
 
-  selectNode(node: SelectedTreeViewNode) {
-    this.nodeSelectedSource.next(node);
+  selectNodes(nodes: SelectedTreeViewNode[]) {
+    this.nodeSelectedSource.next(nodes);
   }
 
   resolveTreeView(strategyName: string, rawData: ThietBi[]) {
-    console.log('rawData: ', rawData);
     if (!Strategies[strategyName])
       return [];
     return this.resolveStrategy(Strategies[strategyName], rawData);
@@ -32,7 +31,6 @@ export class ThietbisTreeViewService {
     groupStrategy.forEach(groupName => {
       groupResults.push({ field: groupName, aggregates: [{ field: groupName, aggregate: "count" }] });
     });
-    console.log('groupResults: ', groupResults);
 
     let dataSource = new kendo.data.DataSource({
       data: rawData,
@@ -44,10 +42,10 @@ export class ThietbisTreeViewService {
 
 }
 
-export const StrategyOptions = ['phan_loai', 'khu_vuc', 'dv_quan_ly', 'dv_so_huu'];
+export const StrategyOptions = ['phan_nhom', 'khu_vuc', 'dv_quan_ly', 'dv_so_huu'];
 
 export const Strategies: { [key: string]: string[] } = {
-  phan_loai: ['nhom', 'chungLoai', 'loai', 'hangSanXuat'],
+  phan_nhom: ['nhom', 'chungLoai', 'loai', 'hangSanXuat'],
   khu_vuc: ['khuVuc', 'nhom', 'loai', 'hangSanXuat'],
   dv_quan_ly: ['dvQuanLy', 'loai', 'hangSanXuat'],
   dv_so_huu: ['dvSoHuu', 'loai', 'hangSanXuat']
@@ -56,4 +54,5 @@ export const Strategies: { [key: string]: string[] } = {
 export class SelectedTreeViewNode {
   field?: string;
   value?: string;
+  operator?: string;
 }

@@ -14,7 +14,7 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
 
   treeViewReady: boolean = false;
   treeViewDataSource: any;
-  selectedStrategy = 'dv_so_huu';
+  selectedStrategy = 'phan_nhom';
   panelCollapsed = false;
 
   @Input() thietbis: ThietBi[];
@@ -37,7 +37,6 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
         schema: {
           model: {
             hasChildren: (item) => {
-              console.log(Strategies[this.selectedStrategy].slice(-1)[0]);
               return item.hasSubgroups && (item.field !== Strategies[this.selectedStrategy].slice(-1)[0]);
             },
             children: "items",
@@ -56,8 +55,15 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
         `,
       dataSource: this.treeViewDataSource,
       select: (event) => {
-        let selectedNode = $('#treeview').data('kendoTreeView').dataItem(event.node);
-        this.thietbisTreeViewService.selectNode(selectedNode.toJSON());
+        let treeview = $('#treeview').data('kendoTreeView'),
+            selectedNodes = [],
+            currentNode = event.node;
+        
+        while (treeview.dataItem(currentNode)) {
+          selectedNodes.push( treeview.dataItem(currentNode).toJSON() );
+          currentNode = treeview.parent(currentNode);
+        }
+        this.thietbisTreeViewService.selectNodes(selectedNodes);
       }
     });
   }
@@ -76,7 +82,6 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
 
     let result = this.thietbisTreeViewService.resolveTreeView(this.selectedStrategy, this.thietbis);
     result.fetch(() => {
-      console.log('result: ', result.view().toJSON());
       this.treeViewDataSource.data(result.view().toJSON());
     });
   }
@@ -89,7 +94,6 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
       let result = this.thietbisTreeViewService.resolveTreeView(this.selectedStrategy, changes['thietbis'].currentValue);
 
       result.fetch(() => {
-        console.log('result: ', result.view().toJSON());
         this.treeViewDataSource.data(result.view().toJSON());
       })
     }
