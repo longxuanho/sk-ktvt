@@ -1,1 +1,12 @@
+<div style="display: flex; align-items: center; justify-content: space-between;" >
+    <div [hidden]="!panelExpanded">
+        <a href="" class="d-inline-block align-sef-bottom" [routerLink]="['/nhap-lieu/thiet-bi']" >Phân nhóm ( 3,048 ) »</a>
+    </div>
+    <div (click)="togglePanel()">
+        <span [hidden]="panelExpanded" style="padding-right: 0.5rem;">Mở</span>
+        <i class="fa" aria-hidden="true" [ngClass]="{'fa-caret-square-o-right': !panelExpanded, 'fa-caret-square-o-left': panelExpanded }"></i>
+    </div>
+</div>
+{{SelectedStrategy}} ( {{thietbis?.length | number}} )
+
 <div [hidden]="!expanded" id="treeview"></div>

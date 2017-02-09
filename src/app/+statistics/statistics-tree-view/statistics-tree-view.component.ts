@@ -23,6 +23,12 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
     private thietbisTreeViewService: ThietbisTreeViewService
   ) { }
 
+  get SelectedStrategy(): string {
+    let displayText = ['Phân nhóm', 'Khu vực', 'ĐV Quản lý', 'ĐV Sở hữu'],
+        currentIndex = StrategyOptions.indexOf(this.selectedStrategy);
+    return displayText[currentIndex];
+  }
+
   initDataSource() {
     this.treeViewDataSource = new kendo.data.HierarchicalDataSource({
         data: [],
