@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { ThietBi } from '../../core/shared/thietbis.model';
 import { ThietbisTreeViewService, Strategies, StrategyOptions } from '../shared/thietbis-tree-view.service';
 
@@ -15,9 +15,11 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
   treeViewReady: boolean = false;
   treeViewDataSource: any;
   selectedStrategy = 'dv_so_huu';
+  panelCollapsed = false;
 
   @Input() thietbis: ThietBi[];
   @Input() expanded: boolean;
+  @Output() onPanelToggled = new EventEmitter<boolean>();
 
   constructor(
     private thietbisTreeViewService: ThietbisTreeViewService
@@ -60,7 +62,14 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
     });
   }
 
-  onNextStrategy() {
+  togglePanel() {
+    this.panelCollapsed = !this.panelCollapsed;
+    this.onPanelToggled.emit(this.panelCollapsed);
+  }
+
+  nextStrategy(event: Event) {
+    event.preventDefault();
+
     let index = StrategyOptions.indexOf(this.selectedStrategy) + 1;
     index = (index < StrategyOptions.length) ? index : 0;
     this.selectedStrategy = StrategyOptions[index];

@@ -13,14 +13,14 @@ declare var $: any;
 export class StatisticsTongQuanComponent implements OnInit, OnDestroy, AfterViewInit {
 
   thietbis: ThietBi[] = [];
-  panelExpanded = true;
+  panelCollapsed = false;
 
   constructor(
     private thietbisService: ThietbisService
   ) { }
 
   togglePanel() {
-    this.panelExpanded = !this.panelExpanded;
+    this.panelCollapsed = !this.panelCollapsed;
     window.setTimeout(() => $('#grid').data('kendoGrid').refresh());
   }
 

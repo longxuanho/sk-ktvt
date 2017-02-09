@@ -20,15 +20,17 @@ body {
     color: #aaa;
   }
   
-  a, a:hover {
-    cursor: pointer;
-    text-decoration: none;
-    transition: none 86ms ease-out;
-    color: #888;
-  }
-
-  a:hover {
-    color: #aaa;
+  a {
+    &:hover, &:focus {
+      cursor: pointer;
+      text-decoration: none;
+      transition: none 86ms ease-out;
+      color: $sk-color-primary;
+    }
+    &:focus {
+      outline:0;
+    }
+    color: $sk-color-default;
   }
 
   hr {
