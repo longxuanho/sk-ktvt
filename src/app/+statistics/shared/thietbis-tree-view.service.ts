@@ -57,7 +57,7 @@ export class ThietbisTreeViewService {
 
 }
 
-class SelectedTreeViewNode {
+export class SelectedTreeViewNode {
   field?: string;
   value?: string;
 }

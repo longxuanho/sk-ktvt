@@ -25,7 +25,8 @@ export const columns = [{
     width: 150,
     aggregates: ["count"],
     groupHeaderTemplate: "#= value # (Số lượng: #= count#)",
-    filterable: { multi: true }
+    filterable: { multi: true },
+    hidden: true
 }, {
     field: "chungLoai",
     title: "Chủng loại",
