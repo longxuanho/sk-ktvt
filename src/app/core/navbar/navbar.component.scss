@@ -6,4 +6,11 @@
 }
 nav {
     border-radius: 0;
+    @media (max-width: 575px) { 
+        .container {
+            margin-left: 0;
+            margin-right: 0;
+        }
+     }
+    
 }
