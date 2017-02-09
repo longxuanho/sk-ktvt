@@ -17,6 +17,7 @@ import { AuthService } from './shared/auth.service';
 import { ThietbisService } from './shared/thietbis.service';
 import { appConfig } from '../app.config';
 import { MpinVerificationComponent } from './mpin-verification/mpin-verification.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MpinVerificationComponent } from './mpin-verification/mpin-verification
     NavbarComponent,
     LoginComponent,
     LogoutComponent,
-    MpinVerificationComponent
+    MpinVerificationComponent,
+    FooterComponent
   ],
   providers: [
     LoggerService,
@@ -38,7 +40,8 @@ import { MpinVerificationComponent } from './mpin-verification/mpin-verification
     ThietbisService
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ]
 })
 export class CoreModule {

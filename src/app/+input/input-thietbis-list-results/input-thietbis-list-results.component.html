@@ -7,7 +7,7 @@
   [queryTime]="queryTime">
 </sk-thietbis-list-result-info>
 
-<div class="list-group" *ngIf="thietbis.length && !isRequestError && !isLoading" style="margin-bottom: 2rem;">
+<div class="list-group" *ngIf="thietbis.length && !isRequestError && !isLoading">
   <sk-thietbis-list-result-item 
     class="list-group-item list-group-item-action flex-column align-items-start" 
     *ngFor="let thietbi of thietbis | paginate: { id: 'server', itemsPerPage: 6, currentPage: currentPage, totalItems: numOfMatchingItems }" 

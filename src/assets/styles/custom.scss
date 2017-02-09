@@ -62,3 +62,30 @@ button {
   border-bottom: 2px solid #dbdbdb;
   padding: 6px 12px;     
 }
+
+.sk-footer {
+  color: $sk-color-default;
+  text-align: left;
+  padding: 2rem 0;
+  margin-top: 4rem;
+  font-size: 85%;
+  background-color: #555;
+  a  {
+    font-weight: 500;
+  };
+}
+
+
+
+.sk-footer-links {
+  li {
+      display: inline-block;
+      list-style-type: none;
+  }
+  li+li {
+      margin-left: 1rem;
+  }
+  padding-left: 0;
+  margin-bottom: 1rem;
+    
+}
