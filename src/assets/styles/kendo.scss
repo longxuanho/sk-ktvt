@@ -1,0 +1,17 @@
+.k-treeview {
+  .k-in:before {
+    box-sizing: border-box;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    margin-right: 0.2rem;
+  }
+  .k-icon.k-i-collapse + .k-in:before {
+    content: "\f07c";
+  } 
+  .k-icon.k-i-expand + .k-in:before {
+    content: "\f07b";
+  }
+  .k-in:before {
+    content: "\f15c";
+  }
+}

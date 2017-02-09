@@ -23,21 +23,7 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
 
   initDataSource() {
     this.treeViewDataSource = new kendo.data.HierarchicalDataSource({
-        data: [
-          { value: 'Thiết bị nâng', hasSubgroups: true, field: "nhom", items: [
-              { value: 'Cẩu bờ', hasSubgroups: true, field: "chungLoai", items: [
-                  { value: 'KE', hasSubgroups: true, field: "loai", items: [
-                      { value: 'ABB', hasSubgroups: true, field: "hangSanXuat", items: [
-                          { uid: 'test', hasSubgroups: false }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ],
+        data: [],
         schema: {
           model: {
             hasChildren: (item) => {
@@ -49,10 +35,32 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
     })
   }
 
+  // initTreeView() {
+  //   $("#treeview").kendoTreeView({
+  //     template: `
+  //       # if (item.field !== 'hangSanXuat') { #
+  //         <i class='fa fa-folder-open tree-view-icon' aria-hidden='true'></i>
+  //       # } else { #
+  //         <i class="fa fa-file-text tree-view-icon" aria-hidden="true"></i>
+  //       # } #
+  //       #= item.value # 
+  //       # if (item.aggregates) { #
+  //         ( #= item.aggregates[item.field]['count'] # )
+  //       # } #
+  //       `,
+  //     dataSource: this.treeViewDataSource,
+  //   });
+  // }
+
   initTreeView() {
     $("#treeview").kendoTreeView({
+      template: `
+        #= item.value # 
+        # if (item.aggregates) { #
+          ( #= item.aggregates[item.field]['count'] # )
+        # } #
+        `,
       dataSource: this.treeViewDataSource,
-      dataTextField: "value",
     });
   }
 
@@ -62,15 +70,10 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
   ngOnChanges(changes: SimpleChanges) {
     if (this.treeViewReady && changes['thietbis']) {
       let result = this.thietbisTreeViewService.resolveTreeView('phan_loai', changes['thietbis'].currentValue);
-      // this.treeViewDataSource = result;
 
       result.fetch(() => {
         console.log('result: ', result.view().toJSON());
-        // $("#treeview").kendoTreeView({
-        //   dataSource:  result.view().toJSON(),
-        //   dataTextField: "value",
-        // });
-
+        this.treeViewDataSource.data(result.view().toJSON());
       })
     }
   }
@@ -82,7 +85,6 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
   }
 
   ngOnDestroy() {
-     $("#treeview").kendoTreeView().destroy();
   }
 
 }
