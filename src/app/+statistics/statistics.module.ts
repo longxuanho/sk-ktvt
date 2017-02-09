@@ -6,7 +6,7 @@ import { StatisticsRoutingModule, routedComponents } from './statistics-routing.
 import { StatisticsTreeViewComponent } from './statistics-tree-view/statistics-tree-view.component';
 import { ThietbisTreeViewService } from './shared/thietbis-tree-view.service';
 import { StatisticsThietbisGridComponent } from './statistics-thietbis-grid/statistics-thietbis-grid.component';
-import { StatisticsTongQuanToggleBtnComponent } from './statistics-tong-quan-toggle-btn/statistics-tong-quan-toggle-btn.component';
+import { StatisticsTongQuanHeaderComponent } from './statistics-tong-quan-header/statistics-tong-quan-header.component';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { StatisticsTongQuanToggleBtnComponent } from './statistics-tong-quan-tog
     routedComponents,
     StatisticsTreeViewComponent,
     StatisticsThietbisGridComponent,
-    StatisticsTongQuanToggleBtnComponent,
+    StatisticsTongQuanHeaderComponent,
   ],
   providers: [
     ThietbisTreeViewService
