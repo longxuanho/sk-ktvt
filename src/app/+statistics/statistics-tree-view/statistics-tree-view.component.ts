@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { ThietBi } from '../../core/shared/thietbis.model';
-import { ThietbisTreeViewService } from '../shared/thietbis-tree-view.service';
+import { ThietbisTreeViewService, Strategies, StrategyOptions } from '../shared/thietbis-tree-view.service';
 
 declare var $: any;
 declare var kendo: any;
@@ -14,6 +14,7 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
 
   treeViewReady: boolean = false;
   treeViewDataSource: any;
+  selectedStrategy = 'dv_so_huu';
 
   @Input() thietbis: ThietBi[];
   @Input() expanded: boolean;
@@ -28,7 +29,8 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
         schema: {
           model: {
             hasChildren: (item) => {
-              return item.hasSubgroups && (item.field !== "hangSanXuat");
+              console.log(Strategies[this.selectedStrategy].slice(-1)[0]);
+              return item.hasSubgroups && (item.field !== Strategies[this.selectedStrategy].slice(-1)[0]);
             },
             children: "items",
           }
@@ -52,12 +54,24 @@ export class StatisticsTreeViewComponent implements OnInit, OnChanges, AfterView
     });
   }
 
+  onNextStrategy() {
+    let index = StrategyOptions.indexOf(this.selectedStrategy) + 1;
+    index = (index < StrategyOptions.length) ? index : 0;
+    this.selectedStrategy = StrategyOptions[index];
+
+    let result = this.thietbisTreeViewService.resolveTreeView(this.selectedStrategy, this.thietbis);
+    result.fetch(() => {
+      console.log('result: ', result.view().toJSON());
+      this.treeViewDataSource.data(result.view().toJSON());
+    });
+  }
+
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.treeViewReady && changes['thietbis']) {
-      let result = this.thietbisTreeViewService.resolveTreeView('phan_loai', changes['thietbis'].currentValue);
+      let result = this.thietbisTreeViewService.resolveTreeView(this.selectedStrategy, changes['thietbis'].currentValue);
 
       result.fetch(() => {
         console.log('result: ', result.view().toJSON());

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject';
 
 declare var kendo: any;
 
+
 @Injectable()
 export class ThietbisTreeViewService {
 
@@ -16,45 +17,40 @@ export class ThietbisTreeViewService {
     this.nodeSelectedSource.next(node);
   }
 
-  resolveTreeView(groupMode: string, rawData: ThietBi[]) {
+  resolveTreeView(strategyName: string, rawData: ThietBi[]) {
     console.log('rawData: ', rawData);
-    if (groupMode === 'phan_loai')
-      return this.resolveGroupModePhanLoai(rawData);
-    return [];
+    if (!Strategies[strategyName])
+      return [];
+    return this.resolveStrategy(Strategies[strategyName], rawData);
   }
 
-  private resolveGroupModePhanLoai(rawData: ThietBi[]) {
+  private resolveStrategy(groupStrategy: string[], rawData: ThietBi[]) {
     if (!rawData || !rawData.length)
       return [];
 
+    let groupResults = [];
+    groupStrategy.forEach(groupName => {
+      groupResults.push({ field: groupName, aggregates: [{ field: groupName, aggregate: "count" }] });
+    });
+    console.log('groupResults: ', groupResults);
+
     let dataSource = new kendo.data.DataSource({
       data: rawData,
-      group: [
-        { field: "nhom", aggregates: [{ field: "nhom", aggregate: "count" }] },
-        { field: "chungLoai", aggregates: [{ field: "chungLoai", aggregate: "count" }] },
-        { field: "loai", aggregates: [{ field: "loai", aggregate: "count" }] },
-        { field: "hangSanXuat", aggregates: [{ field: "hangSanXuat", aggregate: "count" }] }
-      ],
-      aggregate: [{ field: "chungLoai", aggregate: "count" }]
+      group: groupResults
     });
 
     return dataSource;
   }
 
+}
 
-  // function that gathers IDs of checked nodes
-  collectCheckedNodeIds(nodes, checkedNodes) {
-    for (var i = 0; i < nodes.length; i++) {
-      if (nodes[i].checked) {
-        checkedNodes.push(nodes[i].id);
-      }
+export const StrategyOptions = ['phan_loai', 'khu_vuc', 'dv_quan_ly', 'dv_so_huu'];
 
-      if (nodes[i].hasChildren) {
-        this.collectCheckedNodeIds(nodes[i].children.view(), checkedNodes);
-      }
-    }
-  }
-
+export const Strategies: { [key: string]: string[] } = {
+  phan_loai: ['nhom', 'chungLoai', 'loai', 'hangSanXuat'],
+  khu_vuc: ['khuVuc', 'nhom', 'loai', 'hangSanXuat'],
+  dv_quan_ly: ['dvQuanLy', 'loai', 'hangSanXuat'],
+  dv_so_huu: ['dvSoHuu', 'loai', 'hangSanXuat']
 }
 
 export class SelectedTreeViewNode {
