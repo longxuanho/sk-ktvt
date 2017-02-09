@@ -6,6 +6,8 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 import { ThietbisService } from '../../core/shared/thietbis.service';
 import { ThietBi } from '../../core/shared/thietbis.model';
 
+declare var moment: any;
+
 @Component({
   selector: 'sk-statistics-danh-sach',
   templateUrl: './statistics-danh-sach.component.html',
@@ -13,6 +15,7 @@ import { ThietBi } from '../../core/shared/thietbis.model';
 })
 export class StatisticsDanhSachComponent implements OnInit, OnDestroy {
 
+  now = moment().format(this.appConfig['time.customFullDate']);
   thietbis: ThietBi[] = [];
 
   routeSub: Subscription;

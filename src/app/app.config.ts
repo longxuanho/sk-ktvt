@@ -116,7 +116,7 @@ export let appConfig: AppConfig = {
     // Time
     'time.defaultDisplayFormat': 'YYYY-MM-DD HH:mm',
     'time.defaultExcelFileName': 'YYYY.MM.DD (HH.mm)',
-    'time.customFullDate': 'dddd [, ngày] DD [tháng] MM [năm] YYYY',
+    'time.customFullDate': 'dddd[, ngày] DD [tháng] MM [năm] YYYY',
     'time.mTokenValidHours': 8,
 
     // Thietbis
