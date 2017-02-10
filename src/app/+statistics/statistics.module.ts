@@ -7,6 +7,7 @@ import { StatisticsTreeViewComponent } from './statistics-tree-view/statistics-t
 import { ThietbisTreeViewService } from './shared/thietbis-tree-view.service';
 import { StatisticsThietbisGridComponent } from './statistics-thietbis-grid/statistics-thietbis-grid.component';
 import { StatisticsTongQuanHeaderComponent } from './statistics-tong-quan-header/statistics-tong-quan-header.component';
+import { StatisticsDanhSachHeaderComponent } from './statistics-danh-sach-header/statistics-danh-sach-header.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { StatisticsTongQuanHeaderComponent } from './statistics-tong-quan-header
     StatisticsTreeViewComponent,
     StatisticsThietbisGridComponent,
     StatisticsTongQuanHeaderComponent,
+    StatisticsDanhSachHeaderComponent,
   ],
   providers: [
     ThietbisTreeViewService

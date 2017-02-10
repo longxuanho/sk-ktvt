@@ -17,6 +17,7 @@ export class StatisticsDanhSachComponent implements OnInit, OnDestroy {
 
   now = moment().format(this.appConfig['time.customFullDate']);
   thietbis: ThietBi[] = [];
+  numOfThietBis = 0;
 
   routeSub: Subscription;
   searchTextSub: Subscription;
@@ -48,6 +49,9 @@ export class StatisticsDanhSachComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.thietbisService.countThietBis()
+      .subscribe(result => this.numOfThietBis = result.count);
+
     this.routeSub = this.route.queryParams
       .do(params => { 
         this.currentPage = +params['page'] || 1;

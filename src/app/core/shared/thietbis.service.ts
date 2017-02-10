@@ -150,6 +150,16 @@ export class ThietbisService {
     return resultOptions;
   }
 
+  countThietBis() {
+    let options = {
+    }
+    let headers = new Headers();
+    headers.append("Authorization", "Basic " + btoa(this.appConfig['es.username'] + ":" + this.appConfig['es.password'])); 
+    headers.append("Content-Type", "application/json");
+    return this.http.post(this.appConfig['es.countRefThietBi'], options, { headers })
+      .map((response: Response) => response.json());
+  }
+
   getThietBis(queryParams) {
 
     let options = this.resolveElasticSearchOptions( Object.assign({}, queryParams) );

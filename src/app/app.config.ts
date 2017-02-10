@@ -49,6 +49,7 @@ export class AppConfig {
     'es.password': string;
     'es.searchRef': string;
     'es.searchRefThietBi': string;
+    'es.countRefThietBi': string;
 
     // Logger
     'logger.mode': number;
@@ -109,6 +110,7 @@ export let appConfig: AppConfig = {
     'es.password': 'd2mq1g5dfcfvnrmr',
     'es.searchRef': 'https://hsoyhafg:d2mq1g5dfcfvnrmr@maple-8497094.us-east-1.bonsaisearch.net/firebase',
     'es.searchRefThietBi': 'https://maple-8497094.us-east-1.bonsaisearch.net/firebase/thietbi/_search?timeout=3000ms',
+    'es.countRefThietBi': 'https://maple-8497094.us-east-1.bonsaisearch.net/firebase/thietbi/_count',
 
     // Logger
     'logger.mode': LogMode.Debug,
