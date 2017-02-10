@@ -12,17 +12,21 @@ export class InputComponent implements OnInit {
     private thietbisImportService: ThietbisImportService
     ) { }
 
+  seedingData() {
+    this.thietbisImportService.getRawData()
+      .subscribe(
+        data => {
+          if (data && data.length) {
+            let preparedData = this.thietbisImportService.resolveRawData(data);
+            this.thietbisImportService.seedData(preparedData);
+          }            
+        },
+        error => console.error('error: ', error));
+  }
+
   ngOnInit() {
     // Seeding Data here...
-    // this.thietbisImportService.getRawData()
-    //   .subscribe(
-    //     data => {
-    //       if (data && data.length) {
-    //         let preparedData = this.thietbisImportService.resolveRawData(data);
-    //         this.thietbisImportService.seedData(preparedData);
-    //       }            
-    //     },
-    //     error => console.error('error: ', error));
+    //this.seedingData();
   }
 
 
