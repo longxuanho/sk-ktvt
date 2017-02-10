@@ -98,9 +98,10 @@ button {
   color: $sk-color-primary-darker;
   border-bottom: 2px solid $sk-color-primary-darker;
   margin-bottom: -1px !important;
+  padding: 0.25rem 0.5rem;
   &:hover {
     color: $sk-color-primary;
     border-bottom: 2px solid $sk-color-primary;
-    padding-bottom: 2px !important;
+    padding-bottom: 0.5rem !important;
   }
 }
