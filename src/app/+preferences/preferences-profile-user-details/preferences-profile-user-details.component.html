@@ -26,9 +26,9 @@
       <button type="submit" class="btn btn-outline-info mt-2" [disabled]="userProfileForm.invalid || submitting">Cập nhật</button>
   </form>
   <form>
-    <button type="button" class="btn btn-outline-secondary mt-2">Đổi mật khẩu »</button>
+    <button type="button" class="btn btn-outline-secondary mt-2" (click)="isChangePassword=!isChangePassword">Đổi mật khẩu »</button>
   </form>
-  <sk-preferences-profile-change-password></sk-preferences-profile-change-password>
+  <sk-preferences-profile-change-password *ngIf="isChangePassword"></sk-preferences-profile-change-password>
   <form>
     <button type="button" class="btn btn-outline-warning mt-2" (click)="logout()">Đăng xuất »</button>
   </form>

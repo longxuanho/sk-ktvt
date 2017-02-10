@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { AuthService } from '../../core/shared/auth.service';
+import { LoggerService } from '../../core/shared/logger.service';
+import { APP_CONFIG, AppConfig } from '../../app.config';
+import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'sk-preferences-profile-change-password',
@@ -15,9 +20,13 @@ export class PreferencesProfileChangePasswordComponent implements OnInit {
   repeatNewPassword: FormControl;
   
   submitting: boolean = false;
+  firebaseInstance;
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private loggerService: LoggerService,
+    @Inject(APP_CONFIG) private appConfig: AppConfig
   ) {
     this.buildForm();
   }
@@ -32,12 +41,34 @@ export class PreferencesProfileChangePasswordComponent implements OnInit {
       repeatNewPassword: this.repeatNewPassword });
   }
 
-  onSubmit() {
+  onSubmit(event: Event, credentials: { oldPassword: string, newPassword: string }) {
+    event.preventDefault();
     this.submitting = true;
-    this.submitting = false;
+    
+    this.authService.getAuth()
+      .take(1)
+      .subscribe(auth => {
+        if (auth) {
+          const credential = firebase.auth.EmailAuthProvider.credential(auth.auth.email, credentials.oldPassword);
+          console.log('credential: ', credential, firebase.auth());
+          firebase.auth().signInWithEmailAndPassword(auth.auth.email, credentials.oldPassword)
+            .then((success) => {
+              firebase.auth().currentUser.updatePassword(credentials.newPassword)
+                .then(success => {
+                  this.submitting = false;        
+                  this.loggerService.success('Mật khẩu của bạn đã được thay đổi thành công', 'Cập nhật thành công');
+                });
+            })
+            .catch((error: Error) => {
+              this.submitting = false;
+              this.loggerService.error(error.message, 'Opps!', error);
+            });
+          }
+        });
   }
 
   ngOnInit() {
+    firebase.initializeApp(this.appConfig['db.firebase']);
   }
 
 }
