@@ -6,6 +6,7 @@ import { LoggerService } from '../shared/logger.service';
 import { AuthService } from '../shared/auth.service';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 import { Observable } from 'rxjs/Observable';
+import { RouteChangeGuardService } from '../shared/route-change-guard.service';
 
 @Component({
   selector: 'sk-mpin-verification',
@@ -24,6 +25,7 @@ export class MpinVerificationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loggerService: LoggerService,
     private authService: AuthService,
+    private routeChangeGuardService: RouteChangeGuardService,
     @Inject(APP_CONFIG) private appConfig: AppConfig
   ) {
     this.validHours = this.appConfig['time.mTokenValidHours'];
@@ -49,7 +51,7 @@ export class MpinVerificationComponent implements OnInit {
       .subscribe(
         isDone => {
           if (isDone) {
-            this.router.navigate(['/nhap-lieu/thiet-bi']);
+            this.router.navigate([this.routeChangeGuardService.targetUrl]);
             this.loggerService.success('Hệ thống tự động chuyển tới trang bạn đã yêu cầu trước đó.', 'Xác nhận thành công!');
           } else
             this.loggerService.error('Mã xác nhận không khớp. Xin vui lòng thử lại sau.', 'Xác nhận thất bại!');

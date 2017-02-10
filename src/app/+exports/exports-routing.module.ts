@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '', 
     component: ExportsComponent,
     children: [
+      { path: '', redirectTo: 'thiet-bi', pathMatch: 'full' },
       { path: 'thiet-bi', component: ExportsThietbisComponent }
     ]
   }];

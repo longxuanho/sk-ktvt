@@ -18,6 +18,7 @@ import { ThietbisService } from './shared/thietbis.service';
 import { appConfig } from '../app.config';
 import { MpinVerificationComponent } from './mpin-verification/mpin-verification.component';
 import { FooterComponent } from './footer/footer.component';
+import { RouteChangeGuardService } from './shared/route-change-guard.service';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { FooterComponent } from './footer/footer.component';
   providers: [
     LoggerService,
     AuthService,
-    ThietbisService
+    ThietbisService,
+    RouteChangeGuardService
   ],
   exports: [
     NavbarComponent,

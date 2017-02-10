@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
-import { Router } from '@angular/router';
+import { RouteChangeGuardService } from '../shared/route-change-guard.service';
+import { Router, NavigationCancel } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+
+declare var screenfull: any;
 
 @Component({
   selector: 'sk-navbar',
@@ -10,23 +13,32 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  // routerSub: Subscription;
+  routerSub: Subscription;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
-    // private router: Router
-    ) { }
+    private routeChangeGuardedService: RouteChangeGuardService
+  ) { }
+
+  toggleFullScreen() {
+    if (screenfull.enabled) {
+      screenfull.toggle();
+    }
+  }
 
   ngOnInit() {
-    // this.routerSub = this.router.events
-    //   .subscribe((event) => {
-    //     console.log('route changed', event);
-    //   });
+    this.routerSub = this.router.events
+      .subscribe((event) => {
+         if(event instanceof NavigationCancel) {
+           this.routeChangeGuardedService.routeChangeGuard({ url: event.url });
+         }
+      });
   }
 
   ngOnDestroy() {
-    // if (this.routerSub)
-    //   this.routerSub.unsubscribe();
+    if (this.routerSub)
+      this.routerSub.unsubscribe();
   }
 
 }
