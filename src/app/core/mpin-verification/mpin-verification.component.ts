@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoggerService } from '../shared/logger.service';
@@ -19,6 +20,7 @@ export class MpinVerificationComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private locationService: Location,
     private formBuilder: FormBuilder,
     private loggerService: LoggerService,
     private authService: AuthService,
@@ -26,6 +28,10 @@ export class MpinVerificationComponent implements OnInit {
   ) {
     this.validHours = this.appConfig['time.mTokenValidHours'];
     this.buildForm();
+  }
+
+  goBack() {
+    this.locationService.back();
   }
 
   buildForm() {

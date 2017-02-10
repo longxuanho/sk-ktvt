@@ -1,6 +1,6 @@
 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;" >
     <div [hidden]="panelCollapsed">
-        <a href="" class="d-inline-block align-sef-bottom" (click)="nextStrategy($event)" >{{SelectedStrategy}} ( {{thietbis?.length | number}} ) »</a>
+        <a href="" style="color: #ff6358;" class="d-inline-block align-sef-bottom" (click)="nextStrategy($event)" >{{SelectedStrategy}} ( {{thietbis?.length | number}} ) »</a>
     </div>
     <div (click)="togglePanel()">
         <span [hidden]="!panelCollapsed" style="padding-right: 0.5rem;">Mở</span>

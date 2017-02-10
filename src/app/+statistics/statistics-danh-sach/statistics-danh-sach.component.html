@@ -2,8 +2,11 @@
   <h3 class="d-inline-block d-title">Chi tiết phương tiện</h3>
   <a href="" class="d-inline-block align-sef-bottom sk-primary-link" [routerLink]="['/thong-ke/tong-quan']">Tổng quan »</a>
 </div>
-<small class="text-right d-block">45 bản ghi có thể truy xuất từ nguồn dữ liệu</small>
-<small class="text-right d-block" style="margin-bottom: 1.5rem;">({{now}})</small>
+<div style="margin-top:0.5rem; margin-bottom: 1.5rem;">
+  <small class="text-right d-block">45 bản ghi có thể truy xuất từ nguồn dữ liệu</small>
+  <small class="text-right d-block">( {{now}} )</small>
+</div>
+
 
 <sk-thietbis-search [routeName]="'/thong-ke/danh-sach'"></sk-thietbis-search>
 
@@ -13,7 +16,7 @@
 
 <sk-thietbis-list-result-info
   [numOfMatchingItems]="numOfMatchingItems"
-  [queryTime]="queryTime">
+  [queryTime]="queryTime" [hideCurrentDate]="true">
 </sk-thietbis-list-result-info>
 
 <div class="list-group" *ngIf="thietbis.length && !isRequestError && !isLoading" style="margin-bottom: 2rem;">

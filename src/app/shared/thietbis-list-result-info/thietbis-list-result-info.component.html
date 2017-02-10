@@ -1,3 +1,4 @@
-<small class="text-right">
-  Tìm thấy {{numOfMatchingItems}} kết quả phù hợp ({{queryTime}} ms)
-</small>
+<div style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
+  <small class="text-right d-block">Tìm thấy {{numOfMatchingItems}} kết quả phù hợp từ nguồn dữ liệu ( {{queryTime}} ms )</small>
+  <small class="text-right d-block" *ngIf="!hideCurrentDate">( {{now}} )</small>
+</div>

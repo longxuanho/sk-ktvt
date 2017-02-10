@@ -1,14 +1,14 @@
 .tabs {
   margin-top: 20px;
 
-  user-select: none;
-  align-items: stretch;
+  
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   line-height: 24px;
   overflow: hidden;
   overflow-x: auto;
   white-space: nowrap;
+  box-sizing: border-box;
   border-bottom: 1px solid #666;
   ul {
     align-items: center;
@@ -27,13 +27,17 @@
     &.active, &:hover {
       border-bottom: 2px solid #dbdbdb;
     }
-  }
-  a {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-bottom: -1px;
-    padding: 6px 12px;
-    vertical-align: top;
+    a {
+      padding: 6px 12px;
+      vertical-align: top;
+    }
   }
 }
+
+.sk-primary-link {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    color: #eb5b51;
+    margin-bottom: 0 !important;
+  }

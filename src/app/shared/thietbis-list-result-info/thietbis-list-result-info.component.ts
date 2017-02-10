@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { APP_CONFIG, AppConfig } from '../../app.config';
+
+declare var moment: any;
 
 @Component({
   selector: 'sk-thietbis-list-result-info',
@@ -9,8 +12,10 @@ export class ThietbisListResultInfoComponent implements OnInit {
 
   @Input() numOfMatchingItems: number;
   @Input() queryTime: number;
+  @Input() hideCurrentDate: boolean;
+  now: string = moment().format(this.appConfig['time.customFullDate']);
 
-  constructor() { }
+  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) { }
 
   ngOnInit() {
   }

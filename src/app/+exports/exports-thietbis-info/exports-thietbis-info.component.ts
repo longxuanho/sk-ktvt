@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { APP_CONFIG, AppConfig } from '../../app.config';
+
+declare var moment: any;
 
 @Component({
   selector: 'sk-exports-thietbis-info',
@@ -8,8 +11,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ExportsThietbisInfoComponent implements OnInit {
 
   @Input() numOfItems: number;
+  now: string = moment().format(this.appConfig['time.customFullDate']);
 
-  constructor() { }
+  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) { }
 
   ngOnInit() {
   }

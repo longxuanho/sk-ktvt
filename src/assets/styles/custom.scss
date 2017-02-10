@@ -17,6 +17,7 @@ button {
 
 .d-header {
   border-bottom: 1px solid #666;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
 }
@@ -94,7 +95,12 @@ button {
 }
 
 .sk-primary-link {
+  color: $sk-color-primary-darker;
+  border-bottom: 2px solid $sk-color-primary-darker;
+  margin-bottom: -1px !important;
   &:hover {
+    color: $sk-color-primary;
     border-bottom: 2px solid $sk-color-primary;
+    padding-bottom: 2px !important;
   }
 }
