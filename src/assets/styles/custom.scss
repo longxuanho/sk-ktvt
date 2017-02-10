@@ -105,3 +105,14 @@ button {
     padding-bottom: 0.5rem !important;
   }
 }
+
+// Fix problem with screenfull js with blank at the end of viewport (Chrome)
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+#sk-container {
+  flex: 1;
+}
+

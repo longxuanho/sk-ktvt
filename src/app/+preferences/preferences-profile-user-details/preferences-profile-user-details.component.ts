@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LoggerService } from '../../core/shared/logger.service';
 import { UserProfile } from '../shared/user.model';
+import { AuthService } from '../../core/shared/auth.service';
 
 @Component({
   selector: 'sk-preferences-profile-user-details',
@@ -19,7 +21,9 @@ export class PreferencesProfileUserDetailsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private router: Router,
+    private authService: AuthService,
   ) { 
     this.buildForm();
   }
@@ -39,10 +43,20 @@ export class PreferencesProfileUserDetailsComponent implements OnInit {
 
   onSubmit(profile: UserProfile) {
     this.submitting = true;
-    this.submitting = false;
+    this.authService
+      .setUserProfile(profile)
+      .finally(() => this.submitting = false)
+      .subscribe(
+        success => this.loggerService.success('Hồ sơ của bạn đã được cập nhật vào hệ thống.', 'Cập nhật thành công!'),
+        error => this.loggerService.error(error.message, 'Opps!', error));
   }
 
   ngOnInit() {
+    this.authService.getAuth()
+      .switchMap(auth => {
+        return this.authService.getUserProfile(auth.uid);
+      })
+      .subscribe(profile => this.userProfileForm.patchValue(profile));
   }
 
 }

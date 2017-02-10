@@ -1,11 +1,11 @@
 <div class="btn-group">
-  <label class="btn btn-secondary" (click)="selectView('thong_tin')" [ngClass]="{active: selectedView === 'thong_tin'}">
-    <input type="radio" name="options" value="thong_tin" autocomplete="off"> Thông tin
-  </label>
-  <label class="btn btn-secondary" (click)="selectView('doi_mat_khau')" [ngClass]="{active: selectedView === 'doi_mat_khau'}">
-    <input type="radio" name="options" value="doi_mat_khau" autocomplete="off"> Đổi mật khẩu
-  </label>
-  <label class="btn btn-secondary" (click)="onLogOut()">
-    <input type="radio" name="options" autocomplete="off"> Đăng xuất
-  </label>
+  <a class="btn btn-secondary" (click)="selectView('thong_tin')" [ngClass]="{active: selectedView === 'thong_tin'}">
+     Thông tin
+  </a>
+  <a class="btn btn-secondary" (click)="selectView('doi_mat_khau')" [ngClass]="{active: selectedView === 'doi_mat_khau'}">
+     Đổi mật khẩu
+  </a>
+  <a class="btn btn-secondary" (click)="onLogOut()">
+     Đăng xuất
+  </a>
 </div>

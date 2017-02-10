@@ -48,7 +48,32 @@ export class AuthService {
   }
 
   logout() {
-    return Observable.fromPromise(this.af.auth.logout());
+    return this.af.auth
+      .switchMap(auth => {
+        if (!auth)
+          return Observable.of(false);
+        return this.af.database.object(`${this.appConfig['db.fbRefUserPresence']}/${auth.uid}`)
+          .remove()
+          .then(success => Observable.of(true))
+          .catch(error => Observable.throw(new Error(error.message)));
+      })
+      .do(() => {
+        this.af.auth.logout();
+      })
+      .take(1);
+  }
+
+  setUserProfile(userProfile) {
+    return this.af.auth
+      .take(1)
+      .switchMap(auth => {
+        if (!auth)
+          return Observable.of(false);
+        return this.af.database.object(`${this.appConfig['db.fbRefUserProfiles']}/${auth.uid}`)
+          .set(userProfile)
+          .then(success => Observable.of(true))
+          .catch(error => Observable.throw(new Error(error.message)));
+      });
   }
 
   getAuth() {
