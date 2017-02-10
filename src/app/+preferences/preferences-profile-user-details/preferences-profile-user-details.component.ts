@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LoggerService } from '../../core/shared/logger.service';
 import { UserProfile } from '../shared/user.model';
 import { AuthService } from '../../core/shared/auth.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'sk-preferences-profile-user-details',
   templateUrl: './preferences-profile-user-details.component.html',
-  styleUrls: ['./preferences-profile-user-details.component.scss']
+  styleUrls: ['./preferences-profile-user-details.component.scss'],
 })
 export class PreferencesProfileUserDetailsComponent implements OnInit {
 
@@ -18,6 +19,9 @@ export class PreferencesProfileUserDetailsComponent implements OnInit {
 
   submitting: boolean = false;
   userProfile: UserProfile;
+
+  authSub: Subscription;
+  isChangePassword: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,12 +55,32 @@ export class PreferencesProfileUserDetailsComponent implements OnInit {
         error => this.loggerService.error(error.message, 'Opps!', error));
   }
 
+  logout() {
+    if (this.authSub)
+      this.authSub.unsubscribe();
+    this.authService.logout()
+      .subscribe(() => {
+        setTimeout(() => {
+          this.router.navigate(['/dang-nhap']);
+        }, 500);
+        this.loggerService.success('Bye : )', 'Xin chào và hẹn gặp lại!');
+      });
+  }
+
   ngOnInit() {
-    this.authService.getAuth()
+    this.authSub = this.authService.getAuth()
       .switchMap(auth => {
         return this.authService.getUserProfile(auth.uid);
       })
-      .subscribe(profile => this.userProfileForm.patchValue(profile));
+      .subscribe(profile => {
+        this.userProfile = profile;
+        this.userProfileForm.patchValue(profile);
+      });
+  }
+
+  ngOnDestroy() {
+    if (this.authSub)
+      this.authSub.unsubscribe();
   }
 
 }

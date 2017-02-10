@@ -1,6 +1,14 @@
-<form [formGroup]="userProfileForm" (ngSubmit)="onSubmit(userProfileForm.value)" style="padding-bottom: 20px;">
-  <div class="row">
-    <div class="col-md-8 col-lg-4">
+<div class="d-header" style="margin-top: 1.5rem;">
+  <h3 class="d-inline-block d-title">Xin chào<span *ngIf="userProfile && userProfile.displayName">, {{userProfile.displayName}}</span>!</h3>
+  <a href="" class="d-inline-block align-sef-bottom sk-primary-link" [routerLink]="['/thong-ke/danh-sach']">Trở về »</a>
+</div>
+<div style="margin-top:0.5rem; margin-bottom: 1.5rem;">
+  <small class="text-right d-block">Cập nhật các thông tin của bạn theo mẫu phiếu dưới đây</small>
+</div>
+
+
+<div class="form-wrapper">
+  <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit(userProfileForm.value)">
       <div class="form-group" [ngClass]="{'has-danger': displayName.invalid && (displayName.dirty || displayName.touched)}">
         <label class="form-control-label" for="displayNameInput">Tên hiển thị</label>
         <input type="text" class="form-control" id="displayNameInput" placeholder="Họ và tên" formControlName="displayName">
@@ -8,10 +16,6 @@
           <small class="form-text" *ngIf="displayName.errors.required">Chưa có thông tin về tên hiển thị</small>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-lg-8">
       <div class="form-group" [ngClass]="{'has-danger': description.invalid && (description.dirty || description.touched)}">
         <label class="form-control-label" for="descriptionInput">Mô tả</label>
         <input type="text" class="form-control" id="descriptionInput" placeholder="Nhập đơn vị công tác" formControlName="description">
@@ -19,8 +23,15 @@
           <small class="form-text" *ngIf="description.errors.required">Chưa có thông tin về đơn vị công tác</small>
         </div>
       </div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-outline-info mt-2" [disabled]="userProfileForm.invalid || submitting">Cập nhật</button>
-  <button  type="button" href="" class="btn btn-outline-danger mt-2" (click)="logout($event)">Đăng xuất »</button >
-</form>
+      <button type="submit" class="btn btn-outline-info mt-2" [disabled]="userProfileForm.invalid || submitting">Cập nhật</button>
+  </form>
+  <form>
+    <button type="button" class="btn btn-outline-secondary mt-2">Đổi mật khẩu »</button>
+  </form>
+  <sk-preferences-profile-change-password></sk-preferences-profile-change-password>
+  <form>
+    <button type="button" class="btn btn-outline-warning mt-2" (click)="logout()">Đăng xuất »</button>
+  </form>
+</div>
+<hr/>
+<br/>

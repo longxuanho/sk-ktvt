@@ -7,13 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreferencesProfileComponent implements OnInit {
 
-  selectedView = 'thong_tin';
-
   constructor() { }
-
-  selectView(viewName: string) {
-    this.selectedView = viewName;
-  }
 
   ngOnInit() {
   }

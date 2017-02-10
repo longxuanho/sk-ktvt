@@ -49,18 +49,15 @@ export class AuthService {
 
   logout() {
     return this.af.auth
-      .switchMap(auth => {
-        if (!auth)
-          return Observable.of(false);
-        return this.af.database.object(`${this.appConfig['db.fbRefUserPresence']}/${auth.uid}`)
-          .remove()
-          .then(success => Observable.of(true))
-          .catch(error => Observable.throw(new Error(error.message)));
+      .take(1)
+      .do(auth => {
+        if (!!auth)
+          this.af.database.object(`${this.appConfig['db.fbRefUserPresence']}/${auth.uid}`)
+            .remove();
       })
-      .do(() => {
+      .finally(() => {
         this.af.auth.logout();
-      })
-      .take(1);
+      });
   }
 
   setUserProfile(userProfile) {
