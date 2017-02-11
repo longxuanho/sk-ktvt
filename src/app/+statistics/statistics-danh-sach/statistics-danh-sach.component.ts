@@ -42,8 +42,6 @@ export class StatisticsDanhSachComponent implements OnInit, OnDestroy {
   ) { }
 
   handleError(error) {
-    this.isLoading = false;
-    this.isRequestError = true;
     this.pageStatus = 'Truy vấn không thành công. Xin vui lòng thử lại ..';
     console.error('Truy vấn dữ liệu từ Bonsai thất bại. Chi tiết:', error);
   }
@@ -77,13 +75,17 @@ export class StatisticsDanhSachComponent implements OnInit, OnDestroy {
         }))
       .subscribe(
         (thietbis: ThietBi[]) => {
-          this.isRequestError = false;
           this.isLoading = false;
+          this.isRequestError = false;
           
           this.thietbis = thietbis || [];
           this.pageStatus = thietbis.length ? '' : 'Không có kết quả phù hợp với yêu cầu của bạn' 
         },
-        error => this.handleError(error) );
+        error => {
+          this.isLoading = false;
+          this.isRequestError = true;
+          this.handleError(error)
+        });
   }
 
   ngOnDestroy() {
