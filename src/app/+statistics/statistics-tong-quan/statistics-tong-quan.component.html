@@ -1,12 +1,11 @@
-<sk-statistics-tong-quan-header [numOfThietbis]="thietbis?.length"></sk-statistics-tong-quan-header>
+<sk-statistics-tong-quan-header [numOfThietbis]="thietbis?.length" [isLoading]="isLoading"></sk-statistics-tong-quan-header>
 
 <div class="row" style="display: flex; margin-top: 1.5rem;">
   <div style="margin-bottom: 2rem;" [ngClass]="{ 'col-md-12 col-lg-3': !panelCollapsed, 'col-md-1': panelCollapsed }">
-    
-
     <sk-statistics-tree-view 
       [thietbis]="thietbis" [expanded]="panelCollapsed"
-      (onPanelToggled)="togglePanel()"></sk-statistics-tree-view>
+      (onPanelToggled)="togglePanel()">
+    </sk-statistics-tree-view>
   </div>
   <div [ngClass]="{ 'col-md-12 col-lg-9': !panelCollapsed, 'col-md-11': panelCollapsed }">
     <sk-statistics-thietbis-grid [thietbis]="thietbis"></sk-statistics-thietbis-grid>

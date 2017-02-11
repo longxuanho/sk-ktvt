@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ThietbisService } from '../../core/shared/thietbis.service';
 import { ThietBi } from '../../core/shared/thietbis.model';
+import { LoggerService } from '../../core/shared/logger.service';
+
 import { Subscription } from 'rxjs/Subscription';
 
 declare var $: any;
@@ -14,9 +16,11 @@ export class StatisticsTongQuanComponent implements OnInit, OnDestroy, AfterView
 
   thietbis: ThietBi[] = [];
   panelCollapsed = false;
+  isLoading: boolean;
 
   constructor(
-    private thietbisService: ThietbisService
+    private thietbisService: ThietbisService,
+    private loggerService: LoggerService
   ) { }
 
   togglePanel() {
@@ -24,9 +28,23 @@ export class StatisticsTongQuanComponent implements OnInit, OnDestroy, AfterView
     window.setTimeout(() => $('#grid').data('kendoGrid').refresh());
   }
 
+  handleError(error) {
+    this.loggerService.error(error.message, 'Truy vấn thất bại.', error);
+  }
+
   getAllThietBis() {
+    this.isLoading = true;
+
     this.thietbisService.getAllThietBis()
-      .subscribe((thietbis: ThietBi[]) => this.thietbis = thietbis);
+      .subscribe(
+        (thietbis: ThietBi[]) => {
+          this.isLoading = false;
+          this.thietbis = thietbis;
+        },
+        (error: Error) => {
+          this.isLoading = false;
+          this.handleError(error);
+        });
   }
 
   ngOnInit() {

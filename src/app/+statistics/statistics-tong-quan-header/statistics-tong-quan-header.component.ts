@@ -12,6 +12,7 @@ declare var moment: any;
 export class StatisticsTongQuanHeaderComponent implements OnInit {
 
   @Input() numOfThietbis: number;
+  @Input() isLoading: boolean;
   now: string = moment().format(this.appConfig['time.customFullDate']);
 
   constructor(
