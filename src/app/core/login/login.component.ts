@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (success) => {
           this.loggerService.success('Welcome back!', 'Đăng nhập thành công', success);
-          this.router.navigate(['/bang-tin']);
+          setTimeout(() => {
+            this.router.navigate(['/thong-ke']);
+          }, 1000);
         },
         (error) => this.loggerService.error(error.message, 'Opps!', error)
       )

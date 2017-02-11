@@ -8,7 +8,7 @@ import { LoginGuard } from './core/login/login-guard.service';
 import { MpinVerificationComponent } from './core/mpin-verification/mpin-verification.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'bang-tin', canActivate: [AuthGuard] },
+  { path: '', pathMatch: 'full', redirectTo: 'thong-ke', canActivate: [AuthGuard] },
   { path: 'dang-nhap', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'xac-nhan-mpin', component: MpinVerificationComponent, canActivate: [AuthGuard] },
   { path: 'bang-tin', loadChildren: 'app/+dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
