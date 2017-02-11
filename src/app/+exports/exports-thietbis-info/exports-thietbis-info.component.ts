@@ -11,6 +11,7 @@ declare var moment: any;
 export class ExportsThietbisInfoComponent implements OnInit {
 
   @Input() numOfItems: number;
+  @Input() isLoading: boolean;
   now: string = moment().format(this.appConfig['time.customFullDate']);
 
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) { }

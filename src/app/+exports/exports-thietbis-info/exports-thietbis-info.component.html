@@ -1,5 +1,5 @@
 <div style="margin-top:0.5rem; margin-bottom: 1.5rem;">
-  <small class="text-right d-block" *ngIf="numOfItems">Đã tải về {{numOfItems | number}} hạng mục khả dụng từ nguồn dữ liệu</small>
-  <small class="text-right d-block" *ngIf="!numOfItems">Không có hạng mục khả dụng</small>
+  <small class="text-right d-block" *ngIf="isLoading">Đang truy vấn từ nguồn dữ liệu ...</small>
+  <small class="text-right d-block" *ngIf="!isLoading">Đã tải về {{numOfItems | number}} hạng mục khả dụng từ nguồn dữ liệu</small>
   <small class="text-right d-block">( {{now}} )</small>
 </div>
