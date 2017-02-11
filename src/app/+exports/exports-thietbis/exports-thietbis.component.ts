@@ -36,7 +36,7 @@ export class ExportsThietbisComponent implements OnInit, OnDestroy {
       .subscribe(
         (thietbis: ThietBi[]) => {
           this.isLoading = false;
-          this.thietbis = thietbis
+          this.thietbis = this.thietbisService.validateDataBeforeFetchToDataSource(thietbis)
         },
         (error: Error) => {
           this.isLoading = false;

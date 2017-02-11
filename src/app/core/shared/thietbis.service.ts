@@ -177,6 +177,20 @@ export class ThietbisService {
       .take(1);
   }
 
+  validateDataBeforeFetchToDataSource(thietbis: ThietBi[]) {
+    // Dữ liệu thietbis tải về có thể gây lỗi cho grid khi group với trường có giá trị undefined.
+    // Ta cần transform data trước khi fetch dữ liệu này cho datasource của grid.
+
+    thietbis.forEach(thietbi => {
+      thietbi.modelThietBi = thietbi.modelThietBi || '';
+      thietbi.nhaPhanPhoi = thietbi.nhaPhanPhoi || '';
+      thietbi.namSanXuat = thietbi.namSanXuat || null;
+      thietbi.namSuDung = thietbi.namSuDung || null;
+      thietbi.capChatLuong = thietbi.capChatLuong || null;
+    });
+    return thietbis;
+  }
+
   getThietBi(thietbiId) {
     if (thietbiId)
       return this.af.database.object(`${ this.appConfig['db.fbRefThietbisList'] }/${ thietbiId }`);

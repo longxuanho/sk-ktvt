@@ -39,7 +39,7 @@ export class StatisticsTongQuanComponent implements OnInit, OnDestroy, AfterView
       .subscribe(
         (thietbis: ThietBi[]) => {
           this.isLoading = false;
-          this.thietbis = thietbis;
+          this.thietbis = this.thietbisService.validateDataBeforeFetchToDataSource(thietbis);
         },
         (error: Error) => {
           this.isLoading = false;
