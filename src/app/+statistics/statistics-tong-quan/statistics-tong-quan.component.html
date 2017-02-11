@@ -8,6 +8,6 @@
     </sk-statistics-tree-view>
   </div>
   <div [ngClass]="{ 'col-md-12 col-lg-9': !panelCollapsed, 'col-md-11': panelCollapsed }">
-    <sk-statistics-thietbis-grid [thietbis]="thietbis"></sk-statistics-thietbis-grid>
+    <sk-statistics-thietbis-grid [thietbis]="thietbis" (onDataRefreshed)="onDataRefreshed($event)"></sk-statistics-thietbis-grid>
   </div>
 </div>

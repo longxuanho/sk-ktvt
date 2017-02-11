@@ -44,6 +44,10 @@ export class ExportsThietbisComponent implements OnInit, OnDestroy {
         });
   }
 
+  onDataRefreshed(event: boolean) {
+    this.getAllThietBis();
+  }
+
   ngOnInit() {
     this.getAllThietBis();
   }

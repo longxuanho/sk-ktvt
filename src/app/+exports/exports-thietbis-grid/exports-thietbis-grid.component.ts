@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ThietBi } from '../../core/shared/thietbis.model';
 import { columns, schema, sortMultiFilterColumns } from './exports-thietbis-grid.model';
 import { APP_CONFIG, AppConfig } from '../../app.config';
@@ -15,6 +15,9 @@ declare var moment: any;
 export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() thietbis: ThietBi[];
+
+  @Output() onDataRefreshed = new EventEmitter<boolean>();
+
   gridReady: boolean = false;
   gridDataSource: any;
 
@@ -75,7 +78,8 @@ export class ExportsThietbisGridComponent implements OnInit, AfterViewInit, OnCh
     $(".k-pager-refresh").unbind('click').click((event: Event) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log('refresh dataSource...');
+      // Refresh data here ...
+      this.onDataRefreshed.emit(true);
     })
   }
 

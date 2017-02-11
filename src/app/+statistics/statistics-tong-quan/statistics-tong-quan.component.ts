@@ -47,6 +47,10 @@ export class StatisticsTongQuanComponent implements OnInit, OnDestroy, AfterView
         });
   }
 
+  onDataRefreshed(event: Event) {
+    this.getAllThietBis();
+  }
+
   ngOnInit() {
     this.getAllThietBis();
   }
