@@ -145,11 +145,13 @@ export const columns = [{
 }, {
     field: "moTa",
     title: "Mô tả",
-    width: 250
+    width: 250,
+    hidden: true
 }, {
     field: "ghiChu",
     title: "Ghi chú",
-    width: 300
+    width: 300,
+    hidden: true
 }];
 
 export const schema = {

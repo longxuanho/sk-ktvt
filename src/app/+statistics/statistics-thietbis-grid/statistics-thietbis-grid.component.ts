@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { columns, schema, sortMultiFilterColumns } from './statistics-thietbis-grid.model';
 import { ThietbisTreeViewService, SelectedTreeViewNode } from '../shared/thietbis-tree-view.service';
 
-
 declare var $: any;
 declare var kendo: any;
 declare var moment: any;
@@ -48,12 +47,19 @@ export class StatisticsThietbisGridComponent implements OnInit, AfterViewInit, O
       resizable: true,
       filterable: true,
       sortable: true,
-      selectable: "multiple",
+      // selectable: "multiple",
       columnMenu: true,
       pageable: {
         refresh: true,
         pageSizes: true,
         buttonCount: 5
+      },
+      toolbar: ["excel"],
+      excel: {
+        fileName: `Thuc Luc Phuong Tien - ${ moment().format(this.appConfig['time.defaultExcelFileName']) }.xlsx`,
+        proxyURL: "https://live.snp-skynet.com/export/thiet-bi",
+        filterable: true,
+        allPages: true
       },
       columns: columns,
       filterMenuInit: function(e) {
