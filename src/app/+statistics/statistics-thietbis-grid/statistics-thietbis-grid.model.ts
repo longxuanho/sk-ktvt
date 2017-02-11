@@ -4,6 +4,7 @@ export const columns = [{
     width: 150,
     locked: true,
     lockable: true,
+    groupable: false
 }, {
     field: "loai",
     title: "Loại",
@@ -15,10 +16,12 @@ export const columns = [{
     field: "maTOPX",
     title: "Mã TopX",
     width: 150,
+    groupable: false
 }, {
     field: "maMaximo",
     title: "Mã Maximo",
-    width: 150
+    width: 150,
+    groupable: false
 }, {
     field: "nhom",
     title: "Nhóm",
@@ -114,23 +117,28 @@ export const columns = [{
 }, {
     field: "bienSo",
     title: "Biển số",
-    width: 150
+    width: 150,
+    groupable: false
 }, {
     field: "soDangKy",
     title: "Số đăng ký",
-    width: 150
+    width: 150,
+    groupable: false
 }, {
     field: "soKhung",
     title: "Số khung",
-    width: 150
+    width: 150,
+    groupable: false
 }, {
     field: "soMay",
     title: "Số máy",
-    width: 150
+    width: 150,
+    groupable: false
 }, {
     field: "soDangKiem",
     title: "Số đăng kiểm",
-    width: 200
+    width: 200,
+    groupable: false
 }, {
     field: "capChatLuong",
     title: "Cấp chất lượng",
@@ -141,17 +149,20 @@ export const columns = [{
 }, {
     field: "$key",
     title: "Mã tham chiếu",
-    width: 200
+    width: 200,
+    groupable: false
 }, {
     field: "moTa",
     title: "Mô tả",
     width: 250,
-    hidden: true
+    hidden: true,
+    groupable: false
 }, {
     field: "ghiChu",
     title: "Ghi chú",
     width: 300,
-    hidden: true
+    hidden: true,
+    groupable: false
 }];
 
 export const schema = {
