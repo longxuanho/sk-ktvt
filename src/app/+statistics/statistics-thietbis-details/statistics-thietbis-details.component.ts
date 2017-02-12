@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { LoggerService } from '../../core/shared/logger.service';
 import { ThietBi } from '../../core/shared/thietbis.model';
 import { ThietbisService } from '../../core/shared/thietbis.service';
+import { AuthService } from '../../core/shared/auth.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -14,12 +15,16 @@ import { Subscription } from 'rxjs/Subscription';
 export class StatisticsThietbisDetailsComponent implements OnInit {
 
   routeSub: Subscription;
+  managerSub: Subscription;
+
+  isManager: boolean;
   selectedThietBi: ThietBi;
   isRequestError: boolean;
   
   constructor(
     private location: Location,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private thietBisService: ThietbisService,
     private loggerService: LoggerService
   ) { }
@@ -47,11 +52,18 @@ export class StatisticsThietbisDetailsComponent implements OnInit {
         this.isRequestError = true;
         this.handleError(error);
       });
+
+      this.managerSub = this.authService.manager$
+        .subscribe(manager => {
+          this.isManager = !!manager && !!manager.mPIN;
+        })
   }
 
   ngOnDestroy() {
     if (this.routeSub)
       this.routeSub.unsubscribe();
+    if (this.managerSub)
+      this.managerSub.unsubscribe();
   }
 
 }
