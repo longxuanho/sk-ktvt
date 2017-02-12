@@ -23,6 +23,10 @@ p, small {
     }
 }
 
+.has-comma::after {
+    content: ", "
+}
+
 
 
 

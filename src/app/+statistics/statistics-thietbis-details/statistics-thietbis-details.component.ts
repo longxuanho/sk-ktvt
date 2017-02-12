@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ThietBi } from '../../core/shared/thietbis.model';
+import { ThietbisService } from '../../core/shared/thietbis.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -11,10 +13,12 @@ import { Subscription } from 'rxjs/Subscription';
 export class StatisticsThietbisDetailsComponent implements OnInit {
 
   routeSub: Subscription;
+  selectedThietBi: ThietBi;
   
   constructor(
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private thietBisService: ThietbisService
   ) { }
 
   goBack(event: Event) {
@@ -25,8 +29,10 @@ export class StatisticsThietbisDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.routeSub = this.route.params
-      .subscribe(params => {
-
+      .switchMap((params) => this.thietBisService.getThietBi(params["id"]))
+      .subscribe((thietbi: ThietBi) => {
+        this.selectedThietBi = thietbi;
+        console.log('data back: ', thietbi);
       });
   }
 
