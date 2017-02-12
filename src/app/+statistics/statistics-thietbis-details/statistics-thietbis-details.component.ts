@@ -15,9 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class StatisticsThietbisDetailsComponent implements OnInit {
 
   routeSub: Subscription;
-  managerSub: Subscription;
 
-  isManager: boolean;
   selectedThietBi: ThietBi;
   isRequestError: boolean;
   
@@ -52,18 +50,11 @@ export class StatisticsThietbisDetailsComponent implements OnInit {
         this.isRequestError = true;
         this.handleError(error);
       });
-
-      this.managerSub = this.authService.manager$
-        .subscribe(manager => {
-          this.isManager = !!manager && !!manager.mPIN;
-        })
   }
 
   ngOnDestroy() {
     if (this.routeSub)
       this.routeSub.unsubscribe();
-    if (this.managerSub)
-      this.managerSub.unsubscribe();
   }
 
 }
