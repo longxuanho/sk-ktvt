@@ -20,6 +20,7 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
   searchSub: Subscription;
 
   currentPage: number = 1;
+  lastSearchText: string;
   searchText: string;
   searchBy: string;
   nhomFilterBy: string;
@@ -65,12 +66,16 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Cập nhật url khi searchText thay đổi
   subscribeFormChanges() {
     this.searchSub = this.search.valueChanges
       .debounceTime(1000)
       .subscribe(newVal => {
         this.searchText = newVal;
 
+        // Nếu người dùng search một từ khóa mới -> reset page về 1
+        if (this.lastSearchText !== newVal)
+          this.currentPage = 1;
         let queryParams = this.resolveQueryParams();
         this.router.navigate([this.routeName], { queryParams });
       });
@@ -78,9 +83,10 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
 
   resolveQueryParams() {
     let queryParams = {
-      // page: this.currentPage,
       searchBy: this.searchBy
     };
+    if (this.currentPage)
+      queryParams['page'] = this.currentPage;
     if (this.searchText)
       queryParams['search'] = this.searchText;
     if (this.nhomFilterBy)
@@ -108,10 +114,10 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
     
     this.routeSub = this.route.queryParams
       .subscribe(params => {
-        if (params['search'])
-          this.search.setValue(params['search']);
+        this.lastSearchText = params['search'] || '';
+        this.search.setValue(this.lastSearchText);
+
         this.currentPage = +params['page'] || 1;
-        this.searchText = params['search'] || '';
         this.searchBy = params['searchBy'] || this.appConfig['thietbis.defaultSearchBy'];
         this.nhomFilterBy = params['nhom'] || this.appConfig['thietbis.defaultNhomFilterBy'];
       });
