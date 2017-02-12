@@ -1,0 +1,36 @@
+small {
+    color: #888;
+}
+
+p {
+    margin-bottom: 0;
+    &:first-child {
+        margin-top: 1rem;
+    }
+    &:last-child {
+        margin-bottom: 1rem;
+    }
+}
+
+p, small {
+    a {
+        &::after {
+            content: " »";
+        }
+        &:hover {
+            color: tomato;
+        } 
+    }
+}
+
+
+
+
+.label {
+    display: inline-block;
+    min-width: 9rem;
+}
+
+.content {
+    display: inline-block;
+}

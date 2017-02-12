@@ -13,6 +13,7 @@ const routes: Routes = [
     path: '',
     component: InputComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'thiet-bi' },
       { path: 'thiet-bi', pathMatch: 'full', component: InputThietbisListComponent },
       { path: 'thiet-bi/tao-moi', component: InputThietbisAddNewComponent },
       { path: 'thiet-bi/:id', component: InputThietbisDetailsComponent }

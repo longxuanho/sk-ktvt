@@ -20,7 +20,7 @@ import { StatisticsDanhSachHeaderComponent } from './statistics-danh-sach-header
     StatisticsTreeViewComponent,
     StatisticsThietbisGridComponent,
     StatisticsTongQuanHeaderComponent,
-    StatisticsDanhSachHeaderComponent,
+    StatisticsDanhSachHeaderComponent
   ],
   providers: [
     ThietbisTreeViewService
