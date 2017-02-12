@@ -75,6 +75,9 @@ export class ThietbisService {
         case 'Hãng sản xuất':
           queryString["fields"] = ['hangSanXuat'];
           break;
+        case 'Nhà phân phối':
+          queryString["fields"] = ['nhaPhanPhoi'];
+          break;
         case 'Khu vực':
           queryString["fields"] = ['khuVuc', 'khuVucId'];
           break;

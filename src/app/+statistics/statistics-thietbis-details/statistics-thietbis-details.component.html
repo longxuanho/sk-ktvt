@@ -9,25 +9,36 @@
   </div>
 
   <div style="margin-top:0.5rem; margin-bottom: 1.5rem;">
-    <small class="text-right d-block">Chủng loại: <a href="" style="margin-right: 0.5rem;">{{selectedThietBi.chungLoai}}</a> Loại: <a href="">{{selectedThietBi.loai}}</a></small>
+    <small class="text-right d-block">Chủng loại: {{selectedThietBi.chungLoai}} • Loại: <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Loại thiết bị', search: selectedThietBi.loai }">{{selectedThietBi.loai}}</a></small>
     <small class="text-right d-block">Mã tham chiếu: {{selectedThietBi.$key}}</small>
   </div>
 
   <div id="thietbi_details">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">Hồ sơ thiết bị</h5>
-      <small><a>{{selectedThietBi.trangThai}}</a> tại <a>{{selectedThietBi.khuVuc}}</a></small>
+      <small>
+        <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Trạng thái', search: selectedThietBi.trangThai }">{{selectedThietBi.trangThai}}</a> 
+        tại 
+        <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Khu vực', search: selectedThietBi.khuVuc }">{{selectedThietBi.khuVuc}}</a>
+      </small>
     </div>
     <div>
-      <p><span class="label">Hãng sản xuất:</span> <span class="content"><a href="">{{selectedThietBi.hangSanXuat}}</a> <span *ngIf="selectedThietBi.namSanXuat">( <a href="">{{selectedThietBi.namSanXuat}}</a> )</span></span>
+      <p><span class="label">Hãng sản xuất:</span> 
+      <span class="content">
+        <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Hãng sản xuất', search: selectedThietBi.hangSanXuat }">{{selectedThietBi.hangSanXuat}}</a> 
+        <span *ngIf="selectedThietBi.namSanXuat">( <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Năm sản xuất', search: selectedThietBi.namSanXuat }">{{selectedThietBi.namSanXuat}}</a> )</span>
+      </span>
       </p>
-      <p><span class="label">Nhà phân phối:</span> <span class="content"><span *ngIf="selectedThietBi.nhaPhanPhoi"><a href="">{{selectedThietBi.nhaPhanPhoi}}</a></span><span
+      <p><span class="label">Nhà phân phối:</span> <span class="content"><span *ngIf="selectedThietBi.nhaPhanPhoi">
+        <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Nhà phân phối', search: selectedThietBi.nhaPhanPhoi }">{{selectedThietBi.nhaPhanPhoi}}</a></span><span
           *ngIf="!selectedThietBi.nhaPhanPhoi">-</span></span>
       </p>
-      <p><span class="label">Model:</span> <span class="content"><span *ngIf="selectedThietBi.modelThietBi"><a href="">{{selectedThietBi.modelThietBi}}</a></span><span
+      <p><span class="label">Model:</span> <span class="content"><span *ngIf="selectedThietBi.modelThietBi">
+        <a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Model thiết bị', search: selectedThietBi.modelThietBi }">{{selectedThietBi.modelThietBi}}</a></span><span
           *ngIf="!selectedThietBi.modelThietBi">-</span></span>
       </p>
-      <p><span class="label">Năm sử dụng:</span> <span class="content"><span *ngIf="selectedThietBi.namSuDung"><a href="">{{selectedThietBi.namSuDung}}</a></span><span
+      <p><span class="label">Năm sử dụng:</span> <span class="content"><span *ngIf="selectedThietBi.namSuDung">
+        <a href="" href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Năm sử dụng', search: selectedThietBi.namSuDung }">{{selectedThietBi.namSuDung}}</a></span><span
           *ngIf="!selectedThietBi.namSuDung">-</span></span>
       </p>
       <p><span class="label">Biển số:</span> <span class="content">{{selectedThietBi.bienSo ? selectedThietBi.bienSo : '-'}}</span></p>
@@ -35,7 +46,7 @@
       <p><span class="label">Số khung:</span> <span class="content">{{selectedThietBi.soKhung ? selectedThietBi.soKhung : '-'}}</span></p>
       <p><span class="label">Số máy:</span> <span class="content">{{selectedThietBi.soMay ? selectedThietBi.soMay : '-'}}</span></p>
       <p><span class="label">Số đăng kiểm:</span> <span class="content">{{selectedThietBi.soDangKiem ? selectedThietBi.soDangKiem : '-'}}</span></p>
-      <p><span class="label">Cấp chất lượng:</span> <span class="content"><span *ngIf="selectedThietBi.capChatLuong"><a href="">{{selectedThietBi.capChatLuong}}</a></span><span
+      <p><span class="label">Cấp chất lượng:</span> <span class="content"><span *ngIf="selectedThietBi.capChatLuong"><a >{{selectedThietBi.capChatLuong}}</a></span><span
           *ngIf="!selectedThietBi.capChatLuong">-</span></span>
       </p>
     </div>
@@ -44,8 +55,8 @@
       <h5 class="mb-1">Phân quyền</h5>
     </div>
     <div>
-      <p><span class="label">ĐV Quản lý:</span> <span class="content"><a href="">{{selectedThietBi.dvQuanLy}} ( {{selectedThietBi.dvQuanLyId}} )</a></span></p>
-      <p><span class="label">ĐV Sở hữu:</span> <span class="content"><a href="">{{selectedThietBi.dvSoHuu}} ( {{selectedThietBi.dvSoHuuId}} )</a></span></p>
+      <p><span class="label">ĐV Quản lý:</span> <span class="content"><a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Đơn vị quản lý', search: selectedThietBi.dvQuanLy }">{{selectedThietBi.dvQuanLy}} ( {{selectedThietBi.dvQuanLyId}} )</a></span></p>
+      <p><span class="label">ĐV Sở hữu:</span> <span class="content"><a href="" [routerLink]="['/thong-ke/danh-sach']" [queryParams]="{ searchBy: 'Đơn vị sở hữu', search: selectedThietBi.dvSoHuu }">{{selectedThietBi.dvSoHuu}} ( {{selectedThietBi.dvSoHuuId}} )</a></span></p>
     </div>
     <div *ngIf="selectedThietBi.tags || selectedThietBi.moTa || selectedThietBi.ghiChu">
       <hr/>
@@ -70,5 +81,17 @@
         </div>
       </div>
     </div>
+
+    <div class="text-right" style="margin-top: 2rem;">
+      <a [routerLink]="['/nhap-lieu/thiet-bi', selectedThietBi.$key]" style="color: tomato;">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Cập nhật »
+      </a>
+    </div>
   </div>
+</div>
+
+<div *ngIf="isRequestError" style="text-align: center; margin: 2rem; color: #888;">
+  <i class="fa fa-5x fa-folder-open-o" aria-hidden="true"></i>
+  <p style="margin-top: 1.5rem;">Không thể truy vấn thông tin về thiết bị này. Xin vui lòng thử lại sau.</p>
 </div>

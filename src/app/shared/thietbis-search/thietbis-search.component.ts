@@ -31,6 +31,7 @@ export class ThietbisSearchComponent implements OnInit, OnDestroy {
     'Đơn vị sở hữu',
     'Ghi chú, mô tả',
     'Hãng sản xuất',
+    'Nhà phân phối',
     'Khu vực',
     'Loại thiết bị',
     'Mã thiết bị',
