@@ -6,6 +6,7 @@ import { ThietBi } from '../../core/shared/thietbis.model';
 import { ThietbisService } from '../../core/shared/thietbis.service';
 import { InputThietbisFormComponent } from '../input-thietbis-form/input-thietbis-form.component';
 import { Subscription } from 'rxjs/Subscription';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'sk-input-thietbis-details',
@@ -25,7 +26,14 @@ export class InputThietbisDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private loggerService: LoggerService,
     private thietBisService: ThietbisService,
+    private location: Location,
   ) { }
+
+  goBack(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.location.back();
+  }
 
   onSubmited(rawData: ThietBi) {
     if (this.selectedThietBi && this.selectedThietBi.$key) {
