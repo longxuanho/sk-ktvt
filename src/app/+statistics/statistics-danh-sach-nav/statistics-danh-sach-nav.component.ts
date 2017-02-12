@@ -20,11 +20,9 @@ export class StatisticsDanhSachNavComponent implements OnInit, OnDestroy {
   ) { }
 
   getPage(page: number) {
-    if (!!page) {
-      let queryParams = Object.assign({}, this.lastQueryParams);
-      queryParams.page = +page;
-      this.router.navigate(['/thong-ke/danh-sach'], { queryParams });
-    }
+    let queryParams = Object.assign({}, this.lastQueryParams);
+    queryParams.page = +page || 1;
+    this.router.navigate(['/thong-ke/danh-sach'], { queryParams });
   }
 
   ngOnInit() {
