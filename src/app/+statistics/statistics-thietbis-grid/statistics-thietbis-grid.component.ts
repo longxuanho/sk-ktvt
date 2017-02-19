@@ -52,10 +52,13 @@ export class StatisticsThietbisGridComponent implements OnInit, AfterViewInit, O
       sortable: true,
       // selectable: "multiple",
       columnMenu: true,
+      scrollable: {
+          virtual: true
+      },
       pageable: {
         refresh: true,
-        pageSizes: true,
-        buttonCount: 5
+        numeric: false,
+        previousNext: false,
       },
       toolbar: ["excel"],
       excel: {
