@@ -28,10 +28,13 @@ export class LoginComponent implements OnInit {
   }
 
   buildForm() {
-    this.email = new FormControl('', [
-      Validators.required,
-      Validators.pattern(new RegExp(this.appConstant['validator.emailPattern'], 'gi'))
-    ]);
+    this.email = new FormControl('',
+      Validators.required
+    // [
+    //   Validators.required,
+    //   Validators.pattern(new RegExp(this.appConstant['validator.emailPattern'], 'gi'))
+    // ]
+    );
     this.password = new FormControl('', Validators.required)
     this.loginForm = this.formBuilder.group({
       email: this.email,
